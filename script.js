@@ -27,16 +27,16 @@ themeToggle.addEventListener('click', () => {
 // Typewriter Effect
 const textElement = document.querySelector('.typewriter');
 const phrases = [
-    'Backend Developer.',
+    'Java Backend Engineer.',
     'Microservices Architect.',
-    'Java & Spring Boot Enthusiast.',
+    'Cloud & DevOps Enthusiast.',
     'I build scalable systems.'
 ];
 
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-let typingSpeed = 100;
+let typingSpeed = 80;
 
 function type() {
     const currentPhrase = phrases[phraseIndex];
@@ -44,11 +44,11 @@ function type() {
     if (isDeleting) {
         textElement.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
-        typingSpeed = 50; // Faster when deleting
+        typingSpeed = 40; // Faster when deleting
     } else {
         textElement.textContent = currentPhrase.substring(0, charIndex + 1);
         charIndex++;
-        typingSpeed = 100;
+        typingSpeed = 80;
     }
 
     if (!isDeleting && charIndex === currentPhrase.length) {
