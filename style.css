@@ -70,6 +70,29 @@ h1 {
     transform: translateY(-5px);
 }
 
+.notes-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--primary-color);
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color var(--transition), transform var(--transition);
+    box-shadow: 0 4px 15px rgba(9, 132, 227, 0.4);
+}
+
+.notes-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(9, 132, 227, 0.6);
+}
+
+[data-theme="dark"] .notes-btn:hover {
+    background-color: #0984e3;
+}
+
 section {
     padding: 60px 0;
 }
