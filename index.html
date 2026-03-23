@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace | Backend Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <div class="container">
+            <h1 class="glitch" data-text="Hello, I'm Ace.">Hello, I'm Ace.</h1>
+            <p class="typewriter"></p>
+            <div class="social-links">
+                <a href="https://github.com/MinHao1103" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:contact@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>我是 Ace，一名專注於微服務架構與後端開發的工程師。</p>
+            <p>熟悉 Java, Spring Boot, Spring Cloud, Kotlin DSL, 以及 Docker 容器化技術。我喜歡建構高可用、高擴展性的系統，並持續探索新技術來解決複雜的問題。</p>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-tag"><i class="fab fa-java"></i> Java 17+</div>
+            <div class="skill-tag"><i class="fas fa-leaf"></i> Spring Boot</div>
+            <div class="skill-tag"><i class="fas fa-cloud"></i> Spring Cloud</div>
+            <div class="skill-tag"><i class="fas fa-code"></i> Gradle (Kotlin)</div>
+            <div class="skill-tag"><i class="fab fa-docker"></i> Docker</div>
+            <div class="skill-tag"><i class="fas fa-database"></i> SQL / NoSQL</div>
+            <div class="skill-tag"><i class="fas fa-project-diagram"></i> Microservices</div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="card project-card">
+                <h3>Stock Service</h3>
+                <p>基於 Spring Cloud 建構的微服務，提供即時股票報價與健診分析 API。</p>
+                <div class="tags">
+                    <span>Spring Boot</span>
+                    <span>Eureka</span>
+                    <span>REST API</span>
+                </div>
+            </div>
+            <div class="card project-card">
+                <h3>Gateway Service</h3>
+                <p>微服務架構中的 API Gateway，負責路由轉發、安全驗證 (JWT) 與流量控制。</p>
+                <div class="tags">
+                    <span>Spring Cloud Gateway</span>
+                    <span>Security</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ace. Built with HTML, CSS & JS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
