@@ -8,7 +8,7 @@ Java - 物件導向程式設計(實務應用一)
         * 一般正常處理程序
         * 錯誤處理程序
 * 5個關鍵字：
-    * **try、catch、finally、throws 與 throw**
+    * try、catch、finally、throws 與 throw
 * 若沒有支援例外處理的程式語言
     * 錯誤必須自行檢查
     * 需手動處理
@@ -87,11 +87,11 @@ public class TestTryCatch {
 ```
 ## 分辨final、finally、finalize
 * final
-    * 宣告**類別**上，該類別**不能被其他類別繼承**
-    * 宣告**方法**上，該方法**不能被覆寫(Override)**
-    * 宣告**常數**上，表示**不能改變值**
+    * 宣告類別上，該類別不能被其他類別繼承
+    * 宣告方法上，該方法不能被覆寫(Override)
+    * 宣告常數上，表示不能改變值
 * finally
-    * 用在**Exception**上，表示**無論發生什麼情況皆會執行**
+    * 用在Exception上，表示無論發生什麼情況皆會執行
 * finalize
     * 是 Object 類別的方法
     * 是垃圾收集器
@@ -172,7 +172,7 @@ public class TestStackTrace {
 ## 自訂例外設計
 * 要自訂例外類別時
     * 必須繼承其中一個
-        * **Throwable*****Exception*****RuntimeException**
+        * Throwable*Exception*RuntimeException
 * 可利用 throw 關鍵字
     * 將例外拋給負責處理此例外的 catch { } 區塊處理
 * 自訂的例外類別，通常會包含兩個建構子
@@ -255,8 +255,8 @@ public class CubeTest {
 }
 ```
 ## 例外拋出方法與覆寫關係
-* 子類別**覆寫**父類別定義有 **throws**的方法時
-    * **子類別所 throws 的 Exception*****必須與父類別被覆寫方法的 Exception 一樣或是更低階**
+* 子類別覆寫父類別定義有 throws的方法時
+    * 子類別所 throws 的 Exception*必須與父類別被覆寫方法的 Exception 一樣或是更低階
 ```java=
 public class BaseClass {
     public void method() throws IOException { }
@@ -345,20 +345,20 @@ public class ExceptionFlow {
 }
 ```
 * 1. method()執行一切正常
-    * 進入method正常執行，**輸出0**
-    * finally一定會執行，**輸出3**
-    * 最後try~catch外面的執行，**輸出4**
+    * 進入method正常執行，輸出0
+    * finally一定會執行，輸出3
+    * 最後try~catch外面的執行，輸出4
     * 程式最終輸出結果為 output 0, output 3, output 4
 * 2. method()執行發生Exception1
     * 發生Exception例外，就會跳過try的正常執行
-    * 進入到Exception e1，**輸出1**
-    * finally一定會執行，**輸出3**
-    * 因為例外有被處理，**輸出4**
+    * 進入到Exception e1，輸出1
+    * finally一定會執行，輸出3
+    * 因為例外有被處理，輸出4
     * 程式最終輸出結果為 output 1, output 3, output 4
 * 3. method()執行發生Exception3
     * Exception3與1, 2沒有繼承關係
     * try~catch並沒有Exception3的例外處理
-    * finally一定會執行，**輸出3**
+    * finally一定會執行，輸出3
     * 因為例外沒有被處理，java會中斷執行，並拋出異常
     * 程式最終輸出結果只有 output 3
 
@@ -472,7 +472,7 @@ public class TestMultiCatch {
 	}
 }
 ```
-:exclamation:**對這些例外處理相同的動作可以使用例外多重捕捉**
+:exclamation:對這些例外處理相同的動作可以使用例外多重捕捉
 * 上述發生例外都會捕捉下來，無法辨別是哪一個例外要處理
     * 如果要使用例外多重捕捉再各別辨識處理
     * 就必須要加上 if 以及 instanceof 來判斷
@@ -672,11 +672,11 @@ public class Demo01 {
 }
 ```
 
-## 檔案**絕對路徑**與**相對路徑** 表示
-* 絕對路徑：從 **"根目錄"** 開始表示
+## 檔案絕對路徑與相對路徑 表示
+* 絕對路徑：從 "根目錄" 開始表示
     * 優點:好寫好理解
     * 缺點:容易因為更換環境而跟著調整
-* 相對路徑：從 **"目前的位置"** 開始表示
+* 相對路徑：從 "目前的位置" 開始表示
     * 優點:彈性好
     * 缺點:理解上不直覺
 * “.”代表當前路徑，“.\.”代表上一層路徑
@@ -698,7 +698,7 @@ public class Demo01 {
 ### 資料流API
 
 * InputStream / OutputStream 及 Reader / Writer
-    - Java的資料流類別內建於 **四個抽象父類別**
+    - Java的資料流類別內建於 四個抽象父類別
 * InputStream / OutputStream 型資料流 (位元資料流 JDK1.0)
     - 存取是以8bits為基礎的byte，處理中文有困難
     - Unicode 字元用 2 bytes 儲存
@@ -712,7 +712,7 @@ public class Demo01 {
 ### 輸入父類別 ( InputStream、Reader )
 * InputStream
     * int read ( ) 
-        * 回傳值為檔案裡下一個byte資料，**如回傳 -1 代表已到檔案末端**
+        * 回傳值為檔案裡下一個byte資料，如回傳 -1 代表已到檔案末端
     * int read ( byte[] buf )
         * 讀取檔案中下一段 ( buf.length 個 byte )資料，並放入陣列 buf 裡
         * 回傳值為實際讀取到的 byte 數量，如回傳 -1 代表已到檔案末端
@@ -787,7 +787,7 @@ public class Copy {
 }
 
 ```
-:exclamation:**.close()，檔案傳輸結束後，一定要釋放資源，避免佔存空間**
+:exclamation:.close()，檔案傳輸結束後，一定要釋放資源，避免佔存空間
 * 因為 InputStream、OutputStream 是以 8bits 為基礎的 byte
 * 而 char 是以 16 bits = 2 bytes 表示
 * 轉換上可能會有存取問題
@@ -832,12 +832,12 @@ public class CopyBytes {
 ## I/O Chain
 * 重要原則
 * I/O 鍊 (I/O Chain)
-    * 建立一個 I/O 前**必須先用低階 I/O 類別來存取資料**(如檔案)
-    * 之後**再使用高階 I/O 類別來控制低階 I/O 類別的動作**
+    * 建立一個 I/O 前必須先用低階 I/O 類別來存取資料(如檔案)
+    * 之後再使用高階 I/O 類別來控制低階 I/O 類別的動作
     * 此層層架構稱之為I/O鍊 (I/O Chain)
 * 高階 I/O 類別可再與其它高階 I/O 類別連結
-* **輸入類**的資料流只能與**輸入類**的類別相連接
-* **輸出類**的資料流只能與**輸出類**的類別相連接
+* 輸入類的資料流只能與輸入類的類別相連接
+* 輸出類的資料流只能與輸出類的類別相連接
 
 ### InputStream Chain ( 低階 -> 高階 )
 
@@ -847,9 +847,9 @@ public class CopyBytes {
 * 2.建立一個高階I/O物件BufferedInputStream bis
     * 並連結至fis，將 fis 放到緩衝區
     * BufferedInputStream bis = new BufferedInputStream(fis);
-* 3.**從緩衝區讀取資料，以減少CPU的I/O時間**
+* 3.從緩衝區讀取資料，以減少CPU的I/O時間
     * bis.read ( ) ;
-:exclamation: **資源關閉順序：越晚建立，越早關閉**
+:exclamation: 資源關閉順序：越晚建立，越早關閉
 
 * 程式架構圖
 ![](https://i.imgur.com/X9x8gDu.png)
@@ -896,7 +896,7 @@ public class InputStreamChain {
 ### OutputStream Chain ( 高階 -> 低階 )
 * 程式架構圖
 ![](https://i.imgur.com/Mph8FDw.png)
-* 範例：**此範例是直接覆寫檔案，可能會造成資料遺失，要小心使用**
+* 範例：此範例是直接覆寫檔案，可能會造成資料遺失，要小心使用
 ```java=
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -923,7 +923,7 @@ public class OutputStreamChain {
 	}
 }
 ```
-:exclamation: **資源關閉順序：越晚建立，越早關閉**
+:exclamation: 資源關閉順序：越晚建立，越早關閉
 
 ### 緩衝 ( Buffer ) 區
 ```java=
@@ -975,7 +975,7 @@ public class ReaderChain {
     - Reader 類別只能與 Reader 類別相連接
     - Writer 類別只能與 Writer 類別相連接
     - 高階I/O類別亦可多層疊堆
-        - **使用高階I/O類別前，必須有一個低階I/O類別先處理媒體相關的存取動作**
+        - 使用高階I/O類別前，必須有一個低階I/O類別先處理媒體相關的存取動作
 * Reader / Writer 與 I/O Stream 的差別 
     * 是專門用於Unicode的字元處理
 
@@ -1004,7 +1004,7 @@ fw.close();
 
 ## InputStreamReader、OutputStreamWriter 類別
 * 網路 I/O 與 Console I/O
-    - 因為網路 I/O 與 Console I/O 是**位元資料流**
+    - 因為網路 I/O 與 Console I/O 是位元資料流
         - 所以 Reader / Writer 不能夠直接存取網路 I/O 與Console I/O
         - 需要進行資料流的轉換，才能順利處理對應的資料內容
 * InputStreamReader 類別
@@ -1240,7 +1240,7 @@ public class ObjectInOut {
 }
 
 ```
-* 新增 isbn：**Exception in thread "main" java.lang.Error: Unresolved compilation problems:**
+* 新增 isbn：Exception in thread "main" java.lang.Error: Unresolved compilation problems:
 ```java=
 import java.io.EOFException;
 import java.io.File;
@@ -1442,7 +1442,7 @@ public class ObjectInOut {
 ## Set ( Collection 家族 ) 相關物件常用方法
 ![](https://i.imgur.com/evqS6k4.png)
 
-:exclamation: **Set 沒有 get 方法可用**
+:exclamation: Set 沒有 get 方法可用
 ### HashSet
 * 無順序，不允許重複
 ```java=
@@ -1562,16 +1562,16 @@ public class TestArrayList {
 ```
 
 ### LinkedList
-* **依照加入的先後順序**
+* 依照加入的先後順序
     * LinkedHashSet
     * LinkedHashMap
-* **LinkedList實作了List介面**
+* LinkedList實作了List介面
     * 有順序性，可重複加入的集合
 * 使用方法與ArrayList幾乎相同
     * 但因為是鏈結的資料結構，因此適合對頭 / 尾元素進行處理
  *  LinkedList 可置入"任意物件"的"動態陣列"
      *  可隨內含物多寡增減其長度
- *  **如果需要經常將元素插入和刪除**
+ *  如果需要經常將元素插入和刪除
      *  LinkedList 效率較佳
  *  LinkedList 新增以下方法
      * void addFirst(Object o);
@@ -1759,7 +1759,7 @@ public class TestHashMap {
 ## 集合與陣列比較
 ![](https://i.imgur.com/a1uCXmK.png)
 
-:exclamation: **集合裡面的資料都是物件的形式**
+:exclamation: 集合裡面的資料都是物件的形式
 
 ## 迭代器Iterator
 * 對於資料一個一個取得的操作稱為"遍歷(traverse)"
@@ -1769,7 +1769,7 @@ public class TestHashMap {
         * public Iterator iterator()
         - 利用此方法可把 collection 裡的所有元素
         轉換成可進行迭代的迭代器(Iterator)
-        -  **關於元素取得的順序是沒有任何保證的**
+        -  關於元素取得的順序是沒有任何保證的
             -  除非此collection是提供保證順序的特性
     * Iterator介面 (稱為迭代器介面，JDK1.2開始)
         - 此介面被用來擷取 collection 集合裡的所有元素
@@ -1778,7 +1778,7 @@ public class TestHashMap {
             * 檢查迭代器裡還有沒有未取過的元素，有就回傳true
         * public Object next()
     - Iterator(迭代器)介面是為了取代JDK1.0的Enumeration(列舉)介面
-:exclamation: **用相同名稱代表各種不同集合的迭代器**
+:exclamation: 用相同名稱代表各種不同集合的迭代器
 
 ## 泛型 ( Generic Type )
 * 泛型優點 ( JDK1.5 )
@@ -1999,11 +1999,11 @@ public class EnhanceForCollection {
 
 ## TreeSet ( Collection 家族 ) 與 TreeMap ( Map 家族 )
 * TreeSet實作了SortedSet介面，成為了一個擁有大小排序特性的Set集合
-    * **同時也維持了元素不重複的特性**
+    * 同時也維持了元素不重複的特性
 * TreeMap實作了SortedMap介面，成為了一個擁有大小排序特性的Map集合
-    * **使用key的資料做為大小排序依據**
+    * 使用key的資料做為大小排序依據
 * 使用有排序特性的集合需保證集合內的元素為同一類型 (才有比大小的意義！)
-    * **宣告泛型即可保證集合內的元素為同一類別**
+    * 宣告泛型即可保證集合內的元素為同一類別
 
 ## TreeMap
 ```java=
@@ -2047,7 +2047,7 @@ public class TestTreeMap {
 ## 自訂物件大小排序
 * 若想藉由集合或陣列擁有大小排序的特性
     * 必須主動對該類別實作Comparable介面
-    * **實作目的其實就是描述此物件的大小定義與規則**
+    * 實作目的其實就是描述此物件的大小定義與規則
 * 一個有實作Comparable介面的物件實體才會是被Java認同可以進行排序操作的資料
 * 排序：Arrays.sort(字串);
 ```java=
@@ -2173,7 +2173,7 @@ public class Employee implements Comparable<Employee> {
 * (3) 回傳累積相乘的最後結果
 * 結論深入淺出：
     * 滑鼠右鍵 → Source → Generate hashCode() and equals()
-:exclamation:**HashMap的Key若是自定物件，也要記得改寫equals & hashCode** 
+:exclamation:HashMap的Key若是自定物件，也要記得改寫equals & hashCode 
 ```java=
 package module18_20;
 
@@ -2433,7 +2433,7 @@ public class TestTreeSetEmp {
 * ArrayList
 ![](https://i.imgur.com/8kUifDi.png)
 
-:exclamation: **LinkedList也同時實作了Queue介面，也可以拿來做為佇列結構使用**
+:exclamation: LinkedList也同時實作了Queue介面，也可以拿來做為佇列結構使用
 
 ## PriorityQueue與Comparator
 * PriorityQueue實作Queue介面而擁有佇列特性之外，也保證了元素會按照大小順序取出，另外也可以提供實作的Comparator的物件，自訂元素大小的排序規則
@@ -2844,7 +2844,7 @@ public class Classroom implements Runnable {
 ```java=
 package module21_26;
 
-/**
+/
  * 自私的執行緒 -自私的執行緒(selfish thread): 實踐了 "socially-impaired" 特性
  * 
  * -即 : 
@@ -2996,7 +2996,7 @@ public class TestSync0 {
 		} catch (InterruptedException e) {
 		}
 		// print the final balance
-		out.println("*** Final balance is " + balance);
+		out.println("* Final balance is " + balance);
 	}
 }
 

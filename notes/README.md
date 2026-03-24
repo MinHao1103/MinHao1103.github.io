@@ -13,4 +13,4 @@ Hi，我是 Hao，目前專注於 Java 後端開發與微服務架構。
 - [Spring Cloud 完整生態系統](spring-cloud/intro.md)：Gateway、Eureka、Config Server 的微服務架構實作。
 
 ---
-> 💡 **Tip:** 預計找特定文章的話，再麻煩直接用左側邊欄上方的「🔍 搜尋框」找關鍵字或解題紀錄比較快。
+> 💡 Tip: 預計找特定文章的話，再麻煩直接用左側邊欄上方的「🔍 搜尋框」找關鍵字或解題紀錄比較快。

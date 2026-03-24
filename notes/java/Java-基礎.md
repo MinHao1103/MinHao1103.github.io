@@ -5,10 +5,10 @@ Java - 基礎
 ![](https://i.imgur.com/L8GquyT.png)
 * JAVA 將 source code 編譯成位元組 (byte code).class檔，
 * 依賴 JAVA Virtual Machine 解釋 .class檔，
-* **一次編寫，到處執行**(Write once run anywhere)=>誇平台。 
+* 一次編寫，到處執行(Write once run anywhere)=>誇平台。 
 * JDK(Java Development Kit) => Java軟體開發工具包
 * JRE(Java Runtime Environment) => Java執行環境
-* **所有Java程式都需要在JRE下才能執行**，若只要執行Java程式只需安裝JRE
+* 所有Java程式都需要在JRE下才能執行，若只要執行Java程式只需安裝JRE
 * 為了保持JDK獨立性和完整性，安裝JDK時也安裝JRE的一部分，所以JDK安裝目錄下有JRE的目錄
 
 # 基本資料字面常數
@@ -36,7 +36,7 @@ Java - 基礎
 * 宣告在方法之外，類別之內，且沒有static修飾子
 * 實體變數可被類別內任何非static方法存取
 * 又稱member variables(成員變數)、attribute variables(屬性變數)
-* 注意：**加上 static 修飾子為類別變數，也稱為靜態變數。**
+* 注意：加上 static 修飾子為類別變數，也稱為靜態變數。
 ## 變數範例
 ```java=
 public class MyTest{
@@ -67,7 +67,7 @@ public class MyTest{
 ```
 
 ## final
-* 變數宣告為final，**變數初始化後不能再變更其值**。
+* 變數宣告為final，變數初始化後不能再變更其值。
 ```java=
 public class TestDemo4 {
 
@@ -617,7 +617,7 @@ public class Demo01 {
 * continue：跳過continue以下的敘述，回到迴圈的起始點
 * break and continue 通常配合 if 敘述使用
 * 無窮迴圈經常會搭配break使用
-* **break只能在迴圈與switch case內使用**
+* break只能在迴圈與switch case內使用
 
 ## 標籤
 * 可以直接退到最外層迴圈
@@ -668,7 +668,7 @@ public class TestBreakContinue2 {
 ```
 # 方法
 ## 傳遞參數與回傳值
-* **如果有回傳值，則不是用void，而是必須加return**
+* 如果有回傳值，則不是用void，而是必須加return
 ```java=
 package January21;
 
@@ -692,7 +692,7 @@ public class Calculator {
 
 ## 方法覆載機制(Overloading)
 * 觀念：
-    * **Overloding 將功能類似的方法提供相同的方法名稱*****java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。**
+    * Overloding 將功能類似的方法提供相同的方法名稱*java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。
     * 例如：
         * public void println(int i)
         * public void println(float f)
@@ -773,7 +773,7 @@ public class Demo02 {
     * 資料成員( Data Member  -->  變數Variable )
     * 方法成員( Method Member --> 方法Method )
 * 先設計類別(class)才能產生物件，
-    * **一個物件是由某類別產生的實體(Instance)**
+    * 一個物件是由某類別產生的實體(Instance)
 
 ## 建立物件進行操作
 * 實體化與初始化物件
@@ -838,9 +838,9 @@ public class PenTest {
     * 宣告
         * 宣告在方法裡或流程控制的區域裡
     * 初始值   
-        * **沒有預設初始值，存取之前，要給予初始值。*****可以先宣告後再給值**
+        * 沒有預設初始值，存取之前，要給予初始值。*可以先宣告後再給值
     * 存取
-        * 只能在自己所宣告的區域內使用,**不能跨區直接使用** 
+        * 只能在自己所宣告的區域內使用,不能跨區直接使用 
     * 生命週期(scope)
         * 跟著自己所屬的區域或方法, 執行時存活,
         * 當該區域或方法執行完畢, 此變數即被釋放
@@ -848,7 +848,7 @@ public class PenTest {
     * 宣告
         * 宣告在方法外, 類別裡面, 而且沒有static關鍵字
     * 初始值
-        * 宣告後，**Java會根據資料型別的不同給予對應的預設初始值**
+        * 宣告後，Java會根據資料型別的不同給予對應的預設初始值
         * 若是想要指定自己的初始值，只能在宣告的同時指定。
     * 存取
         * 只要在同個類別裡, 可以跨不同方法使用
@@ -904,10 +904,10 @@ public class PassArgTest {
     * 繼承(Inheritance)
         * 子類別可繼承父類別的成員
         * 可修改或是新增自有成員
-        * **可 Override 從父類別繼承的方法**
+        * 可 Override 從父類別繼承的方法
     * 多型(Polymorphism)
         * 父類別指向子類別物件，並對應到子類別適用的方法
-        並對應到子類別 overriding 的方法，稱**動態繫結( dynamic binding )**
+        並對應到子類別 overriding 的方法，稱動態繫結( dynamic binding )
 * OOP 使用訊息傳遞(Message Passing)，透過物件接受訊息、處理訊息、傳送訊息來實現功能
 # 陣列(Array)
 * 陣列是由一群相同資料型態的變數所組成的一種資料結構。
@@ -1310,7 +1310,7 @@ public class Homework01 {
 ```
 # 字串不可變與字串池
 * String物件特性
-    * **不可變(immutable)字串：*****String一旦宣告後，即不能在原所在記憶體位置改變字串內容*****使用String類別任何方法時，傳回的字串都會放在新的記憶體空間**
+    * 不可變(immutable)字串：*String一旦宣告後，即不能在原所在記憶體位置改變字串內容*使用String類別任何方法時，傳回的字串都會放在新的記憶體空間
     * String s1 = new String("Hello");
         * 有自己的記憶體空間
     * String s1 = "Hello";
@@ -1319,7 +1319,7 @@ public class Homework01 {
 * 因為字串池內容不可改變(immutable)
 所以可以讓多個變數參考相同物件
 不用怕有修改的問題發生
-達到**重複使用、減少資源消耗**
+達到重複使用、減少資源消耗
 ![](https://i.imgur.com/vnnF7jv.png)
 
 ## 字串比較 == 、 equals

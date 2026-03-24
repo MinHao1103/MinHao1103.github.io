@@ -61,14 +61,14 @@ public class TestNumber {
 ```
 ## StringBuffer類別
 * String類別不可在原字串所在記憶體位置改變字串內容，StringBuffer類別則在原字串所在記憶體位置改變字串內容 (append, insert, delete, replace)
-* 使用StringBuffer類別中的任何方法時，**回傳的字串會使用原有的記憶體空間**
+* 使用StringBuffer類別中的任何方法時，回傳的字串會使用原有的記憶體空間
     * 創建者設計模式 (Builder Pattern)
-* **StringBuffer字串與String字串不可以比較** (沒有意義)
+* StringBuffer字串與String字串不可以比較 (沒有意義)
     * 如：String s1 = new String(“test”);
         * StringBuffer s2 = new StringBuffer(“test”);
         * if (s1 == s2) {…} //false
         * if (s1.equals(s2)) {…} //false
-        * **但可以利用toString方法，將處理好的文字轉為String類型**
+        * 但可以利用toString方法，將處理好的文字轉為String類型
 
 ```java=
 package module27_33;
@@ -118,9 +118,9 @@ public class TestStringBuffer {
 
 ## StringBuilder類別
 * StringBuilder類別是JDK 5的新類別，其用法與StringBuffer類別完全一樣(append, insert, delete, replace)
-* **舊類別StringBuffer是thread-safe，新類別StringBuilder則是non-thread-safe**
+* 舊類別StringBuffer是thread-safe，新類別StringBuilder則是non-thread-safe
 * 使用上，如果不考慮多執行緒的問題就可以使用StringBuilder來提升執行的效率
-* 常見於結合**BufferedReader的readLine()方法進行文字串接**，對執行資源損耗減輕不小
+* 常見於結合BufferedReader的readLine()方法進行文字串接，對執行資源損耗減輕不小
 
 # Regular Expression
 * 正規表示法(Regular Expression)就是由許多樣式的符號組成的樣式句，主要功能就是用來比對文字是否符合該規則的要求
