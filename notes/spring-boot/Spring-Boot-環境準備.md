@@ -160,5 +160,3 @@ Spring Boot 環境準備
 ## ( 5-4 ) Use Talend API Tester - Free Edition
 ![](https://i.imgur.com/rKN7rIT.png)
 
-
-

@@ -2,10 +2,8 @@ Spring Boot ( 進階 )
 ===
 
 # ( 7 ) Spring Boot 單元測試
-:::warning
 * 確認 pom.xml 是否有添加 test 設定
 * 基本上創建 Spring Boot，預設就會有此設定
-:::
 ```xml=
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -15,7 +13,6 @@ Spring Boot ( 進階 )
 ```
 
 ## ( 7-1 ) 單元測試 ( Unit Testing )
-:::warning
 * 目的：
     * 自動化測試程式的正確性，一次只測試一個功能點
         * 可以是一個 method 或 一個 API
@@ -26,7 +23,6 @@ Spring Boot ( 進階 )
     * 在想執行 Unit Testing 的方法內部按下右鍵
         * Generate -> Test 
         * 預設即可，直接按下 OK
-:::
 * class Calculator
 ```java=
 package com.example.demo;
@@ -67,9 +63,7 @@ public class CalculatorTest {
 ```
 ![](https://i.imgur.com/BFyMEpC.png)
 
-
 ## ( 7-2 ) 單元測試的特性和注意事項
-:::warning
 * 單元測試的特性
     * 可自動化運行
     * 各個單元測試互相獨立，彼此不能有依賴關係
@@ -80,31 +74,24 @@ public class CalculatorTest {
     * 沒有硬性規定
         * 測試的 class 以 「原 class 名字加上 Test 做為結尾」來命名
         * 測試的 class 的 package 跟原 class的 package 保持一致
-:::
 
 ## ( 7-3 ) JUnit 5 用法
-:::warning
 * JUnit
     * 是 Java 單元測試必備工具
     * 只要在方法上加上 @Test，即可產生一個單元測試
-:::
 
 ### ( 7-3-1 ) JUnit 與 Spring Boot 版本關係
-:::warning
 * Spring Boot 版本 <= 2.1
     * 僅能使用 JUnit 4
 * Spring Boot 版本為 2.2、2.3
     * 能同時使用 JUnit 4、JUnit 5
 * Spring Boot 版本 >= 2.4
     * 僅能使用 JUnit 5
-:::
 
 ### ( 7-3-2 ) 如何禁用 JUnit 4
-:::warning
 * 如果 Spring Boot 版本在 2.2、2.3 的話
 * 可以同時使用 JUnit 4 和 JUnit 5
 * 如何去停用 JUnit 4 的功能，要在 pom.xml 設定
-:::
 ```xml=
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -120,11 +107,9 @@ public class CalculatorTest {
 ```
 
 ## ( 7-4 ) JUnit 的 Assert 方法
-:::warning
 * 若不符合 assert 斷言預期結果，則預測失敗
 * assert 的任何方法，都可以再加一個字串參數，用來描述失敗時錯誤的原因
     * 不建議使用，有可能錯誤原因寫錯，可能會有誤導的情況發生
-:::
 ![](https://i.imgur.com/fG3ItsT.png)
 ```java=
 package com.example.demo;
@@ -157,10 +142,8 @@ public class CalculatorTest {
 ```
 
 ## ( 7-5 )  JUnit 的 @BeforeEach、@AfterEach 註解
-:::warning
 * @BeforeEach：在每次 @Test 開始前都會執行一次
 * @AfterEach：在每次 @Test 結束後會執行一次
-:::
 ```java=
 package com.example.demo;
 
@@ -193,14 +176,11 @@ public class MyTest {
 ```
 ![](https://i.imgur.com/ZkqSxJP.png)
 
-
 ## ( 7-6 )  JUnit 的 @BeforeAll、@AfterAll 註解
-:::warning
 * @BeforeAll 和 @AfterAll 註解時，所寫的方法必須是 static
     * 因為方法必須是 static，會導致它們無法存取 Spring 容器中的 Bean，所以較不常用
     * @BeforeAll：在所有 @Test 開始前執行一次
     * @AfterAll：在所有　@Test 結束後執行一次
-:::
 ```java=
 package com.example.demo;
 
@@ -232,10 +212,8 @@ public class MyTest {
 ![](https://i.imgur.com/MlS77Hw.png)
 
 ## ( 7-7 )  JUnit 的 @Disabled、@DisplayName 註解
-:::warning
 * @Disabled：忽略 @Test 不執行
 * @DisplayName：自定義顯示名稱
-:::
 ```java=
 package com.example.demo;
 
@@ -266,21 +244,16 @@ public class CalculatorTest {
 ```
 ![](https://i.imgur.com/mz0ViGe.png)
 
-
 ## ( 7-8 ) 使用 JUnit 5 測試 Spring Boot 程式
-:::warning
 * 在要測試的 class 上加上 @SpringBootTest，即可運行單元測試
 * Spring Boot 就會啟動 Spring 容器，創建所有的 Bean
 * 透過 @Component 或 @Configuration、@Bean 創建 Bean 都會被執行
-:::
 
 ![](https://i.imgur.com/XFyZHAk.png)
 
 ## ( 7-9 ) @Transaction 註解 ( 單元測試 )
-:::warning
 * 可以加在方法上、也可以加在 class 上
 * 單元測試結束後，會 rollback 所有資料庫操作，將數據恢復原狀
-:::
 ![](https://i.imgur.com/81ZIDUM.png)
 
 ```java=
@@ -309,7 +282,6 @@ class StudentDaoImplTest {
         assertFalse(studnet.isGraduate());
         assertNotNull(studnet.getCreateDate());
     }
-
 
     @Test
     @Transactional
@@ -353,28 +325,21 @@ class StudentDaoImplTest {
 ```
 
 ### ( 7-9-1 ) @Transactional 在不同地方，使用方法不同
-:::warning
 * 在 main 資料夾 ( 正常程式 )
     * 交易管理，程式運行發生錯誤，才會 rollback
 * 在 test 資料夾 ( 單元測試 )
     * 在該單元測試結束後，強制 rollback 所有執行的資料庫操作，將數據恢復原狀
-:::
-
 
 ## ( 7-10 ) Controller 層單元測試
-:::warning
 * 目的：模擬前端的行為，測試 API 是否正常
 * 注意：不能直接注入 bean 測試，需要透過模擬真實 API cll 來測試
-:::
 ![](https://i.imgur.com/4bxPpJR.png)
 
 ### ( 7-10-1 ) MockMvc
-:::warning
 * 用來模擬真實的 API call
 * MockMvc 設定方法
     * (1) 在測試的 class 加上 @SpringBootTest 和 @AutoConfigurationMockMvc
     * (2) 注入 MockMvc
-:::
 ![](https://i.imgur.com/sBzl9QI.png)
 ```java=
 package com.example.demo.controller;
@@ -419,19 +384,15 @@ public class StudentControllerTest {
 ![](https://i.imgur.com/GEEccwN.png)
 
 ### ( 7-10-3 ) MockMvc 常用寫法
-:::warning
 * 通常會把 MockMvcResultMatchers 刪掉，然後
 * import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 * 並且可以一直接 andExpect 方法，這種寫法屬於 Builder 設計模式 ( 建造者模式 )
 * 注意：如果使用的是 Post 方法，必須加上 .contentType(MediaType.APPLICATION_JSON)
-:::
-:::warning
 * [jsonPath](https://jsonpath.com/)("$.id", equalTo(3))
     * jsonPath 第一個字串參數，表示想要取得這個 json 中哪個 key 值
         * $ 表示最外層的 json Object
         * . 表示 的 意思
     * jsonPath 第二個參數驗證說 id 的值是否為 3
-:::
 * GET 方法
 ```java=
 package com.example.demo.controller;
@@ -527,18 +488,15 @@ public class StudentControllerTest {
 ```
 
 ## ( 7-11 ) Mock 測試
-:::warning
 * 目的：避免為了測試某一個單元測試，而建構整個 bean 的 dependency
 * 作法：創造一個假的 bean，去替換掉 Spring 容器中原有的 bean
 * 補充：Mock 測試為 Spring IoC 的優點 
     * More testable 方便測試程式
-:::
 ### ( 7-11-1 ) 圖說概念
 ![](https://i.imgur.com/KJH7zjX.png)
 ![](https://i.imgur.com/8SnAXvI.png)
 
 ### ( 7-11-2 ) Mockito
-:::warning
 * Mockito 是 Spring Boot 中進行 Mock 測試的工具
 * 功能：
     * 模擬方法的返回值
@@ -554,7 +512,6 @@ public class StudentControllerTest {
     * 不能 mock static 方法
     * 不能 mock private 方法
     * 不能 mock final class
-:::
 
 ```java=
 package com.example.demo.service;
@@ -604,27 +561,21 @@ public class StudentServiceImplMockTest {
 ```
 
 ### ( 7-11-3 ) @MockBean、@SpyBean
-:::warning
 * @MockBean：產生一個假的 Bean 替換掉 Spring 容器中的 bean
     * 沒有定義的方法，預設為 null
 * @SpyBean：Spring 容器中的 Bean 仍舊是正常的 Bean，只是替換其中幾個方法
     * 沒有定義的方法，預設使用真實的方法
-:::
 
 ![](https://i.imgur.com/fw374NW.png)
 
 ## ( 7-12 ) 使用 H2 資料庫
-:::warning
 * 一種嵌入式資料庫
 * 主要用途
     * 可以在啟動 Spring Boot 時被生成出來，在運行結束時銷毀
     * 用完即丟的概念，常用在單元測試，降低程式對實體資料庫的依賴
-:::
 
 ### ( 7-12-1 ) H2 資料庫 Maven
-:::warning
 * [H2 Maven](https://mvnrepository.com/artifact/com.h2database/h2) 
-:::
 ```xml=
 <dependency>
     <groupId>com.h2database</groupId>
@@ -634,19 +585,15 @@ public class StudentServiceImplMockTest {
 </dependency>
 ```
 ### ( 7-12-2 ) 建立資料夾
-:::warning
 * 在 test 資料夾下
     * 建立 resource 資料夾，在 resources 資料夾下
         * 建立 application.properties
 * 要注意的是，在 main/resource/application.properties 檔案有做修改時
     * 記得也在 test/resource/application.properties 檔案做修改
-:::
 ![](https://i.imgur.com/2BfNDyJ.png)
 
 ### ( 7-12-3 ) 設定 test/resource/application.properties
-:::warning
 * testdb 和 sa 可以自行更換名字
-:::
 ```xml=
 spring.datasource.driver-class-name=org.h2.Driver
 spring.datasource.url=jdbc:h2:mem:testdb
@@ -655,14 +602,12 @@ spring.datasource.password=sa
 ```
 
 ### ( 7-12-4 ) 建立 Table
-:::warning
 * 首先在 test/resource 資料夾下 data.sql
     * 建立兩個 File
         * schema.sql
             * 創建 Table 的相關語法
         * data.sql
             * 插入數據的相關語法 
-:::
 * schema.sql
 ```sql=
 -- CREATE TABLE student ( 
@@ -685,11 +630,9 @@ INSERT INTO student (name, score, graduate, create_date) VALUES ('Mike', 87.2, t
 ```
 
 ### ( 7-12-5 ) 補充
-:::warning
 * 若是使用 Spring Data JPA，必須在 
     * test/resource/application.properties 加上一行設定
     * 才不會和 Hibernate 預設的設定互相影響
-:::
 ```xml=
 spring.jpa.hibernate.ddl-auto=none
 ```
@@ -698,16 +641,13 @@ spring.jpa.hibernate.ddl-auto=none
 ![](https://i.imgur.com/MHpkMy8.png)
 
 ### ( 7-12-7 ) Spring Boot 特性
-:::warning
 * Convention over Configuration ( 約定大於配置 or 慣例優於設定 )
     * 不需添加任何設定，只要知道運作規則，就可以直接使用
     * 所有 project 遵循一致標準化設定
 * Spring Boot 出現的意義就是為了簡化 Spring 開發
-:::
 ![](https://i.imgur.com/UKgGaXi.png)
 
 ## ( 7-13 ) 單元測試實戰經驗談
-:::warning
 * 我們真的需要單元測試嗎 ?
     * 單元測試並不是越多越好，程式越多表示維護成本越高
     * 單元測試的重要程度 = 影響使用者的程度
@@ -715,26 +655,22 @@ spring.jpa.hibernate.ddl-auto=none
     * 寫單元測試時，要從使用者的角度出發
     * 一定要測試 Error Case
     * 善用 Run Test With Coverage 查看單元測試覆蓋範圍
-:::
 ![](https://i.imgur.com/FanZMZ6.png)
 
 ![](https://i.imgur.com/Wj5WZAn.png)
 
 ## ( 7-14 ) 測試驅動開發 ( Test-Driven Development，TDD )
-:::warning
 * 「先寫測試，再寫開發」，大致上分成五個步驟
     * 選擇一個功能，先寫單元測試
     * 單元測試失敗
     * 實作程式
     * 單元測試成功
     * 持續重構程式
-:::
 ![](https://i.imgur.com/rL4Y5Xb.png)
 
 # ( 8 ) Spring Boot 相關知識
 
 ## ( 8-1 ) Maven
-:::warning
 * Maven 是在 Spring Boot 開發中
     * 負責 Library 管理
         * 管理這個 Spring Boot 可以使用那些功能
@@ -742,26 +678,21 @@ spring.jpa.hibernate.ddl-auto=none
     * Project 建構
         * 對 Spring Boot 進行編譯、測試、運行、清理、打包
         * 透過 Maven 指令操作
-:::
 
 ## ( 8-2 ) Maven Repository ( Maven 倉庫 )
-:::warning
 * 儲存 Spring Boot project 依賴的 Library ( jar 檔 )
 * 可分為 Local Repository ( 本地倉庫 ) 和 Remote Repository ( 遠端倉庫 )
 * 當在 Local 倉庫找不到 jar 時，才會去 Remote 找
     * Local Repository：電腦存放 jar 的地方
     * Remote Repository：雲端存放 jar 的地方
-:::
 
 ## ( 8-3 ) Maven 指令的生命週期
 ![](https://i.imgur.com/eZkL5w4.png)
 
 ## ( 8-4 ) 不同的環境設定
-:::warning
 * application.properties 檔案複製一份，分別取名為
     * application-dev.properties
     * application-test.properties
-:::
 ![](https://i.imgur.com/5Enf2Zg.png)
 * application-dev.properties
 ```xml=
@@ -779,21 +710,15 @@ spring.datasource.username=root
 spring.datasource.password=ss210080
 ```
 
-
 ![](https://i.imgur.com/vBMJ7k5.png)
 
 ### ( 8-4-1 ) 若要執行 dev 資料庫
-:::warning
 * Edit Configurations
-:::
 ![](https://i.imgur.com/8UlK6cA.png)
-:::warning
 * Spring Boot / DemoApplication / Active profiles：dev
-:::
 ![](https://i.imgur.com/BlFDFqv.png)
 
 ## ( 8-5 ) Log 級別與規範
-:::warning
 * 在實際工作中，我們會使用 Log 將資訊記錄下來
     * log.info("取得 student {}", studentId);
         * 一般資訊
@@ -801,13 +726,10 @@ spring.datasource.password=ss210080
         * 不該發生的問題，但不至於對程式造成重大影響
     * log.error("程式有問題");
         * 程式目前運行出現問題
-:::
 
 ### ( 8-5-1 ) 在 StudentController.java 使用 Log
-:::warning
 * 記得選的是 org.slf4f
 * getLogger("這個 class 的名稱");
-:::
 * StudentController.java
 ```java=
 private final static Logger log = LoggerFactory.getLogger("studentController.class");
@@ -828,7 +750,6 @@ public ResponseEntity<Student> read(@PathVariable Integer studentId) {
 ![](https://i.imgur.com/FwvMVSL.png)
 
 ## ( 8-6 ) 使用 IntelliJ 創建 Spring Boot Project
-:::warning
 * 第一步驟
     * File/New/Project
 * 第二步驟
@@ -841,16 +762,12 @@ public ResponseEntity<Student> read(@PathVariable Integer studentId) {
     * 要預先載入哪些 dependency 至 maven 的 pom 檔中
     * web/Spring Web
         * 表示添加一個 spring-boot-starter-web 的 dependency
-:::
 
 ### ( 8-6-1 ) 沿用原本的 Project 資料庫設定
-:::warning
 * 打開之前的 Spring Boot Project
     * Database / Data Source Properites / 之前設定好的 sql 按下右鍵 / Make Global / OK
-:::
 
 ## ( 8-7 ) Json 字串和 Java Object 的轉換
-:::warning
 * ObjectMapper
     * 用途：將 Json 字串和 Java Object 互相轉換
     * 條件：確保在 pom.xml 中有添加 spring-boot-starter-web 即可
@@ -859,7 +776,6 @@ public ResponseEntity<Student> read(@PathVariable Integer studentId) {
             * 如果物件的屬性原本沒有設定值，則轉成 Json 字串會是 null
         * readValue()：Json 字串 → Java Object
 * [進階：SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換](https://kucw.github.io/blog/2020/6/java-jackson/)
-:::
 * User.java
 ```java=
 package com.example.json.objectmapper;
@@ -923,9 +839,7 @@ public class ObjectMapperController {
 ```
 
 ### ( 8-7-1 ) 過濾 null 的值
-:::warning
 * 需要在 User.java 設定
-:::
 ```java=
 package com.example.json.objectmapper;
 
@@ -942,14 +856,12 @@ public class User {
 ```
 
 ### ( 8-7-2 ) Json 字串有新的屬性，且需轉成 User 物件
-:::warning
 * 可能隨著開發會產生新的屬性
 * 在 Json 中有新的屬性，但在 User 沒有此屬性，就會導致 Unrecongized field
     * 第一種解決方法
         * 在 User 物件再新增一個屬性，但後續不好維護
     * 第二種解決方法
         * 在 User 物件加上 @JsonIgnoreProperties(ignoreUnknown = true)
-:::
 * User.java
 ```java=
 package com.example.json.objectmapper;
@@ -1034,18 +946,14 @@ public class ObjectMapperController {
 ![](https://i.imgur.com/Rym9uHs.png)
 
 ## ( 8-8 ) RestTemplate
-:::warning
 * 用途：在 Spring Boot 中，發起一個 Rest 風格的 Http 請求
     * 可以發起 GET、POST、PUT、DELETE 的 Http 請求
     * 並且可以將收到的 response body 中的 Json 字串轉成 java object
 * 使用條件：
     * 確保 pom.xml 中有加上 spring-boot=starter-web 即可
-:::
 
 ### ( 8-8-1 ) [Mock API](https://mocki.io/)
-:::warning
 * 創建一組臨時外部 API
-:::
 
 * Student.java
 ```java=
@@ -1114,12 +1022,10 @@ public class RestTemplateController {
 ```
 
 ### ( 8-8-3 ) 延伸寫法：getForEntity
-:::warning
 * getForEntity 和 getForObject 差別
     * getForEntity 是返回整個 ResponseEntity
         * HttpResponse、Response Header
         * 可以取得 Http status
-:::
 ```java=
     @GetMapping("/getForEntity")
     public String getForEntity(){
@@ -1142,13 +1048,11 @@ public class RestTemplateController {
 ```
 
 ### ( 8-8-3 ) 延伸寫法：postForObject
-:::warning
 * 用 post 的請求方法，然後回傳一個 java Object
 * postForObject 三個參數
     * url：路徑
     * Request Body：包成物件，RestTemplate 會自動轉成 Json 格式，再發起 Post 請求
     * 回傳時，將 Json 字串轉成物件
-:::
 ![](https://i.imgur.com/5F4vwHQ.png)
 ```java=
     @GetMapping("/postForObject")
@@ -1258,17 +1162,13 @@ public class RestTemplateController {
 ```
 
 ## ( 8-9 ) Thymeleaf 前端模板引擎
-:::warning
 * 用途：Spring Boot 中的前端模板引擎，支援 Html 頁面的開發和渲染
 * 使用條件：需在 pom.xml 中加上 spring-boot-starter-thymeleaf
 * 其他常見 Spring Boot 模板引擎：JSP、Freemarker
-:::
 
 ### ( 8-9-1 ) 使用 Thymeleaf 重點
-:::warning
 * 需使用 @Controller 註解
 * Thymeleaf 根據 Controller 返回的字串，找尋相同名字的 Html 檔案
-:::
 
 * Student.java
 ```java=

@@ -2,14 +2,11 @@ IntelliJ
 ===
 
 # ( 1 ) IntelliJ 中的 Debug 模式
-:::warning
 * 可以新增斷點 ( breakpoint )，一行一行的執行程式
 * 可以馬上知道運行中變數的值
-:::
 ![](https://i.imgur.com/Vx88G31.png)
 
 ## ( 1-1 ) Debug 視窗左側按鈕介紹
-:::warning
 * Resume
     * 繼續 Spring Boot 程式，直到下一個斷點
 * Mute Breakpoints
@@ -18,10 +15,8 @@ IntelliJ
     * 點擊後，可查看目前所設置的所有斷點
     * Java Exception Breakpoints ( 不常用 )
         * 任何地方的 Exception 都添加一個斷點的感覺
-:::
 
 ## ( 1-2 ) Debug 視窗上方按鈕介紹
-:::warning
 * Show Execution Point
     * 帶你回到目前程式停在哪一行
 * Step Over
@@ -31,22 +26,16 @@ IntelliJ
 * Evaluate Expression
     * 點擊後，會跳出一個視窗，可以執行你想執行的程式
     * 可以寫程式檢查當前變數是否符合所預期的
-:::
 
 ## ( 1-3 ) 在斷點上按下右鍵
-:::warning
 * 可以在 For Loop 加上條件
-:::
 ![](https://i.imgur.com/cB7uoZ8.png)
 
 ## ( 1-4 ) DeBug Lambda 表達式
-:::warning
 * Trace Currnet Stream Chain
     * 較複雜的 Lambda 表達式，不建議使用
-:::
 
 # ( 2 ) IntelliJ 的實用技巧　( Windows )
-:::warning
 * 萬用鍵：Alt + Enter
 * 對某個方法 Ctrl + 左鍵，可直接跳到該方法的 Interface
     * 再透過左邊的綠色 I 符號，跳到方法的實作邏輯
@@ -62,77 +51,52 @@ IntelliJ
 * 游標放在任意方法上
     * ctrl + alt：跳到呼叫這個方法的實作
     * ctrl + shift：可以查詢所有使用到這個方法的檔案
-:::
 
 ## ( 2-1 ) 如何根據 url 路徑，找到所在的 Controller
-:::warning
 * 下方 Encoding，IntelliJ 會列出所有 url Mapping
-:::
 ![](https://i.imgur.com/9CKuf0L.png)
 
 ## ( 2-2 ) 定位當前所在的位置
-:::warning
 * Select Opened File
-:::
 ![](https://i.imgur.com/v7h01Ra.png)
 
 ## ( 2-3 ) 查看某支程式的 class 有哪些方法
-:::warning
 * Structure 標籤
-:::
 ![](https://i.imgur.com/Gy4p6TK.png)
 
 ## ( 2-4 ) 如何同時載入多個 Project
-:::warning
 * File → Model from Existing Source
     * 開啟另一個 Project 的 pom.xml 檔
     * 就可以在同一個 IntelliJ 載入兩個 Project
-:::
 
 # ( 3 ) 插件
-:::warning
 * File → Setteings → Plugins → Marketplace
-:::
 
 ## ( 3-1 ) Nyan Progress Bar
-:::warning
 * 進度條變成彩虹貓
-:::
 ![](https://i.imgur.com/FZtwdT9.png)
 
 ## ( 3-2 ) One Dark theme
-:::warning
 * 讓編輯器顏色變豐富
-:::
 ![](https://i.imgur.com/eDrFwvM.png)
 
 # ( 4 ) [IDEA 修改錯誤提示顏色](https://blog.csdn.net/qq_34120430/article/details/98483186)
-:::warning
 * File → Settings → Editor → Color Scheme → General
     * Errors and Warnings → Warning → Effects ( C0C0C0 )
-:::
 ![](https://i.imgur.com/LOAt7Ti.png)
 
-
 # ( 5 ) [Code With Me](https://www.jetbrains.com/help/idea/code-with-me.html)
-:::warning
 * 可用 IntelliJ 共同編輯
-:::
-
 
 # ( 6 ) [Lombok](https://kucw.github.io/blog/2020/3/java-lombok/)
-:::warning
 * 透過添加註解，自動生成對應的程式，讓程式碼更簡潔
 * 使用條件：
     * pom.xml 中加上 Lombok
     * IntelliJ 中安裝 Lombok 插件
-:::
 ![](https://i.imgur.com/KFnnele.png)
 
 ## @Getter、@Setter
-:::warning
 * 自動生成 @Getter、@Setter
-:::
 * Student.java
 ```java=
 package com.example.lombok;
@@ -150,11 +114,9 @@ public class Student {
 ```
 
 ## @Data
-:::warning
 * @Data
     * 有 @Getter、@Setter 的功能
     * 還會 override toString() 方法
-:::
 ```java=
 package com.example.lombok;
 

@@ -14,13 +14,10 @@
 # ( 2 ) 使用框架皆須設定組態，Hibernate 也不例外
 ![](https://i.imgur.com/Vo95H4P.png)
 ## ( 2-1 ) 新建核心組態檔
-:::warning
 * → Hibernate → Hibernate Configuration File(cfg.xml) → Next → Next → Finish
-:::
 ![](https://i.imgur.com/L9a3pTA.png)
 ## ( 2-2 ) Hibernate 組態設定 ( Connection )
 ![](https://i.imgur.com/AAX9WNQ.png)
-:::warning
 * 資料庫連線設定
     * Session Factory → Properties → Connection
 * Driver Class 輸入
@@ -31,51 +28,40 @@
     * root
 * Password 輸入
     * 你的密碼
-:::
 ## ( 2-2 ) Hibernate 組態設定 ( Hibernate )
 ![](https://i.imgur.com/yfJGCkk.png)
-:::warning
 * 其他設定
     * Session Factory → Properties → Hibernate
 * Dialect 輸入
     * org.hibernate.dialect.MySQL8Dialect
 * Show Sql 選 true
 * Format Sql 選 true
-:::
 
 ## ( 2-3 ) 確認組態檔
 ![](https://i.imgur.com/PURHmGG.png)
-:::warning
 * 切換至 Source 模式
 * 將 \<session-factory name=""\> 改成 \<session-factory\> (即刪除name屬性) 存檔
-:::
 ![](https://i.imgur.com/hao0r6l.png)
 
 # ( 3 ) Hibernate 映射設定 ( Annotation 的方式 )
 ![](https://i.imgur.com/aqBeOz1.png)
-:::warning
 * @Column(name="xxx")
 * 由於資料庫端對應的欄位名，含有底線 ( _ ) 與Java端不同
 * 所以須另外以 name 屬性設定其名稱
-:::
 ![](https://i.imgur.com/PgBlk07.png)
 
 ## ( 3-1 ) 註冊實體
-:::warning
 * 開啟 核心組態檔 ( hibernate.cfg.xml )
 * 在 \<session-factory\> 中加入 \<mapping\>
-:::
 ![](https://i.imgur.com/ewChF32.png)
 
 # ( 4 ) 純 Hibernate 環境下，須使用 HibernateUtil
-:::warning
 * 說明
     * 純 Hibernate環境下，須使用 HibernateUtil
         * 用來載入 Hibernate 組態
 * 新建 HibernateUtil 類別
     * src/main/java → core → util → 右鍵
     * → New → Class → Name 輸入 HibernateUtil → Finish
-:::
 ![](https://i.imgur.com/Oq0kDoy.png)
 ```java=
 public class HibernateUtil {
@@ -120,9 +106,7 @@ public class TestApp {
 }
 ```
 # ( 5 ) 介紹工具類別
-:::warning
 * java 中 Math 是一個工具類別
     * 為什麼在 Math 類別中，需要一個建構值是 private 無參數建構值
     * 因為本身是一個工具類別，不會有需要 Math 物件的存在
     * 而它的修飾字為 public static ( 公開 靜態 )
-:::

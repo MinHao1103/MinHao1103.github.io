@@ -2,7 +2,6 @@
 ===
 
 # ( 1 ) 查詢方法
-:::warning
 * 說明
     * 查詢方法底層使用的是 SQL 的 select 敘述
     * get()、load() 會取得永續狀態 ( Persistent ) 的實體物件
@@ -10,10 +9,8 @@
     * 若想查詢多筆資料，可使用 createQuery()
     * 其他查詢方式
         * HQL、Criteria 與 Native SQL
-:::
 
 ## ( 1-1 ) 相關方法
-:::warning
 * \<T\> T load(Class\<T\> theClass, Serializable id)
     * 說明
         * 從實體類別對應的資料表中查詢
@@ -24,7 +21,6 @@
         * id：欲查詢的識別值
     * 回傳
         * 查詢到的實體物件，永續狀態(Persistent)
-:::
 
 ## ( 1-2 ) get() vs. load()
 ![](https://i.imgur.com/nULSzsi.png)
@@ -64,9 +60,7 @@ public static MemberPojo selectByIdUseLoad(Integer id) {
 }
 ```
 
-
 # ( 2 ) Session 其他方法
-:::warning
 * 說明
     * Session 物件 是 Hibernate 程式中的核心物件
         * 又稱 Persistence Context
@@ -77,10 +71,8 @@ public static MemberPojo selectByIdUseLoad(Integer id) {
             * 移除 Session Cache 中的實體物件
     * 另外，若透過 sessionFactory.openSession() 來取得 Session 物件
         * 在執行新刪修動作時，有時必須手動刷新 Session Cache
-:::
 
 ## ( 2-1 ) 相關方法
-:::warning
 * void evict ( Object object )
     * 說明
         * 從 Session Cache 中移除實體物件
@@ -93,7 +85,6 @@ public static MemberPojo selectByIdUseLoad(Integer id) {
     * 說明
         * 強制刷新 Session Cache
         * 此方法須在 transaction.commit() 和 session.close() 之前呼叫
-:::
 
 ### ( 2-1-1 ) 使用 flush()
 ```java=
@@ -118,7 +109,6 @@ public boolean deleteByIdFlush(Integer id) {
 ```
 
 # ( 3 ) MVC 架構中的 Session 物件
-:::warning
 * Hibernate 是用來存取資料庫
     * 相關程式都應撰寫在 DAO 層 ( Data Access Object Layer )
 * 但在 MVC 設計架構中
@@ -137,10 +127,8 @@ public boolean deleteByIdFlush(Integer id) {
     * 如果 Transaction 物件都在 DAO 方法中取得
     * 就無法讓多個 DAO 方法在同一個交易中
     * Service 層就無法做交易控制
-:::
 
 ## ( 3-1 ) 解決方法
-:::warning
 * DAO 方法中
     * 透過 sessionFactory.getCurrentSession() 來取得 Session 物件
     * 不呼叫 Transaction 的 beginTransaction() / commit() / rollback() 方法
@@ -149,7 +137,6 @@ public boolean deleteByIdFlush(Integer id) {
 * 原本在 DAO 層做交易控制，轉移到 Service 層
 * 在 Spring 環境中，可使用 TransactionManager 物件
     * 加上 @Transactional 來解決此問題
-:::
 
 * DAO 層
 ```java=

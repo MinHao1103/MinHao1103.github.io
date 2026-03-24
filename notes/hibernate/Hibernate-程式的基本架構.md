@@ -1,7 +1,6 @@
 ( 八 ) Hibernate 程式的基本架構
 ===
 # ( 1 ) SessionFactory 物件
-:::warning
 * Hibernate 的 SessionFactory 物件類似 JDBC 中的 DataSource 物件
 * SessionFactory 說明
     * 連線工廠物件
@@ -11,17 +10,13 @@
         * SessionFactory sessionFactory = Hibernate.getSessionFactory();
     * spring 環境
         * 透過 IoC / DI 機制取得
-:::
 
 ## ( 1-1 ) SessionFactory 物件 的方法
-:::warning
 * Session openSession()
     * 開啟一個新的資料庫連線，回傳 session 物件
 * Session getCurrentSession()
     * 取得當前資料庫連，須配合組態設定  hibernate.current_session_context_class 的使用
     * 當前 ( Current ) 的定義，是依據上述設定之值決定，回傳: Session物件
-:::
-
 
 | 比較項目 | openSession() | getCurrentSession() |
 | -------- | -------- | -------- |
@@ -32,9 +27,7 @@
 |刷新 Session 方式|手動 session.flush()|自動|
 |關閉 Session 方式|手動 session.close()|藉由 Transaction 關閉<br> transaction.commit()<br>transaction.rollback()|
 
-
 ## ( 1-2 )  SessionFactory 物件 相關組態設定
-:::warning
 * hibernate.current_session_context_class
     * Session 物件的作用範圍
         * 一般設定為 Thread，會將 Session 物件與 Thread 結合
@@ -44,11 +37,8 @@
     * 一般交易控制，會使用此設定
     * 在 Spring 環境下，若有使用 Spring 提供的 TransactionManager 物件
         * 預設會使用 SpringSessionContext，屆時須將此設定移除，否則會發生例外
-:::
-
 
 # ( 2 ) Session物件
-:::warning
 * 說明
     * 當有 SessionFactory 物件後，就可以產生 Session 物件
     * 類似於 JDBC 中的 Connection 物件，代表資料庫連線
@@ -72,10 +62,8 @@
     * void close()
         * 關閉資料庫連線
     * Session 型態中，定義許多控制實體物件的方法，在第 9 和 10 章會提到
-:::
 
 # ( 3 ) Transaction物件
-:::warning
 * 說明
     * Hibernate 是藉由改變實體物件的狀態來間接操作資料庫
         * 所以自動提交 ( Auto Commit ) 預設為 false
@@ -103,5 +91,4 @@
     * 若是依附在 Session 物件，是透過 sessionFactory.getCurrentSession() 取得
     * 且組態屬性 hibernate.current_session_context_class 設為 Thread
     * 當具備以上條件，使用 commit() 與 rollback() 會同時關閉資料庫連線
-:::
 

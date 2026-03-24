@@ -1,7 +1,6 @@
 ( 五 ) 載入 Hibernate 組態
 ===
 # ( 1 ) 適用 環境及版本
-:::warning
 * 純 Hibernate 環境 vs. Spring 環境
     * 純 Hibernate 環境中
         * 會定義一個 HibernateUtil 的工具類別
@@ -11,9 +10,7 @@
             * 必須使用相對應的版本寫法
     * 業界通常會在 Spring 環境下使用 Hibernate
         * 此環境則不須撰寫 HibernateUtil 工具類別
-:::
 # ( 2 ) 組態相關物件
-:::warning
 * 說明
     * 撰寫載入核心組態的程式，須用到幾個重要物件
     * 以下僅說明版本 5.x 會用到的物件及步驟
@@ -27,7 +24,6 @@
             * 取得 SessionFactoryBuilder 物件 → 建立 SessionFactory 物件
     * 4. 銷毀 ( 使用完畢時 )
             * StandardServiceRegistryBuilder.destroy(registry);
-:::
 
 # ( 3 ) HibernateUtil-5.x 版
 ```java=

@@ -2,21 +2,15 @@
 ===
 
 # ( 1 ) Hibernate 映射設機制
-:::warning
 * Hibernate 屬於 ORM 框架，使用時必須做映射設定
-:::
 ## ( 1-1 ) Hibernate 映射機制
-:::warning
 * 有映射 類別/物件，稱為 實體類別/物件 ( Entity Class / Object)
 * 兩種映射方式
     * 使用 映射檔
     * 使用 Annotation
-:::
 ![](https://i.imgur.com/gRhGr1Y.png)
 
-
 # ( 2 ) 使用 映射檔 
-:::warning
 * 說明
     * 較舊的 Hibernate 版本使用此種方式
 * 使用格式
@@ -29,10 +23,8 @@
     * 須在核心組態檔，以 \<mapping resource="\.\."\> 註冊
     * 可使用 JBoss Tools 建立 Hibernate XML Mapping file ( hbm.xml )
     * 較新的 Hibernate 版本已改 Annotation 設定
-:::
 
 ## ( 2-1 ) 映射檔 標籤 與 標籤屬性
-:::warning
 * 設定實體類別
 ```xml=
 <class name="實體類別全名" table="(DB端)資料表名">    
@@ -51,7 +43,6 @@
     </property>
 </class>
 ```
-:::
 
 ## ( 2-2 ) 映射檔範例 Emp.hbm.xml
 ```xml=
@@ -92,7 +83,6 @@ Configuration DTD 3.0//EN"
 ```
 
 # ( 3 ) 使用 Annotation
-:::warning
 * 說明
     * 較新的 Hibernate 版本使用此種方式
 * 使用格式
@@ -103,10 +93,8 @@ Configuration DTD 3.0//EN"
     * 須在核心組態檔，以 \<mapping class="\.\." /> 註冊
     * Hibernate 有定義映射用的 Annotation，但皆已廢棄
     * 改用 JPA 定義的 Annotation ( javax.persistence )
-:::
 
 ## ( 3-1 ) Annotation 與 Annotation 屬性
-:::warning
 * @Entity
     * 設定為實體類別
 * @Table(name = "資料表名", catalog = "資料庫名")
@@ -125,7 +113,6 @@ Configuration DTD 3.0//EN"
     * 設定不映射的屬性
     * 因為自動映射機制，會自動試著映射所有屬性
     * 若有不想映射的屬性，須加上此 Annotation
-:::
 
 ## ( 3-2 ) 實體類別範例 Emp.java
 ```java=
@@ -168,8 +155,6 @@ Configuration DTD 3.0//EN"
 ```
 
 ## ( 3-4 ) 自動映射機制
-:::warning
 * 使用　Annotation　設定映射，會啟用 自動映射機制
 * 若 程式端名稱 與 資料庫端名稱 相同 ( 不區分大小寫 ) 時，會自動映射
 * 可不用撰寫 @Table、@Column
-:::

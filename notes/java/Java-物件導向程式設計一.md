@@ -1,20 +1,14 @@
 Java - 物件導向程式設計(實務應用一)
 ===
 
-# 目錄
-* [Java - 基礎](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/BkgzGkBat)
-* [Java - 進階](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/ryarjMM15)
-* [Java - 物件導向程式設計(實務應用二)](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/SkP5SREW9)
-
 # Exception 物件
-:::warning
 * Java程式執行時，發生異常可借助例外處理
     * 發生例外會產生了 Exception 物件
     * 例外處理分成
         * 一般正常處理程序
         * 錯誤處理程序
 * 5個關鍵字：
-    * <font color="#f00">**try、catch、finally、throws 與 throw**</font>
+    * **try、catch、finally、throws 與 throw**
 * 若沒有支援例外處理的程式語言
     * 錯誤必須自行檢查
     * 需手動處理
@@ -26,11 +20,9 @@ Java - 物件導向程式設計(實務應用一)
     * 參數為空值
     * 參數型態不符
     * 陣列索引超出範圍等
-:::
 
 ## 例外的類別層級架構
 ![](https://i.imgur.com/Ul3cSEv.png)
-:::warning
 * Error不處理
     * 發生 Error 即中斷
         * 發生原因多跟系統層面、環境有關
@@ -45,7 +37,6 @@ Java - 物件導向程式設計(實務應用一)
         * 例如 IOException、SQLException 等
             * 可能會跟程式外界互動造成異常，例如：
                 * 資料庫存取，網路傳輸等
-:::
 
 ## 常見Runtime Exception介紹
 ![](https://i.imgur.com/K4n67mc.png)
@@ -61,7 +52,6 @@ try {
     一定要執行的程式碼;
 }
 ```
-:::warning
 * try { }
     * 將正常處理程序的程式碼置於 try { }的程式區塊中
         * try { } 程式區塊後應緊接著 catch { } 程式區塊
@@ -76,7 +66,6 @@ try {
         * 關閉(close)資料庫連線
         * 檔案讀取等
     * finally { } 置於所有catch { }的後面
-:::
 
 ```java=
 public class TestTryCatch {
@@ -97,47 +86,39 @@ public class TestTryCatch {
 }
 ```
 ## 分辨final、finally、finalize
-:::warning
 * final
-    * 宣告<font color="#f00">**類別**</font>上，該類別<font color="#f00">**不能被其他類別繼承**</font>
-    * 宣告<font color="#f00">**方法**</font>上，該方法<font color="#f00">**不能被覆寫(Override)**</font>
-    * 宣告<font color="#f00">**常數**</font>上，表示<font color="#f00">**不能改變值**</font>
+    * 宣告**類別**上，該類別**不能被其他類別繼承**
+    * 宣告**方法**上，該方法**不能被覆寫(Override)**
+    * 宣告**常數**上，表示**不能改變值**
 * finally
-    * 用在<font color="#f00">**Exception**</font>上，表示<font color="#f00">**無論發生什麼情況皆會執行**</font>
+    * 用在**Exception**上，表示**無論發生什麼情況皆會執行**
 * finalize
     * 是 Object 類別的方法
     * 是垃圾收集器
-:::
 
 ## throws 關鍵字使用方式
-:::warning
 * 在方法定義時，可使用 throws 關鍵字將可能發生的例外
     * 丟出給呼叫此方法的程式去處理，用法如下：
-:::
 ```java=
 void method() throws MyException {…}
 public static int parseInt(String s) throws NumberFormatException {…}
 public int read() throws IOException {…}
 public static Connection getConnection() throws SQLException {…}
 ```
-:::warning
 * 對於checked exceptions，在呼叫有 throws 關鍵字的方法時
 * 必須將該方法置於下列兩者之一：
     * 將該方法置於 try { } 程式區塊中
     * 將該方法置於定義有 throws 關鍵字的方法中
     * 此為再透過 throw 丟出例外，然後再由下一個呼叫者來處理
-:::
 ![](https://i.imgur.com/9h70q5a.png)
 <br>
 ![](https://i.imgur.com/NG0FtzF.png)
-:::warning
 * 使用 throw 關鍵字，將方法內的例外手動丟出
     * throw 「一個可被丟出的物件」
     * 該物件必須是 java.lang.Throwable 類別的子類別
 * 方法內部檢查參數資料有誤會用到兩種情境
     * 利用例外產生丟出中斷此方法執行
     * 搭配"自訂例外"使用
-:::
 * throw 範例
 ```java=
 public class TestThrowDemo {
@@ -162,9 +143,7 @@ public class TestThrowDemo {
 }
 ```
 ## 例外訊息取得相關方法
-:::warning
 * 取得錯誤訊息的方法 (Throwable 類別所定義)
-:::
 ![](https://i.imgur.com/qUoL5QP.png)
 ### 建議使用printStackTrace
 ```java=
@@ -191,15 +170,11 @@ public class TestStackTrace {
 ```
 
 ## 自訂例外設計
-:::warning
 * 要自訂例外類別時
     * 必須繼承其中一個
-        * <font color="#f00">**Throwable**</font>
-        * <font color="#f00">**Exception**</font>
-        * <font color="#f00">**RuntimeException**</font>
+        * **Throwable*****Exception*****RuntimeException**
 * 可利用 throw 關鍵字
     * 將例外拋給負責處理此例外的 catch { } 區塊處理
-:::
 * 自訂的例外類別，通常會包含兩個建構子
 ```java=
 public 建構子名稱 () { }
@@ -218,7 +193,6 @@ public class MyException extends Exception {
 	}
 }
 ```
-:::warning
 * 請建立一個正立方體Cube.java檔案
     * 定義邊長屬性(double length)
     * 建構子(Constructor)
@@ -227,7 +201,6 @@ public class MyException extends Exception {
     * 若是值為0或負數，則拋出自行定義的例外CubeException
     * 並顯示「正立方體邊長不得為0或是負數」的訊息
 * 若是傳入邊長的值沒有問題，則顯示體積
-:::
 ```java=
 class CubeException extends Exception {
 	public CubeException() {
@@ -282,11 +255,8 @@ public class CubeTest {
 }
 ```
 ## 例外拋出方法與覆寫關係
-:::warning
-* 子類別<font color="#f00">**覆寫**</font>父類別定義有 <font color="#f00">**throws**</font>的方法時
-    * <font color="#f00">**子類別所 throws 的 Exception**</font>
-        * <font color="#f00">**必須與父類別被覆寫方法的 Exception 一樣或是更低階**</font>
-:::
+* 子類別**覆寫**父類別定義有 **throws**的方法時
+    * **子類別所 throws 的 Exception*****必須與父類別被覆寫方法的 Exception 一樣或是更低階**
 ```java=
 public class BaseClass {
     public void method() throws IOException { }
@@ -307,9 +277,7 @@ public class NG_C extends BaseClass {
 ```
 
 ### Exception例外 ( override )
-:::warning
 * SmartPhone父類別，父類別有 throw 的 Exception
-:::
 
 ```java=
 import java.io.IOException;
@@ -322,10 +290,8 @@ public class SmartPhone {
 	
 }
 ```
-:::warning
 * IPhone 繼承父類別，Override 時，
     * 子類別 Exception 必須比父類別 Exception 相等或低階
-:::
 
 ```java=
 import java.io.IOException;
@@ -357,12 +323,10 @@ public class Test {
 }
 ```
 ## 思考三種 Exception 輸出結果
-:::warning
 * 1. method()執行一切正常
 * 2. method()執行發生Exception1
 * 3. method()執行發生Exception3
     * (Exception3與1, 2沒有繼承關係)
-:::
 ```java=
 public class ExceptionFlow {
     public static void main(String[] args) {
@@ -380,7 +344,6 @@ public class ExceptionFlow {
     } 
 }
 ```
-:::warning
 * 1. method()執行一切正常
     * 進入method正常執行，**輸出0**
     * finally一定會執行，**輸出3**
@@ -398,7 +361,6 @@ public class ExceptionFlow {
     * finally一定會執行，**輸出3**
     * 因為例外沒有被處理，java會中斷執行，並拋出異常
     * 程式最終輸出結果只有 output 3
-:::
 
 ### 例外範例思考
 ```java=
@@ -444,10 +406,8 @@ public class ExceptionFlow2 {
 ```
 
 ## 例外類型多重捕捉
-:::warning
 * Java 7 開始一個catch區塊可以處理一個以上的例外類型
 * 可以有效地精簡程式碼過於冗長的撰寫
-:::
 ```java=
 public class TestMultiCatch {
 	static class ExceptionA extends Exception {
@@ -512,18 +472,14 @@ public class TestMultiCatch {
 	}
 }
 ```
-:exclamation:<font color="#f00">**對這些例外處理相同的動作可以使用例外多重捕捉**</font>
-:::warning
+:exclamation:**對這些例外處理相同的動作可以使用例外多重捕捉**
 * 上述發生例外都會捕捉下來，無法辨別是哪一個例外要處理
     * 如果要使用例外多重捕捉再各別辨識處理
     * 就必須要加上 if 以及 instanceof 來判斷
-:::
 
 ## 改良重新拋出例外的類型檢查
-:::warning
 * 編譯器可以更精確地分析需拋出的例外類型
 * 在方法宣告的throws子句中可指定更多明確的例外型別
-:::
 ```java=
 public class TestImprovedRethrow {
 	static class ExceptionA extends Exception { }
@@ -564,7 +520,6 @@ public class TestImprovedRethrow {
 }
 ```
 ## 斷言(Assertion)機制 
-:::warning
 * 需求確認 -> 設計規劃 -> 開發 -> 測試 -> 佈署上限
 * 什麼是Assertion？
     * 用來維護程式使之更堅固(robust)，零錯誤
@@ -579,19 +534,16 @@ public class TestImprovedRethrow {
         * 如：assert k != 0：”k值不得為0”;
 * 執行：java –ea TestAssertion
     * ea：enable assert
-:::
 * eclipse 啟動 assertion
 ![](https://i.imgur.com/FuLYwgd.png)
 
 # File類別
-:::warning
 * java.io.File 類別：
     * 可以用此類別來建立、移除檔案，或變更檔案的屬性…等
 * 使用 File 建構子時：
     * 並未實際在檔案系統中建立檔案
     * 也未讀寫或修改該檔案內容
     * 該檔案可以已經存在或事後才建立
-:::
 
 ## File類別建構子
 ```java=
@@ -608,9 +560,7 @@ public File(File parent, String child)
 
 ## File類別常用方法 (一)
 ![](https://i.imgur.com/E1W7Z1d.png)
-:::warning
 * :exclamation: list ( )：方法只對目錄操作有效
-:::
 ```java=
 public class TestDir {
 
@@ -722,44 +672,33 @@ public class Demo01 {
 }
 ```
 
-
-## 檔案**絕對路徑** 與 **相對路徑** 表示
-:::warning
-* 絕對路徑：從 <font color="#f00">**"根目錄"**</font> 開始表示
+## 檔案**絕對路徑**與**相對路徑** 表示
+* 絕對路徑：從 **"根目錄"** 開始表示
     * 優點:好寫好理解
     * 缺點:容易因為更換環境而跟著調整
-* 相對路徑：從 <font color="#f00">**"目前的位置"**</font> 開始表示
+* 相對路徑：從 **"目前的位置"** 開始表示
     * 優點:彈性好
     * 缺點:理解上不直覺
 * “.”代表當前路徑，“.\.”代表上一層路徑
     * 可用絕對路徑或相對路徑表示一個檔案或資料夾的位置
-:::
 
 ## 循序存取媒體 I/O
 ### 資料流處理觀念
-:::warning
 * 程式透過資料流(Stream)讀取一連串資料
     * 來源可以是檔案、記憶體或是網路
-:::
 ![](https://i.imgur.com/hw5ZvvZ.png)
 
-:::warning
 * 程式也能透過資料流(Stream)將資料寫出到目的地
     * 來源可以是檔案、記憶體或是網路
-:::
 ![](https://i.imgur.com/QJsnluf.png)
 
-:::warning
 * 資料流處理觀念圖示
-:::
 ![](https://i.imgur.com/Jpddbv6.png)
-
 
 ### 資料流API
 
-:::warning
 * InputStream / OutputStream 及 Reader / Writer
-    - Java的資料流類別內建於 <font color="#f00">**四個抽象父類別**</font>
+    - Java的資料流類別內建於 **四個抽象父類別**
 * InputStream / OutputStream 型資料流 (位元資料流 JDK1.0)
     - 存取是以8bits為基礎的byte，處理中文有困難
     - Unicode 字元用 2 bytes 儲存
@@ -767,15 +706,13 @@ public class Demo01 {
     - 存取是以16bits為基礎的char來處理Unicode (字元資料流 JDK1.1)
 * I/O Stream 與 Reader / Writer 之間的資料傳輸
     - 網路 I/O 與 Console I/O是以byte為基礎的I/
-:::
 * :exclamation:Unicode 字元一律使用 Reader / Writer
 * :exclamation:非 Unicode 字元一律使用 InputStream / OutputStream
 
 ### 輸入父類別 ( InputStream、Reader )
-:::warning
 * InputStream
     * int read ( ) 
-        * 回傳值為檔案裡下一個byte資料，<font color="#f00">**如回傳 -1 代表已到檔案末端**</font>
+        * 回傳值為檔案裡下一個byte資料，**如回傳 -1 代表已到檔案末端**
     * int read ( byte[] buf )
         * 讀取檔案中下一段 ( buf.length 個 byte )資料，並放入陣列 buf 裡
         * 回傳值為實際讀取到的 byte 數量，如回傳 -1 代表已到檔案末端
@@ -787,10 +724,7 @@ public class Demo01 {
     * int read ( char[] cbuf )
     * int read ( char[] cbuf, int offset, int length )
 
-:::
-
 ### 輸出父類別 ( OutputStream、Writer )
-:::warning
 * OutputStream
     * void write ( int b ) 
         * 將b的位元組(byte)資料寫至目的地
@@ -802,12 +736,9 @@ public class Demo01 {
     * void write ( int c )
     * void write ( char[] cbuf )
     * void write ( char[] cbuf, int offset, int length )
-:::
 
 ![](https://i.imgur.com/ti47X2k.png)
-:::warning
 * InputStream、OutputStream
-:::
 ```java=
 import java.io.*;
 
@@ -831,9 +762,7 @@ public class CopyBytes {
 }
 
 ```
-:::warning
 * Reader、Writer
-:::
 ```java=
 import java.io.*;
 
@@ -858,14 +787,12 @@ public class Copy {
 }
 
 ```
-:exclamation:<font color="#f00">**.close()，檔案傳輸結束後，一定要釋放資源，避免佔存空間**</font>
-:::warning
+:exclamation:**.close()，檔案傳輸結束後，一定要釋放資源，避免佔存空間**
 * 因為 InputStream、OutputStream 是以 8bits 為基礎的 byte
 * 而 char 是以 16 bits = 2 bytes 表示
 * 轉換上可能會有存取問題
 * 所以 Java 提供 Reader、Writer 的類別
 * 來專門處理以 16 bits 為基礎的 char 的 Unicode
-:::
 
 ### 使用 FileInputStream、FileOutputStream 時, 解決中文碼印出問題
 ```java=
@@ -903,38 +830,32 @@ public class CopyBytes {
 ```
 
 ## I/O Chain
-:::warning
 * 重要原則
 * I/O 鍊 (I/O Chain)
-    * 建立一個 I/O 前<font color="#f00">**必須先用低階 I/O 類別來存取資料**</font>(如檔案)
-    * 之後<font color="#f00">**再使用高階 I/O 類別來控制低階 I/O 類別的動作**</font>
+    * 建立一個 I/O 前**必須先用低階 I/O 類別來存取資料**(如檔案)
+    * 之後**再使用高階 I/O 類別來控制低階 I/O 類別的動作**
     * 此層層架構稱之為I/O鍊 (I/O Chain)
 * 高階 I/O 類別可再與其它高階 I/O 類別連結
-* <font color="#f00">**輸入類**</font>的資料流只能與<font color="#f00">**輸入類**</font>的類別相連接
-* <font color="#f00">**輸出類**</font>的資料流只能與<font color="#f00">**輸出類**</font>的類別相連接
-:::
+* **輸入類**的資料流只能與**輸入類**的類別相連接
+* **輸出類**的資料流只能與**輸出類**的類別相連接
 
 ### InputStream Chain ( 低階 -> 高階 )
 
-:::warning
 * 程式片段 ( 輸入 )
 * 1.建立一個檔案輸入流 (低階)
     * FileInputStream fis = new FileInputStream(“輸入檔案名”);
 * 2.建立一個高階I/O物件BufferedInputStream bis
     * 並連結至fis，將 fis 放到緩衝區
     * BufferedInputStream bis = new BufferedInputStream(fis);
-* 3.<font color="#f00">**從緩衝區讀取資料，以減少CPU的I/O時間**</font>
+* 3.**從緩衝區讀取資料，以減少CPU的I/O時間**
     * bis.read ( ) ;
-:::
-:exclamation: <font color="#f00">**資源關閉順序：越晚建立，越早關閉**</font>
+:exclamation: **資源關閉順序：越晚建立，越早關閉**
 
 * 程式架構圖
 ![](https://i.imgur.com/X9x8gDu.png)
-:::warning
 * 目前程式執行速度比硬體執行速度快 N 倍
 * 所以將 FileinputStream 低階資料流加上緩衝機制 (BufferedInputStream)
 * 提升效能，減少CPU的I/O時間
-:::
 * 範例
 ```java=
 import java.io.BufferedInputStream;
@@ -975,7 +896,7 @@ public class InputStreamChain {
 ### OutputStream Chain ( 高階 -> 低階 )
 * 程式架構圖
 ![](https://i.imgur.com/Mph8FDw.png)
-* 範例：<font color="#f00">**此範例是直接覆寫檔案，可能會造成資料遺失，要小心使用**</font>
+* 範例：**此範例是直接覆寫檔案，可能會造成資料遺失，要小心使用**
 ```java=
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -1002,7 +923,7 @@ public class OutputStreamChain {
 	}
 }
 ```
-:exclamation: <font color="#f00">**資源關閉順序：越晚建立，越早關閉**</font>
+:exclamation: **資源關閉順序：越晚建立，越早關閉**
 
 ### 緩衝 ( Buffer ) 區
 ```java=
@@ -1050,29 +971,23 @@ public class ReaderChain {
 ```
 
 ## Reader / Writer 資料流
-:::warning
 * Reader / Writer用法與 I/O Stream 類似
     - Reader 類別只能與 Reader 類別相連接
     - Writer 類別只能與 Writer 類別相連接
     - 高階I/O類別亦可多層疊堆
-        - <font color="#f00">**使用高階I/O類別前，必須有一個低階I/O類別先處理媒體相關的存取動作**</font>
+        - **使用高階I/O類別前，必須有一個低階I/O類別先處理媒體相關的存取動作**
 * Reader / Writer 與 I/O Stream 的差別 
     * 是專門用於Unicode的字元處理
-:::
-
 
 ### Reader Chain
-:::warning
 * 1. 建立一個檔案輸入流
     * FileReader fr = new FileReader(“輸入檔案名”);
 * 2. 建立一個高階I/O物件BufferedReader br, 並連結至fr，將fr放到緩衝區
     * BufferedReader br = new BufferedReader(fr);
 * 3. 從緩衝區讀取資料，以減少CPU的I/O時間
     * br.readLine();
-:::
 * 程式架構圖
 ![](https://i.imgur.com/vI9reSH.png)
-
 
 ### Writer Chain
 ```java=
@@ -1087,21 +1002,17 @@ fw.close();
 * 程式架構圖
 ![](https://i.imgur.com/fwmyctd.png)
 
-
 ## InputStreamReader、OutputStreamWriter 類別
-:::warning
 * 網路 I/O 與 Console I/O
-    - 因為網路 I/O 與 Console I/O 是<font color="#f00">**位元資料流**</font>
+    - 因為網路 I/O 與 Console I/O 是**位元資料流**
         - 所以 Reader / Writer 不能夠直接存取網路 I/O 與Console I/O
         - 需要進行資料流的轉換，才能順利處理對應的資料內容
 * InputStreamReader 類別
     - An InputStreamReader is a bridge from byte streams to character streams
 * OutputStreamWriter 類別
     - An OutputStreamWriter is a bridge from character streams to byte streams
-:::
 
 ## Unicode 與 UTF 關係 ( 補充參考 )
-:::warning
 * Unicode又叫統一碼、萬國碼、單一碼、標準萬國碼
     * 目的
         * 解決世界各國文字編碼問題
@@ -1121,10 +1032,8 @@ fw.close();
     * 對於這種情況，可以使用UTF-8來進行演算，將字元轉換成一種可長可短的編碼
     * 這樣可能節省大量的容量。對於網際網路傳輸資料節省頻寬
     * 所以成了電子郵件、網路檔案傳送最愛的一種編碼格式。
-:::
 
 ### Unicode to UTF-8 ( 補充 )
-:::warning
 - '我' 這個字元在Java裡面轉成 int 得到的整數為
     - 25105 (十進位表示) 轉成 Unicode 的十六進位表示為 \u6211
     - 它是如何對應到UTF-8的 E6 88 91 ? 
@@ -1132,13 +1041,9 @@ fw.close();
     * 2. 依照java API中，java.io.DataInput介面的說明將 0110001000010001 拆成三組位元 0110 001000 010001 
     * 3. 010001 的前面補 10 成為 10010001，001000 的前面補 10 成為 10001000，0110 的前面補 1110 成為 11100110 就會得到下面三個位元組： 11100110 10001000 10010001 
     * 4. 以上三個位元組對應的十六進位表示就是： E6 88 91
-:::
-
-
 
 ## 簡易網路爬蟲
 ### 爬蟲是什麼
-:::warning
 * 又稱為 Web Crawler 或 Spider 
     * 藉由程式執行自動瀏覽網路資料內容或取得資料
     * 最早用來建立網路資料索引，以方便搜尋引擎執行的效能優化
@@ -1150,16 +1055,12 @@ fw.close();
     * 因為Java語言的特性，所以單純地使用 Java API 進行爬蟲功能實現
     * 遇到動態網頁或是 Javascript 渲染過的內容，在爬取的支援性較差
     * 需要再搭配第三方套件或工具實現較為方便
-:::
 
 ### java.net
-:::warning
 * java.net 套件已被包在 Java 標準 API 裡，有許多對於網路程式設計所需要的介面、類別與相關方法，如 URL, HttpURLConnection, Socket等。
     * URL 類別讓我們在 Java 程式建立一個對應指定的網路URL資源的物件
     * HttpURLConnection 類別可以讓我們藉由 http 通訊協定
         * 對指定的網路URL資源進行存取設定與資料的輸入與輸出 (結合資料流相關類別完成)
-:::
-
 
 ### Java 爬蟲範例
 ```java=
@@ -1214,7 +1115,6 @@ public class GetNatalieFromInternet {
 
 ## 文字主控介面I/O
 ### Console I/O
-:::warning
 * System.in、System.out、System.err
     * 三個不同資料流，不需 new 宣告即可使用
 * System.in
@@ -1226,10 +1126,8 @@ public class GetNatalieFromInternet {
 * System.err
     * 標準錯誤輸出資料流，預設是螢幕
     * 為PrintStream的物件
-:::
 
 ### Scanner類別(JDK 5)
-:::warning
 * 鍵盤輸入範例
     - 如JDK 5之前的版本要從鍵盤讀入整數值的作法
         * InputStreamReader isr = new InputStreamReader(System.in);
@@ -1240,10 +1138,8 @@ public class GetNatalieFromInternet {
         * Scanner sc = new Scanner(System.in);
         * String s = sc.next();
         * 【int n = sc.nextInt();】
-:::
 
 ### 資料流功能補充
-:::warning
 * 抽象父類別 InputStream 類別提供 int available() 方法
     * 以取得輸入資料流的資料大小(number of bytes)
     * 輸出父類別 OutputStream 與 Writer 提供 void flush()方法
@@ -1252,11 +1148,8 @@ public class GetNatalieFromInternet {
 * 建構子FileWriter(String fileName, boolean append)
     - 當append = false時，新增的資料將覆蓋/取代原始資料(預設為false)
     - 當append = true時，新增的資料將附加於原始資料之後
-:::
-
 
 # 物件輸入與輸出
-:::warning
 * 將物件寫出與讀入
     - 寫出物件：使用ObjectOutputStream類別寫出物件
     - 讀入物件：使用ObjectInputStream類別讀入物件
@@ -1272,11 +1165,9 @@ public class GetNatalieFromInternet {
 * 物件讀入注意事項：
     - 物件讀入順序必須與物件寫出順序相同
     - Object readObject()的回傳型態為Object，必須自行強迫轉型為原來寫出時的物件型態
-:::
 
 ## 序列化(Serializable)
 ### java.io.Serializable ( 空介面 ) 
-:::warning
 - 物件是動態產生的，欲將物件永久儲存時，稱做persistence (永續)
 - 欲將某物件的資料儲存(寫出)到OutputStream(檔案或socket)時，該物件必須實作Serializable空介面
     * 註1：Java類別預設是不實作Serializable介面的
@@ -1285,7 +1176,6 @@ public class GetNatalieFromInternet {
 - 宣告為 transient 與 static 的資料成員不會被序列化
     * 如果某資料成員不想被serialized，程式設計者可以自行(主動)加上transient修飾子
     * 因為宣告為 static 的變數與方法，不是由任何此類別的物件單獨擁有，而是由屬於此類別所有物件共同擁有
-:::
 
 ### 序列化圖解(Serializable)
 ![](https://i.imgur.com/PL8GchS.png)
@@ -1350,7 +1240,7 @@ public class ObjectInOut {
 }
 
 ```
-* 新增 isbn：<font color="#f00">**Exception in thread "main" java.lang.Error: Unresolved compilation problems:**</font>
+* 新增 isbn：**Exception in thread "main" java.lang.Error: Unresolved compilation problems:**
 ```java=
 import java.io.EOFException;
 import java.io.File;
@@ -1417,12 +1307,10 @@ public class ObjectInOut {
 
 ```
 
-:::warning
 * 當物件內容被改變時，會導致無法序列化
 * 解決方法：定義 seriaLVersionUID 的值
 * 宣告 serialVersionUID 讓反序列化相容性提高
 * 不會因為類別內容改變而導致無法取得先前輸出的物件
-:::
 ```java=
 import java.io.EOFException;
 import java.io.File;
@@ -1488,9 +1376,7 @@ public class ObjectInOut {
 }
 ```
 
-
 ## I/O整理
-:::warning
 * 一個無限制的鍊結機制讓你可混合一些類別來達成任何想要的I/O功能
 * 可產生一些自己加強的資料類別
     * 以便在一個輸入鍊或輸出鍊其中的任何地方做插入
@@ -1501,21 +1387,16 @@ public class ObjectInOut {
     * 資料是否為Unicode字元
     * 源頭或目的的地形式
     * 串接高階資料流
-:::
-
 
 ## Java I/O API
-:::warning
 負責位元資料的輸入 / 輸出工作
 • 灰底者為Data Sink
-:::
 ![](https://i.imgur.com/M2eYU9n.png)
 
 ![](https://i.imgur.com/3pSPlLO.png)
 
 ## Java節點資料流
 ![](https://i.imgur.com/gFXpjXB.png)
-:::warning
 * 用來讀取與寫出記憶體內char陣列資料 (後者為byte陣列資料)
     - CharArrayReader 與 CharArrayWriter
     - ByteArrayInputStream 與 ByteArrayOutputStream
@@ -1527,15 +1408,11 @@ public class ObjectInOut {
 * 檔案資料流：用來存取檔案系統內容
     - FileReader 與 FileWriter
     - FileInputStream 與 FileOutputStream
-:::
-
 
 ## Java處理資料流
 ![](https://i.imgur.com/eifVFGc.png)
 
-
 # 集合 ( java.util )
-:::warning
 * 集合物件
     - 指一群相關聯的資料，集合在一起組成一個物件
     - 裡面的資料稱為元素( element )
@@ -1545,9 +1422,7 @@ public class ObjectInOut {
         - 且存放單一物件集合架構的根介面
     * Map 介面
         - 持有成對的 key-value 物件
-:::
 ## 集合架構圖
-:::warning
 * 集合
     * Collection 家族 ( 持有各自獨立的物件 )
         * Set ( 無特定順序，不允許重複 )
@@ -1564,15 +1439,12 @@ public class ObjectInOut {
         * Hashtable
         * HashMap
         * TreeMap ( 有大小排序特性 )
-:::
 ## Set ( Collection 家族 ) 相關物件常用方法
 ![](https://i.imgur.com/evqS6k4.png)
 
-:exclamation: <font color="#f00">**Set 沒有 get 方法可用**</font>
+:exclamation: **Set 沒有 get 方法可用**
 ### HashSet
-:::warning
 * 無順序，不允許重複
-:::
 ```java=
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1598,9 +1470,7 @@ public class TestHashSet {
 	}
 }
 ```
-:::warning
 * 使用 HashSet 取得 6 個不重複的亂數
-:::
 
 ```java=
 import java.util.HashMap;
@@ -1631,9 +1501,7 @@ public class Demo01 {
 
 ```
 ### TreeSet 
-:::warning
 * 有大小排序特性
-:::
 ```java=
 import java.util.*;
 
@@ -1694,24 +1562,22 @@ public class TestArrayList {
 ```
 
 ### LinkedList
-:::warning
-* <font color="#f00">**依照加入的先後順序**</font>
+* **依照加入的先後順序**
     * LinkedHashSet
     * LinkedHashMap
-* <font color="#f00">**LinkedList實作了List介面**</font>
+* **LinkedList實作了List介面**
     * 有順序性，可重複加入的集合
 * 使用方法與ArrayList幾乎相同
     * 但因為是鏈結的資料結構，因此適合對頭 / 尾元素進行處理
  *  LinkedList 可置入"任意物件"的"動態陣列"
      *  可隨內含物多寡增減其長度
- *  <font color="#f00">**如果需要經常將元素插入和刪除**</font>
+ *  **如果需要經常將元素插入和刪除**
      *  LinkedList 效率較佳
  *  LinkedList 新增以下方法
      * void addFirst(Object o);
      * void addLast(Object o);
      * Object getFirst();
      * Object getLast(); 等方法
-:::
 ![](https://i.imgur.com/zkl7eMz.png)
 
 ```java=
@@ -1759,7 +1625,6 @@ public class TestLinkedList {
 }
 ```
 ## Queue ( Collection 家族 )
-:::warning
 * 佇列有順序性
     * 即為日常生活上的隊伍
 * 佇列只能對"第一個"元素做取出的動作
@@ -1774,7 +1639,6 @@ public class TestLinkedList {
     * office() 在佇列後加入物件，失敗會回傳false，成功會回傳true
     * poll() 用來取出佇列前端物件，若佇列為空則傳回null
     * peek() 用來取得(但不取出)佇列前端物件，若佇列為空則回傳null
-:::
 ### 佇列(Queue)
 ```java=
 import java.util.*;
@@ -1835,7 +1699,6 @@ public class TestStack {
 ```
 
 ## Map 家族 ( Mapping 對應 )
-:::warning
 * Map 是 key/value 的集合
     * HashMap map = new HashMap();
     * map.put(“key”, “value”);
@@ -1845,7 +1708,6 @@ public class TestStack {
     * 但又沒有順序性
     * 所以Set、List都不適用
     * 就用更高階的Collection來代表
-:::
 ### Map 家族 相關物件常用方法
 ![](https://i.imgur.com/av2n8TX.png)
 
@@ -1886,7 +1748,6 @@ public class TestHashMap {
 ```
 
 ### Map注意事項
-:::warning
 * 若加入相同的主鍵值，則新的資料會取代舊的資料
 * 使用主鍵值尋找內含值，若主鍵值不存在，則會回傳null
 * HashMap 類別實作 Map 介面
@@ -1894,23 +1755,13 @@ public class TestHashMap {
         * Set keySet()
     * 取得Map集合中所有的value，可以使用values()，它會將Map裡所包含的所有value以Collection介面的型態回傳
         * Collection values()
-:::
-
-
 
 ## 集合與陣列比較
 ![](https://i.imgur.com/a1uCXmK.png)
 
-:exclamation: <font color="#f00">**集合裡面的資料都是物件的形式**</font>
-
-
-
-
-
-
+:exclamation: **集合裡面的資料都是物件的形式**
 
 ## 迭代器Iterator
-:::warning
 * 對於資料一個一個取得的操作稱為"遍歷(traverse)"
     * 迭代就是一種遍歷的實現
 * 如何取得集合裡的元素？
@@ -1918,7 +1769,7 @@ public class TestHashMap {
         * public Iterator iterator()
         - 利用此方法可把 collection 裡的所有元素
         轉換成可進行迭代的迭代器(Iterator)
-        -  <font color="#f00">**關於元素取得的順序是沒有任何保證的**</font>
+        -  **關於元素取得的順序是沒有任何保證的**
             -  除非此collection是提供保證順序的特性
     * Iterator介面 (稱為迭代器介面，JDK1.2開始)
         - 此介面被用來擷取 collection 集合裡的所有元素
@@ -1927,14 +1778,9 @@ public class TestHashMap {
             * 檢查迭代器裡還有沒有未取過的元素，有就回傳true
         * public Object next()
     - Iterator(迭代器)介面是為了取代JDK1.0的Enumeration(列舉)介面
-:::
-:exclamation: <font color="#f00">**用相同名稱代表各種不同集合的迭代器**</font>
-
-
-
+:exclamation: **用相同名稱代表各種不同集合的迭代器**
 
 ## 泛型 ( Generic Type )
-:::warning
 * 泛型優點 ( JDK1.5 )
     - 可預先指定 Collection 中所含的物件類別
     * 因此只要不小心加入其它類別的物件，在編譯階段就會出現錯誤
@@ -1948,7 +1794,6 @@ public class TestHashMap {
 - 雖然可讓Collection介面變得一般化
     - 但是因為在大部份的實際狀況下，我們放在Collection中的物件通常都屬同一個類別
     - 取出時型別為Object還得作型別轉換(Cast)，較為麻煩也容易出錯
-:::
 * BeforeGenericList (以前)
 ```java=
 import java.util.ArrayList;
@@ -2008,11 +1853,8 @@ public class GenericList {
 
 ```
 
-
 ### 泛型 ( Map )
-:::warning
 * Map< key , value > 的類型
-:::
 ```java=
 import java.util.HashMap;
 import java.util.Map;
@@ -2066,7 +1908,6 @@ public class MyGeneric {
 ```
 
 ### 泛型上下邊界
-:::warning
 * 泛型的進階設定
     * 泛型的設定可使用「?」搭配「extends」或「super」來增加泛型的彈性
 * <\? extends Number>：代表可以是Number或Number的子類別
@@ -2074,7 +1915,6 @@ public class MyGeneric {
 * <\? super Number>：代表可以是Number或Number的父類別
     * 制定出最低階類別為Number
 * 註：? 在泛型機制裡，代表為「any type」的意思
-:::
 
 ```java=
 class Book<T>{
@@ -2083,7 +1923,6 @@ class Book<T>{
 		System.out.println("書籍定價為：" + b.price);
 	}
 }
-
 
 public class GenericAdv {
 	public static void main(String[] args){
@@ -2095,13 +1934,9 @@ public class GenericAdv {
 
 ```
 
-:::warning
 * 此機制讓泛型設計者可以限制使用者所決定的型別是否符合規範
-:::
-
 
 ## Iterable 介面
-:::warning
 * 從JDK1.5開始，Collection介面增加了新的泛型(Generic Type)功能設計，並繼承JDK1.5的新介面Iterable
 * 介面Iterable(JDK1.5)：
     * 此介面只有一個iterator()方法，回傳Iterable介面
@@ -2110,10 +1945,8 @@ public class GenericAdv {
 * Implementing this interface allows an object to be the target of the “foreach” statement”
 
 :exclamation: 當使用JDK1.5的for-each來走訪集合的元素內容時，一切將顯得格外輕鬆！
-:::
     
 ### 增強型for迴圈 (for-each)
-:::warning
 * 增強型的for迴圈 (Enhanced for Loop) – for each：
     * 在JDK1.5中，針對for迴圈作了一些加強，讓我們無需知道陣列(array) 或集合(collection)的長度，甚至也不用迭代器(iterator)，便可以將其中的元素一一取出
     * 使用for – each來走訪集合的元素會格外輕鬆
@@ -2122,7 +1955,6 @@ public class GenericAdv {
     * for (Type varName ： listName)
         * 即可將listName裡的元素依順序，由型別為Type的變數varName存取
         * 陣列或集合中元素的型別必須是可以轉型為Type的型別
-:::
 ```java=
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -2158,26 +1990,20 @@ public class EnhanceForCollection {
 ```
 
 ### 兩種迴圈比較
-:::warning
 * for-each 迴圈之所以被稱為語法蜜糖(sugar)
     * 就是因為對於先前迭代器的操作語法
     * for-each 能達到更簡化的程式碼撰寫
     * 即可走訪集合 / 陣列裡的所有元素
 * 但也因為運作機制為迭代，因此元素取得操作的彈性不大，多用在元素全部取得的情境
 * 傳統for迴圈具備迴圈設計要素(初值設定、條件判斷、計次)，除了對存取上更有操作的彈性之外，在執行效能上也會比for-each來得更好
-:::
 
 ## TreeSet ( Collection 家族 ) 與 TreeMap ( Map 家族 )
-:::warning
 * TreeSet實作了SortedSet介面，成為了一個擁有大小排序特性的Set集合
-    * <font color="#f00">**同時也維持了元素不重複的特性**</font>
+    * **同時也維持了元素不重複的特性**
 * TreeMap實作了SortedMap介面，成為了一個擁有大小排序特性的Map集合
-    * <font color="#f00">**使用key的資料做為大小排序依據**</font>
+    * **使用key的資料做為大小排序依據**
 * 使用有排序特性的集合需保證集合內的元素為同一類型 (才有比大小的意義！)
-    * <font color="#f00">**宣告泛型即可保證集合內的元素為同一類別**</font>
-:::
-
-
+    * **宣告泛型即可保證集合內的元素為同一類別**
 
 ## TreeMap
 ```java=
@@ -2203,7 +2029,6 @@ public class TestTreeMap {
 }
 ```
 ### HashMap、TreeMap 結果
-:::warning
  * HashMap 可能輸出結果： 
      * David2 
      * David4 
@@ -2218,15 +2043,12 @@ public class TestTreeMap {
      * David3 
      * David4 
      * David5
-:::
 
 ## 自訂物件大小排序
-:::warning
 * 若想藉由集合或陣列擁有大小排序的特性
     * 必須主動對該類別實作Comparable介面
-    * <font color="#f00">**實作目的其實就是描述此物件的大小定義與規則**</font>
+    * **實作目的其實就是描述此物件的大小定義與規則**
 * 一個有實作Comparable介面的物件實體才會是被Java認同可以進行排序操作的資料
-:::
 * 排序：Arrays.sort(字串);
 ```java=
 import java.util.*;
@@ -2247,7 +2069,6 @@ public class TestArraysForArray {
 ```
 
 ## compareTo方法說明
-:::warning
 * Comparable 介面裡需要實作的抽象方法：
     * int compareTo(T target) 
 * compareTo 方法說明：
@@ -2258,17 +2079,14 @@ public class TestArraysForArray {
     * 在此方法裡決定使用該物件的何種屬性進行大小定義的設計
 * Arrays, Collections 類別的 sort 方法
     * 內部即會呼叫該比較物件的compareTo方法
-:::
 ## compareTo圖解 (以TreeSet為例)
 ![](https://i.imgur.com/7e7kBEX.png)
 
 ![](https://i.imgur.com/bGBCcvZ.png)
-:::warning
 * Arrays, Collections 類別的 sort 方法
     * 內部即會呼叫該比較物件的 compareTo 方法
     * 若自己定義的物件想達排序效果
     * 則必須 override compareTo 方法
-:::
 ```java=
 public class Employee implements Comparable<Employee> {
 	private int empno;
@@ -2325,7 +2143,6 @@ public class Employee implements Comparable<Employee> {
 ```
 
 ## HashSet唯一性操作
-:::warning
 * HashSet集合雖沒有排序特性，但保證了元素的唯一性 (重複不加入)
     * 在一些功能實現的情境上非常方便即可達成，但使用上需注意：
     * 自訂物件若要搭配 HashSet 達到唯一性
@@ -2337,32 +2154,26 @@ public class Employee implements Comparable<Employee> {
 * 當兩個物件的hasCode相同，才回再用equals做確認　-> 提高效率
     * hashCode → 模糊比對 (先)
     * equals → 明確比對 (後)
-:::
 
 ## 什麼是 hashCode ?
-:::warning
 * 每個 Java 物件都擁有 hashCode 方法
     * 可以取得一個整數的資料 ( 從Object類別繼承獲得 ) 
 * HashSet 在加入元素前會先藉由 hashCode 來區分元素所在的空間( hash bucket )
     * 若該空間裡沒有其它元素即加入，若該空間已有其他元素
     * 再透過equals方法得出最後結果是否為重複
-:::
 
 ![](https://i.imgur.com/61i3Hcg.png)
 
 ![](https://i.imgur.com/qQyY7aB.png)
 
-
 ## 覆寫hashCode
-:::warning
 * hashCode (雜湊)的演算牽涉到數學領域知識，因此這邊不會做太深入說明，有興趣的學員可以自行補充。基本覆寫的流程如下：
 * (1) 決定好要比較的物件屬性有哪些 (與覆寫equals方法使用的屬性相同)
 * (2) 選擇一個質數，用它與需要運算的屬性做累積相乘 (擴大運算結果避免容易發生碰撞情形)
 * (3) 回傳累積相乘的最後結果
 * 結論深入淺出：
     * 滑鼠右鍵 → Source → Generate hashCode() and equals()
-:::
-:exclamation:<font color="#f00">**HashMap的Key若是自定物件，也要記得改寫equals & hashCode**</font> 
+:exclamation:**HashMap的Key若是自定物件，也要記得改寫equals & hashCode** 
 ```java=
 package module18_20;
 
@@ -2496,14 +2307,12 @@ public class TestHashSetEmp {
 ```
 
 ## TreeSet唯一性
-:::warning
 * TreeSet除了有元素大小排序的特性之外，也保有Set共同的特性，也就是元素重複不加入，但使用此集合時，必須注意：
     * TreeSet裡面的元素需為”可比較的”，也就是有實作Comparable介面
     * TreeSet不重複的根據是compareTo方法的結果，並不是equals()與hashCode()的結果
     * 在compareTo實作方法裡，對於”一樣大”的元素，需要做 return 0 的設計
 
 :exclamation: TreeMap的key不重複，也是看compareTo回傳的結果
-:::
 ```java=
 package module18_20;
 
@@ -2618,33 +2427,24 @@ public class TestTreeSetEmp {
 
 ```
 
-
 ## LinkedList 與 ArrayList比較
 * LinkedList
 ![](https://i.imgur.com/RTOe5vj.png)
 * ArrayList
 ![](https://i.imgur.com/8kUifDi.png)
 
-:exclamation: <font color="#f00">**LinkedList也同時實作了Queue介面，也可以拿來做為佇列結構使用**</font>
-
-
+:exclamation: **LinkedList也同時實作了Queue介面，也可以拿來做為佇列結構使用**
 
 ## PriorityQueue與Comparator
-:::warning
 * PriorityQueue實作Queue介面而擁有佇列特性之外，也保證了元素會按照大小順序取出，另外也可以提供實作的Comparator的物件，自訂元素大小的排序規則
 * Comparator介面使用時機：
     * 想改變排序規則的資料是標準API的項目，如Integer, String…等
     * 想改變排序規則，但沒有原始碼可以調整
 * 除了PriortyQueue之外，像是sort()，TreeSet等有大小排序功能的方法或是集合
     * 都可以傳入Comparator實作物件進行排序規則的調整，大幅增加使用上的彈性
-:::
-
-
 
 ### 使用比較器(Comparator)調整排序規則
-:::warning
 * 使用Comparator可以彈性調整比較規則
-:::
 ```java=
 import java.util.*;
 
@@ -2679,16 +2479,13 @@ public class TestPriorityQueue2 {
 
 ```
 
-
 ## FIFO與LIFO
-:::warning
 * 佇列(Queue)
     * FIFO (First-In-First-Out)，"先進先出"
     * "出，是指元素取得並包含移除的動作
 * 堆疊(Stack)
     * LIFO (Last-In-First-Out)，"後進先出"
     * 並不是用索引值取得元素，而是使用該物件提供的pop()取得
-:::
 
 ### LIFO
 ```java=
@@ -2720,7 +2517,6 @@ public class Test_LIFO_Stack {
 ![](https://i.imgur.com/fphf4dk.png)
 
 ## 執行緒 (Thread)
-:::warning
 * 什麼是執行緒(Thread)
     * 執行緒是程式的執行區段，這個區段的指令獨立執行，不被其它區段影響，需要時啟動，不需要時關閉，以節省系統資源
 * Multithreading(多執行緒)
@@ -2731,10 +2527,8 @@ public class Test_LIFO_Stack {
         * Java的Garbage Collector即是一個執行緒 (背景執行緒daemon thread)
         * Java程式啟動時，即自動建立一個執行緒，稱為主執行緒 (main thread)
             * 負責執行main方法裡的程式碼
-:::
 
 ## 執行緒與多工 (Multitasking)
-:::warning
 * Multitasking(多工)指的是單一系統同時執行多個工作，由作業系統角度可以分成以下：
 * 合作型 (Cooperative) 多工 (早期)
     * 分享CPU是程式的事情 (容易造成獨佔)
@@ -2742,8 +2536,6 @@ public class Test_LIFO_Stack {
 * 強奪型 (Preemptive) 多工 (近代)
     * 由系統分配(排程)CPU的使用 (無法獨佔)
     * 可由系統中斷工作，切換到另一個工作
-:::
-:::warning
 * 由程式角度可以分成以下：
     * Process-based multitasking 多工
         * 允許電腦同時執行兩個或更多個程式
@@ -2751,14 +2543,11 @@ public class Test_LIFO_Stack {
     * Thread-based multitasking 多工
         * 在此環境下，單一程式可以同時執行兩個以上的工作
         * Thread 是可被分配送遣的最小單位程式碼
-:::
 
 ## 使用Thread類別
-:::warning
 * 繼承java.lang.Thread類別
     * 建立Thread類別的衍生類別，並覆寫(Override)其run()方法
     * run()方法為執行緒執行的地方
-:::
 * 單執行緒
 ```java=
 package module21_26;
@@ -2791,13 +2580,11 @@ public class CounterMain {
 }
 ```
 * 多執行緒
-:::warning
 * override run()方法
 * 但呼叫時是用start()方法(即多重執行緒)
 * 由JVM來啟動多重執行緒
 * 若類別已經繼承其他類別，無法繼承 Thread (java只能單一繼承)
 * 所以java提供 Runnable 介面
-:::
 ```java=
 package module21_26;
 
@@ -2864,7 +2651,6 @@ public class CounterRunnable implements Runnable {
 ```
 
 ## 執行緒生命週期 (Life cycle)
-:::warning
 * 預備狀態(Ready)
     - 執行start()方法即進入排程器中等候CPU處理
 * 執行狀態(Running)
@@ -2879,24 +2665,19 @@ public class CounterRunnable implements Runnable {
     - 需等待一段不確定的I/O時間，移出執行狀態
 * 另有暫停狀態(Suspended) -> 被 sleep 取代
     * 透過resume()方法回到預備狀態 (註：不再使用) 
-:::
 * 執行緒生命週期 (Life cycle)
 ![](https://i.imgur.com/J7TKZ95.png)
-:::warning
 * wait()
     * 執行緒之間溝通的設計，搭配notify方法
 * I/O blocked
     * 等待一段不確定的傳輸時間
-:::
 
 ## Thread類別常用方法整理
 ![](https://i.imgur.com/QSBKWIl.png)
-:::warning
 * :exclamation: sleep()方法
     * throws InterruptedException
     * 一定要執行的例外處理
     * 當執行緒執行到interrupt方法就會發生此例外
-:::
 
 ### Thread 範例
 ```java=
@@ -2940,10 +2721,8 @@ public class MyThread extends Thread {
     }
 }
 ```
-:::warning
 * TestMyThread 共有 6條執行緒
 * 一條是main thread
-:::
 ```java=
 public class TestMyThread {
 
@@ -2967,16 +2746,12 @@ public class TestMyThread {
 }
 
 ```
-:::warning
 * 執行緒特性
     * 順序無法預測 (系統排程決定)
     * 執行過程會切換 (CPU)
-:::
-
 
 ## 控制執行緒與優先安排
 ### join方法與優先權
-:::warning
 * 控制執行緒之間的"先後關係"
 * 執行緒join其它執行緒：等它所呼叫的執行緒終止後再繼續執行
     - join()
@@ -2989,7 +2764,6 @@ public class TestMyThread {
         * Thread.MAX_PRIORITY ：最大值 = 10
     - 可使用setPriority() 和 getPriority()方法重新設定和取得優先權值
     - 優先權較高者先執行，但優先權相等時，並非是等待最久者先執行，而是任選其一執行
-:::
 ```java=
 package xxx;
 
@@ -3048,7 +2822,6 @@ public class Classroom implements Runnable {
 
 }
 ```
-:::warning
 * 執行緒切換發生於：
     - 有較高優先權的執行緒進入排程時
     - 執行緒被終止執行或 run() method執行完畢
@@ -3058,8 +2831,6 @@ public class Classroom implements Runnable {
     - 如windows系統會將CPU的時間分成一段段的時間糟(time slot)，特性為：
     - ．具time-slicing特性作業系統將time slot分給「Priority最高且相等的數個執行緒」，直到執行完畢或是被更高優先權的執行緒搶走
     - ．無法保證time slot的平均分配，也不保證執行的先後順序
-:::
-:::warning
 * 自私的執行緒(Selfish thread)：
     - 自私的執行緒實踐了「socially – impaired」，其特性為：
     - 擁有「密實迴圈(tight loop)」，將一直獨佔CPU執行權
@@ -3069,7 +2840,6 @@ public class Classroom implements Runnable {
 * 禮讓的執行緒
     - 用yield()改進，自願移出執行(Running)狀態至預備(Ready)狀態
     - 對Priority相等的數個執行緒有效
-:::
 * 自私的執行緒(Selfish thread)
 ```java=
 package module21_26;
@@ -3170,7 +2940,6 @@ public class PoliteTest {
 
 ```
 ### 控制執行緒與優先安排 (結論)
-:::warning
 * 多執行緒程式的特性(結論一)：
     - 多執行緒是難以預測其行為的
     - 執行緒的執行順序無法完全保證
@@ -3181,13 +2950,9 @@ public class PoliteTest {
     - 在時間分割(Time-Slicing)系統中優先權相同的執行緒會以一種幾乎相同機會的循環方式來執行，甚至優先權較低的執行緒也能取得時間糟(time slot)的一小部份，其比例大約正比於他們的優先權值，因此在長時間執行中不會有執行緒完全都沒有被顧及到
     - 在非時間分割(Time-Slicing)系統中則易發生完全獨佔的情況
     - 對於有大量運算的執行緒應適度的呼叫yield()來讓其它執行緒有執行的機會，尤其可增加圖形使用者介面(GUI)的良好互動
-:::
-
-
 
 # 多執行緒同步
 ## 同步 (Synchronization)
-:::warning
 * 為什麼使用synchronized關鍵字
     - 原因：在程式的某Critical Section(危險區域)裡，不同執行緒可能同時存取同一份資源因而產生衝突或重複修改的問題
     - 目的：控制每次只能有一個執行緒在使用同一份資源，此時另外的執行緒無法同時使用此同一份資源
@@ -3196,9 +2961,7 @@ public class PoliteTest {
     - Monitor：物件都有一個Monitor，用來當每次只能有一個執行緒進入獨佔的鎖(Lock)(或稱旗標Flag)
     - 進入Monitor：在Java裡，由呼叫已經synchronized關鍵字修正過的method即進入Monitor並得到鎖(Lock)。此時其它所有嘗試進入Monitor的執行緒將會暫停(Blocked狀態)直到該執行緒
 離開
-:::
 ### 使用同步的方法
-:::warning
 * 先找出Critical Section(危險區域)後：
     * 在方法宣告中加入synchronized關鍵字
         * 可以的話最好不要，效率最差
@@ -3207,7 +2970,6 @@ public class PoliteTest {
     * 或類別資料以synchronized標示
         * 若有static資料，可以在小括號標示Xxx.class
 * 再執行已經用synchronized修正過的方法(method)或程式區塊
-:::
 
 * 第0版 (有問題)
 ```java=
@@ -3317,7 +3079,6 @@ synchronized (TestSync3.class) { // synchronized 於執行緒 run() method 內
 ```
 
 ### 同步與系統效能/穩定度
-:::warning
 * 執行效率與程式的穩定度
     - 同步化是一個相當耗時的運算，除非必要否則應減少使用，尤其是常執行的方法(method)或程式區段
     - 然而妥善的運用對程式的穩定度和強健度有極大幫助
@@ -3327,26 +3088,21 @@ synchronized (TestSync3.class) { // synchronized 於執行緒 run() method 內
     - Hashtable等同於HashMap，但Hashtable提供同步化的優點(與負擔)，對多執行緒的存取是很重要的
     - 以上兩種集合都是在JDK 1.0時就存在的類別
     - Collections類別於1.5時提供了有同步處理機制集合的各種方法，詳見API文件
-:::
 
 # 多執行緒溝通
 ## 執行緒通訊
-:::warning
 * 執行緒間的通訊(interthread communication)
     * 目的：讓執行緒之間可互相交談，彼此等待
 * 方式
     * 可透過共同使用的資料交談
     * 或使用執行緒控制的方法(method)，如join()
     * 或於synchronized的方法內使用wait(), notify(), notifyAll()等更細微溝通機制，彼此等待，以避免「生產過剩、不足」或是「消費過剩、不足」的問題，並使CPU使用更有效率
-:::
 
 ## 執行緒之間等待與通知
-:::warning
 * wait(), notify(), notifyAll()這些方法在Object類別裡被實作成final的方法，所有Java類別都可以使用
 * wait()：當一執行緒呼叫wait()方法時，會放棄monitor，將lock釋放出給另一個正等待進入monitor的執行緒，並且進入等待執行緒群(pool)開始等待，直到等待時間終了，或是被另一個進入相同monitor的執行緒呼叫notify()或notifyAll()方法所叫醒，而再進入ready狀態
 * notify()：隨機叫醒在相同物件上某一個正在waiting的執行緒
 * notifyAll()：叫醒在相同物件上所有正在waiting的執行緒，priority最高者將第一個執行
-:::
 ```java=
 package module21_26;
 
@@ -3425,7 +3181,6 @@ public class TestWaitNotify {
 
 # 死結問題
 ## 什麼是死結(DeadLock)
-:::warning
 * 死結(DeadLock)
 * 原因
     * 多執行緒的同步化鎖定(synchronized)可能造成執行緒間相互等待的死結。而Java無法偵測或預防死結的發生，須由程式設計師自行控制與掌握
@@ -3434,5 +3189,4 @@ public class TestWaitNotify {
 * 預防死結
     * 最簡單方式是將一群物件的鎖定動作，按照相同的順序進行處理
 * 哲學家用餐與死結
-:::
 

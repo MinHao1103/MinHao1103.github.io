@@ -1,7 +1,6 @@
 Spring Boot ( 基礎 )
 ===
 # ( 1 ) Spring IoC、DI、AOP 概念
-:::warning
 * Sprint 專有名詞
     * IoC = Inversion of Control 控制反轉
         * 將物件的控制權交給外部的 Spring 容器來管理
@@ -11,56 +10,40 @@ Spring Boot ( 基礎 )
         * bean 的名字為 class name 的第一個字母轉成小寫
     * AOP = Aspect-Oriented Programming
         * 切面 導向 程式設計
-:::
 
 ## ( 1-1 ) Java 介面  與多型  問題
-:::warning
 * Java 概念
     * Interface、Polymorphism
-:::
 ![](https://i.imgur.com/AGa0Fra.png)
-:::warning
 * 如果我想換另一家廠牌的印表機
 * 我就必須將有使用到那台印表機的地方全部修改一遍
-:::
 ![](https://i.imgur.com/hpnULQa.png)
 
 ## ( 1-2 ) Spring IoC ( Inversion of Control 控制反轉 )
-:::warning
 * 導入 IoC 概念
     * 將物件 ( 印表機 ) 的控制權交給外部的 Spring 容器來管理
-:::
 ![](https://i.imgur.com/XqgdI0i.png)
 
-:::warning
 * 控制權的轉移
-:::
 ![](https://i.imgur.com/DD8Qe9O.png)
 
-:::warning
 * 優點
     * Loose coupling 鬆耦合
         * 讓物件之間的關聯性降低
     * Lifecycle Managerment 生命週期管理
     * More testable 方便測試程式
-:::
 
 ## ( 1-3 ) Spring DI ( Dependency Injection 依賴注入 )
 ![](https://i.imgur.com/FM5BuDt.png)
-:::warning
 * 傳統寫法 與 Spring IoC 比較
-:::
 ![](https://i.imgur.com/71PmFrb.png)
 
 ## ( 1-4 ) Spring AOP ( Aspect-Oriented Programming )
 ![](https://i.imgur.com/FC32w8p.png)
 
-
 # ( 2 ) 了解 Spring 框架
 ## ( 2-1 ) @SpringBootApplication：運行 Spring Boot 程式
-:::warning
 * 加在 class 上，會有一個播放鍵，就可以運行 Spring Boot 程式
-:::
 * class Demo1Application
 ```java=
 package com.example.demo;
@@ -77,14 +60,10 @@ public class Demo1Application {
 }
 ```
 ## ( 2-2 ) Bean 的創建
-:::warning
 * @Component ( 較常用 )
 * @Configuration、@Bean
-:::
 ### ( 2-2-1 ) @Component 
-:::warning
 * 加在 class 上，將該 class 變成由 Spring 容器管理的 object
-:::
 * interface Printer
 ```java=
 package com.example.demo;
@@ -113,12 +92,10 @@ public class HpPrinter implements Printer{
 ```
 
 ### ( 2-2-2 ) @Configuration、@Bean
-:::warning
 * @Configuration
     * 加在 class 上，Spring 中的設定用註解，表示該 class 是拿來設定 Spring 用的
 * @Bean
     * 只能加在帶有 @Configuration class 方法上，在 Spring 容器中創建 Bean
-:::
 * class CanonPrinter
 ```java=
 package com.example.demo;
@@ -150,12 +127,10 @@ public class MyConfiguration {
 
 ## ( 2-3 ) 注入 Bean 的方法 
 ### ( 2-3-1 ) @Autowired、@Qualifier
-:::warning
 * @Autowired
     * 根據變數的類型，去 Spring 容器中尋找有沒有符合的 bean
 * @Qualifier
     * 輔助 @Autowired，指定要載入的 bean 名字
-:::
 * class MyController
 ```java=
 package com.example.demo;
@@ -185,14 +160,12 @@ public class MyController {
 ```
 ## ( 2-4 ) Bean 的初始化
 ### ( 2-4-1 ) @PostConstruct ( 較常用 )
-:::warning
 * 如果要初始化 HpPrinter 的 count 變數
 * 要寫一個新的方法 
     * 方法必須是 public
     * 返回類型必須是 void
     * 方法名可隨意取
     * 不能有參數
-:::
 ```java=
 package com.example.demo;
 
@@ -219,10 +192,8 @@ public class HpPrinter implements Printer{
 ```
 
 ### ( 2-4-2 ) afterPropertiesSet
-:::warning
 * 必須實作 InitializingBean interface
 * 並且 override afterPropertiesSet() 方法
-:::
 ```java=
 package com.example.demo;
 
@@ -248,16 +219,13 @@ public class CanonPrinter implements Printer, InitializingBean {
 ```
 
 ## ( 2-5 ) Bean 的生命週期
-:::warning
 * Bean 的生命週期
     * 創建 -> 初始化 -> 可被使用
 * 創建時若有依賴其他的 bean，則 Spring 會先去「創建 + 初始化」被依賴的 bean
 * 不要寫出循環依賴的 code
     * 若有循環依賴，在啟動的時候可能會報 BeanCurrentlyInCreationException
-:::
 
 ## ( 2-6 ) Spring Boot 設定檔 - application.properties
-:::warning
 * 用途
     * 存放 Spring Boot 的設定值
 * 語法
@@ -272,16 +240,13 @@ public class CanonPrinter implements Printer, InitializingBean {
     ```properties=
     # this is comment
     ```
-:::
 ### ( 2-6-1 ) @Value：取得 application.properties 設定檔的值
-:::warning
 * 加在 Bean 或是 設定 Spring 用的 class 裡面的變數上
 * 讀取 Spring Boot 設定檔 ( application.properties ) 中指定的 key 值
 * 可設定預設值，例如
 ```properties=
 @Value("${nuKnown:Eden}")
 ```
-:::
 ![](https://i.imgur.com/Hv3lzXg.png)
 * application.properties
 ```java=
@@ -318,7 +283,6 @@ public class HpPrinter implements Printer{
 ![](https://i.imgur.com/67xqBAE.png)
 
 # ( 3 ) Spring Aspect-Oriented Programming
-:::warning
 * 常用註解
     * @Before：在切入點的方法"執行前"執行
     * @After：在切入點的方法"執行後"執行
@@ -326,19 +290,15 @@ public class HpPrinter implements Printer{
 * 不常用
     * @AfterThrowing：在切入點的方法"拋出異常後"執行
     * @AfterReturning：在切入點的方法"執行成功後"執行
-:::
 ## ( 3-1 ) 常見的切入點表達式
 ![](https://i.imgur.com/tiyaQV8.png)
 
 ## ( 3-2 ) Spring AOP 發展
-:::warning
 * 權限驗證 Spring Security
 * 統一的 Exception 處理 @ControllerAdvice
 * Log 紀錄
-:::
 
 ## ( 3-3 ) 使用 AOP 前，需先註冊
-:::warning
 * 要在 Spring Boot 使用 AOP 之前，需在 pom.xml 註冊
 ```xml=
 <dependency>
@@ -346,21 +306,16 @@ public class HpPrinter implements Printer{
     <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
 ```
-:::
 ## ( 3-4 ) @Aspect 宣告
-:::warning
 * 加在 class 上，必須和 @Component 一起使用
 * 宣告這個 class 是一個切面
-:::
 
 ## ( 3-5 ) 切入方式
 ### ( 3-5-1 ) @Before、@After
-:::warning
 * @Before
     * 加在切面 class 上，在切入點的方法執行"前"執行
 * @After
     * 加在切面 class 上，在切入點的方法執行"後"執行
-:::
 * class MyAspect
 ```java=
 package com.example.demo;
@@ -421,20 +376,15 @@ public class MyAspect {
 
 # ( 4 ) Spring MVC
 ## ( 4-1 ) HTTP 協議
-:::warning
 * 負責規定資料的傳輸格式，讓前端和後端能有效進行資料溝通
 * 可以分成 request ( 請求 ) 和 response ( 回應 )
-:::
 ![](https://i.imgur.com/65dczUR.png)
 
 ## ( 4-2 ) URL 格式
-:::warning
 * port 可能會被省略
-:::
 ![](https://i.imgur.com/nLQDXzF.png)
 
 ## ( 4-3 ) @Controller / @RestController
-:::warning
 * 加在 class 上，將 class 變成 Bean，並且可使用 @RequestMapping
 * @RestController 是 @Controller 和 @ResponseBody 註解的組合
 * Following are Example Code which are Equal in Spring.
@@ -451,14 +401,11 @@ Public class MVCController{
 public class MVCController{
 }
 ```
-:::
 
 ## ( 4-4 ) @RequestMapping
-:::warning
 * 加在 class 或 method 上，小括號裡面寫 url 路徑
 * 將 url 路徑對應到方法上
     * 若要使用 @RequestMapping，則該 class 必須加上 @Controller 或 @RestController
-:::
 * class MyController
 ```java=
 @RestController
@@ -490,9 +437,7 @@ public class MyController {
     }
 }
 ```
-:::warning
 * http://localhost:8080 為 SpringBoot 預設
-:::
 * class MyController
 ```java=
 package com.example.demo;
@@ -518,12 +463,10 @@ public class MyController {
 ![](https://i.imgur.com/1mAHusg.png)
 
 ## ( 4-6 ) JSON 結構化資料 ( structured data )
-:::warning
 * 說明
     * 一種易於讀寫輕量級的資料交換格式
 * 目的
     * 結構化的呈現數據
-:::
 ![](https://i.imgur.com/aQRhlii.png)
 
 ## ( 4-7 ) 在 ResponseBody 回傳 json 格式
@@ -606,36 +549,26 @@ public class MyController {
 ```
 
 ## ( 4-8 ) HTTP Method
-:::warning
 * 常用的 Http Method 
     * GET、POST、PUT、DELETE ...等
-:::
 
 ### ( 4-8-1 ) GET
-:::warning
 * 類似於明信片，傳遞的參數會被別人看見，安全性較低
-:::
 * GET 的 URL
 ![](https://i.imgur.com/l0tanDI.png)
 
 ### ( 4-8-2 ) POST
-:::warning
 * 類似於信封，傳遞的參數不會被人看見，安全性較高
-:::
 * POST 的 URL
 ![](https://i.imgur.com/tegbyV3.png)
 
 ## ( 4-9 ) 取得請求參數
-:::warning
 * ( 4-9-1 ) @RequestParam：取得 url 參數
 * ( 4-9-2 ) @RequestBody：取得 request body 的參數
 * ( 4-9-3 ) @RequestHeader：取得 request header 裡的參數
 * ( 4-9-4 ) @PathVariable：取得 url 路徑的值
-:::
 ### ( 4-9-1 ) @RequestParam：取得 url 參數
-:::warning
 * 只能加在方法的參數上
-:::
 * MyController
 ```java=
 package com.example.demo;
@@ -662,36 +595,26 @@ public class MyController {
 * IntelliJ
 ![](https://i.imgur.com/kic84N8.png)
 * @RequestParam 結論
-:::warning
 * 有在參數前面加上 @RequestParam 的話
 * 在請求的 url 就一定要有這些參數
 * 多帶其他參數的話，則會被 SpringBoot 忽略
-:::
 
 #### ( 4-9-1-1 ) @RequestParam 的 name or value 方法 
-:::warning
 * 指定 url 參數名稱
-:::
 ![](https://i.imgur.com/9X9F9Ej.png)
 
 #### ( 4-9-1-2 ) @RequestParam 的 required 方法
-:::warning
 * 是否為必須的參數，預設為 true，可改成 false
 * 如果參數的 required 設為 false，在 url 請求時少了此參數，也可以順利運行，並且值為 null
-:::
 ![](https://i.imgur.com/80MR4Z9.png)
 
 #### ( 4-9-1-3 ) @RequestParam 的 defaultValue 方法
-:::warning
 * required = false 的加強版，可提供預設值
-:::
 ![](https://i.imgur.com/xU2ldVF.png)
 
 ### ( 4-9-2 ) @RequestBody：取得 request body 的參數
-:::warning
 * 只能加在方法的參數上，取得 request body 裡的參數
     * 將 Json 轉為 Java Object
-:::
 ![](https://i.imgur.com/IvfNSTb.png)
 * class Student
 ```java=
@@ -742,16 +665,12 @@ public class MyController {
 * IntelliJ
 ![](https://i.imgur.com/QJlhgsk.png)
 * RequestBody 結論
-:::warning
 * 使用 RequestBody 取得前端的參數時
 * 如果前端多帶一個 key，SpringBoot 會忽略它
 * 如果前端少帶一個 key，SpringBoot 會將對應的變數值設成 null
-:::
 
 ### ( 4-9-3 ) @RequestHeader：取得 request header 裡的參數
-:::warning
 * 只能加在方法的參數上
-:::
 ![](https://i.imgur.com/7IA1BcQ.png)
 * class MyController
 ```java=
@@ -777,48 +696,35 @@ public class MyController {
 * IntelliJ
 ![](https://i.imgur.com/onMopEC.png)
 * @RequestHeader 結論
-:::warning
 * 方法裡的參數名稱必須和 request header 的 key 對應
 * 有一些 header 的 key 中間可能會有 - 號
 * 但 java 的變數不支援 - 號
 * 所以需要用 @RequestHeader 的 name or value 方法改名稱
-:::
 #### ( 4-9-3-1 ) @RequestHeader 的 name or value 方法
-:::warning
 * 指定 request header 的 header 名字
-:::
 ![](https://i.imgur.com/asTHOjz.png)
 
-
 #### ( 4-9-3-2 ) @RequestHeader 的 required 方法
-:::warning
 * 是否為必須的 Header，預設為 true，可改成 false
-:::
 ![](https://i.imgur.com/Ymee42f.png)
 
 #### ( 4-9-3-3 ) @RequestHeader 的 defaultValue 方法
-:::warning
 * required = false 的加強版，可提供預設值
-:::
 ![](https://i.imgur.com/LieGb4k.png)
 
 #### ( 4-9-3-4 ) 常見的 request header
 ![](https://i.imgur.com/i8uxzVR.png)
 
 ### ( 4-9-4 ) @PathVariable：取得 url 路徑的值
-:::warning
 * 只能加在方法的參數上
-:::
 * 回顧 @RequestMapping 與 @RequestParam 方法
 ![](https://i.imgur.com/EbF5qgl.png)
 * @PathVariable 用法
 ![](https://i.imgur.com/CPJzEBE.png)
 * @RequestParam 與 @PathVariable 的差異
 ![](https://i.imgur.com/kHR9lqO.png)
-:::warning
 * @RequestParam：把 id 當成一般的 url 請求參數傳遞
 * @PathVariable：把 id 放進 url 路徑來傳遞
-:::
 * class MyController
 ```java=
 package com.example.demo;
@@ -847,18 +753,14 @@ public class MyController {
 
 ## ( 4-10 ) RESTful API
 ### ( 4-10-1 ) API
-:::warning
 * API 指用工程師的方式說明某個功能的使用方法
 * 目的：寫清楚這個功能要如何使用
-:::
 * 取得商品列表 API：分成 Http Request 與 Http Response
 ![](https://i.imgur.com/vTqNApR.png)
 * 範例
 ![](https://i.imgur.com/0gGCQx0.png)
 ### ( 4-10-2 ) REST 風格
-:::warning
 * 目的：簡化溝通成本
-:::
 ### ( 4-10-3 ) REST 的 Http Method 表示動作
 ![](https://i.imgur.com/s0xt8q7.png)
 ### ( 4-10-4 ) 使用 url 路徑描述資源之間的階層關係
@@ -866,16 +768,12 @@ public class MyController {
 
 ![](https://i.imgur.com/z4EmIuP.png)
 ### ( 4-10-5 ) response body 返回 json 或 xml 格式
-:::warning
 * @RestController = Rest + Controller
-:::
 ![](https://i.imgur.com/vILH6ra.png)
 ### ( 4-10-6 ) 如何設計出 RESTful API ?
-:::warning
 * 使用 http method 表示動作
 * 使用 url 路徑描述資源之間的階層關係
 * response body 返回 json 或 xml 格式
-:::
 ![](https://i.imgur.com/CHFi05Y.png)
 
 ### ( 4-10-7 ) RESTful API 實作
@@ -939,7 +837,6 @@ public class StudentController {
 ```
 
 ## ( 4-11 ) 驗證請求參數
-:::warning
 * 如果使用 Spring Boot 2.3 之後的版本
 * 必須在 pom.xml 檔添加 validation 設定
 ```xml=
@@ -948,7 +845,6 @@ public class StudentController {
     <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
 ```
-:::
 ### ( 4-11-1 ) 第一種方式
 * class StudentController
 ```java=
@@ -1000,7 +896,6 @@ public class Student {
 ```
 ![](https://i.imgur.com/8AKK8r9.png)
 
-
 ### ( 4-11-2 ) 第二種方式
 * class StudentController
 ```java=
@@ -1024,8 +919,6 @@ public class StudentController {
 
 ![](https://i.imgur.com/VHxVhSM.png)
 
-
-
 * API Tester ( 正常 )
 ![](https://i.imgur.com/KCM1jBO.png)
 
@@ -1037,53 +930,40 @@ public class StudentController {
 ![](https://i.imgur.com/SWpLu2t.png)
 
 ## ( 4-12 ) 常見的 Http status code
-:::warning
 * 可以根據首位數字分成五大類
     * 1xx：資訊
     * 2xx：成功
     * 3xx：重新導向
     * 4xx：前端請求錯誤
     * 5xx：後端處理有問題
-:::
 ### ( 4-12-1 ) 1xx：資訊
-:::warning
 * 無常見狀態碼
-:::
 
 ### ( 4-12-2 ) 2xx：成功
-:::warning
 * 200 OK -> 請求成功
 * 201 Create -> 請求成功且新的資源成功被創建，通常用在 POST 的 response
 * 202 Accepted -> 請求已經接收，但尚未處理完成
-:::
 
 ### ( 4-12-3 ) 3xx：重新導向
-:::warning
 * 301 Moved Permanently -> 永久性重新導向
     * 新的 url 應放在 response header 的 "Location" 中返回
     * 通常會用在網頁搬家上
 * 302 Found -> 臨時重新導向
     * 新的臨時性的 url 應放在 response header 的 "Location" 中返回
-:::
 
 ### ( 4-12-4 ) 4xx：前端請求錯誤
-:::warning
 * 400 Bad Request -> 前端的請求參數有錯誤
     * 例如：前端傳給後端的參數名稱不同、請求的格式有問題
 * 401 Unauthorized -> 沒有通過身份驗證
 * 403 Forbidden -> 請求被後端拒絕，通常是權限不足導致
 * 404 Not Found -> 網頁不存在，可能是資源被移走或是 url 輸入錯誤
-:::
-
 
 ### ( 4-12-5 ) 5xx：後端處理有問題
-:::warning
 * 500 Internal Server Error -> 後端在執行程式時發生錯誤
     * 可能是程式內有 bug 導致的
 * 503 Service Unavailable -> 臨時維護或流量太大
     * 後端目前沒辦法處理請求
 * 504 Gateway Timeout -> 請求超時
-:::
 
 ### ( 4-12-6 ) ResponseEntity\<?\> 自定義 Http Response 狀態碼
 ![](https://i.imgur.com/wXXXyz8.png)
@@ -1107,14 +987,12 @@ public class MyController {
 ![](https://i.imgur.com/2DmEbvN.png)
 
 ### ( 4-12-7 ) @ControllerAdvice + @ExceptionHandler 自定義 Exception
-:::warning
 * @ControllerAdvice
     * 加在 class 上，將 class 變成一個 bean
     * 並且可以在內部使用 @ExceptionHabdler
 * @ExceptionHandler
     * 加在方法上，去 catch 方法所噴出的 Exception
 * 底層是使用 Spring AOP 機制
-:::
 ![](https://i.imgur.com/YspikYG.png)
 #### ( 4-12-7-1 ) Java 基礎 Exception
 ![](https://i.imgur.com/iteNGYp.png)
@@ -1178,7 +1056,6 @@ public class MyExceptionHandler {
 
 ## ( 4-13 ) 攔截器 Interceptor
 ![](https://i.imgur.com/Qse7Mos.png)
-:::warning
 * 說明
     * 請求 url 的時候，Interceptor 會先擋下來，並且檢查 Http request 是否有問題
     * 如果沒有問題就會允許這個 Http request 進到 Controller 裡
@@ -1190,7 +1067,6 @@ public class MyExceptionHandler {
     * preHandle 方法是攔截器中最重要的方法
         * true = 允許通過
         * false = 拒絕
-:::
 * MyController
 ```java=
 package com.example.demo;
@@ -1256,15 +1132,12 @@ public class MyConfig implements WebMvcConfigurer {
 ```
 
 # ( 5 ) Spring JDBC
-* [使用 IntelliJ 管理資料庫數據](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/ryG_DeJc9)
-:::warning
+
 * 建好資料庫連線設定後
 * Spring JDBC 會自動創建 NamedParameterJdbcTemplate 的 Bean
 * 我們就可以使用 NamedParameterJdbcTemplate 這個 Bean 裡面的方法
 * 對資料庫進行操作
-:::
 
-:::warning
 * 在 Spring Boot 中執行原始的 SQL 語法來操作資料庫
 * NameParameterJdbcTemplate，根據 SQL 語法可分成兩類
     * update()
@@ -1276,13 +1149,10 @@ public class MyConfig implements WebMvcConfigurer {
             * sql：欲執行的 SQL 語法
             * map：SQL 語法裡變數值
             * rowMapper：將資料庫查詢出來的數據，轉成 JavaObject
-:::
 ![](https://i.imgur.com/y3o5rQi.png)
 
 ## ( 5-1 ) INSERT
-:::warning
 * 前提先建好 IntelliJ 與 MySQL 資料庫連線
-:::
 ### ( 5-1-1 ) Insert 靜態寫法
 ```java=
 package com.example.demo;
@@ -1384,7 +1254,6 @@ public class StudentController {
 
 ## ( 5-3 ) UPDATE() 的進階用法
 ### ( 5-3-1 )當 table 的 id 會自動遞增時，如何取 id 的值
-:::warning
 * new 一個 KeyHolder 物件
     *  KeyHolder keyHolder = new GeneratedKeyHolder();
 * namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
@@ -1395,7 +1264,6 @@ public class StudentController {
     * int id = keyHolder.getKey().intValue();
     * 如果在 MySQL 資料庫中設定 id 的型態為 LONG，則必須改成
         * int id = keyHolder.getKey().longValue();
-:::
 ```java=
 package com.example.demo;
 
@@ -1494,20 +1362,15 @@ public class StudentController {
 ]
 ```
 ![](https://i.imgur.com/kgNvL5e.png)
-:::warning
 * 補充：
     * 雖然用 update() 跑迴圈也可以達成 batchUpdate 的效果
     * 但在效率上使用 batchUpdate() 較快
-:::
 ![](https://i.imgur.com/nq4roqk.png)
 
-
 ## ( 5-4 ) SELECT
-:::warning
 * 寫 SELECT SQL 語法時，不要使用 * 號，缺點是
     * 花費額外網路流量
     * 無法提升資料庫查詢的速度
-:::
 ![](https://i.imgur.com/yolmXCY.png)
 
 ### ( 5-4-1 ) 查詢全部
@@ -1630,7 +1493,6 @@ public class StudentController {
 ![](https://i.imgur.com/fM8I0HQ.png)
 
 ### ( 5-4-4 ) Query 方法重點整理
-:::warning
 * 在 Spring Boor 中，寫 SELECT SQL 時，不要使用 *
     * 一一列舉想查詢的 column
 * Query 方法永遠只會回傳一個 List
@@ -1642,24 +1504,20 @@ public class StudentController {
 * ResultSetExtractor
     * 和 RowMapper 用途一樣，比較強大，可以組合不同的 row 之間的數據
     * 較少用
-:::
 * RowMapper VS. ResultSetExtractor
 ![](https://i.imgur.com/E6x8KCv.png)
 
 ## ( 5-5 ) MVC 架構
 ![](https://i.imgur.com/q4xCoTX.png)
-:::warning
 * MVC 架構模式是軟體工程中一種軟體架構
     * 將系統拆分成 Model、View、Controller 三個部分，每個部分各自負責不同功能
 * MVC 架構模式的優點
     * 職責分離，易維護
     * 程式結構更直覺，利於團隊分工
     * 可重複使用寫好的程式
-:::
 
 ## ( 5-6 ) Controller - Service - DAO 三層式架構
 ![](https://i.imgur.com/PYiNjj7.png)
-:::warning
 * Controller - Service - DAO 三層式架構
     * Controller 層：負責接受 Http request、驗證請求參數
     * Service 層：負責業務邏輯
@@ -1672,12 +1530,10 @@ public class StudentController {
     * Controller 不能直接 call Dao
         * 只能 call Service，再透過 Service 去 call Dao
     * Dao 只能執行 SQL 指令，去存取資料庫內部數據，不能添加任何業務邏輯
-:::
 ![](https://i.imgur.com/ZX8HpBr.png)
 
 ### ( 5-6-1 ) 在 IntelliJ 建立 Controller - Service - DAO 三層式架構
 ![](https://i.imgur.com/0uTGa64.png)
-:::warning
 * package controller
     * class StudentController
 * package service
@@ -1686,7 +1542,6 @@ public class StudentController {
 * package dao
     * Interface StudentDao
     * class StudentDaoImpl
-:::
 
 #### DAO
 * Interface StudentDao
@@ -1801,7 +1656,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
     @GetMapping("/students/{studentId}")
     public Student select(@PathVariable Integer studentId){
         return studentService.getById(studentId);
@@ -1811,20 +1665,16 @@ public class StudentController {
  ```
 
 ## ( 5-7 ) 什麼是交易 ( Transaction )?
-:::warning
 * Transaction ( 交易 )
     * 資料庫中的一種用法
     * 一個交易裡包含多個資料庫操作，一起成功或一起失敗
     * All or Nothing 原則
 * Rollback ( 回滾 )
     * 撤銷已執行的資料庫操作，確保數據恢復原狀
-:::
 
 ### ( 5-7-1 ) @Transactional
-:::warning
 * 加在 class 或 method 上
 * 使用交易來管理這個方法中的資料庫操作
-:::
 ![](https://i.imgur.com/vnA2dpa.png)
 
 ## ( 5-8 ) 多個資料庫連線設定
@@ -1877,7 +1727,6 @@ public class DataSourceConfiguration {
         return new NamedParameterJdbcTemplate(dataSource);
     }
 
-
     // 連線到 test2 資料庫的 DataSource 和 NamedParameterJdbcTemplate
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.test2")
@@ -1919,7 +1768,6 @@ public class StudentController {
     @Qualifier("test2JdbcTemplate")
     private NamedParameterJdbcTemplate test2JdbcTemplate;
 
-
     @PostMapping("/test1/students")
     public String test1Insert(@RequestBody Student student) {
         String sql = "INSERT INTO student(name) VALUE (:studentName)";
@@ -1947,7 +1795,6 @@ public class StudentController {
 ```
 
 # ( 6 ) Spring Data JPA
-:::warning
 * 使用 ORM 的概念，透過 Java Object 來間接操作資料庫
 * ORM ( Object-Relational Mapping ) 
     * 將 Java Object 對應到資料庫的 Table
@@ -1959,17 +1806,14 @@ public class StudentController {
 * Hibernate
     * 一種 ORM 框架，實現 JPA
     * 負責自動生成 SQL 語法
-:::
 ![](https://i.imgur.com/r1BQWOk.png)
 
 ## ( 6-1 ) Spring JDBC vs Spring Data JPA
 ![](https://i.imgur.com/u4zJg80.png)
 
 ## ( 6-2 ) 資料庫連線設定
-:::warning
 * Spring JDBC 與 Sping Data JPA 的資料庫連線設定都相似
     * 除了 pom.xml 需要修改之外，其餘皆相同
-:::
 ### ( 6-2-1 ) pom.xml
 ```xml=
 <dependency>
@@ -2070,12 +1914,10 @@ spring.jpa.show-sql=true
 ```
 
 ### ( 6-4-3 ) CrudRepository 的方法
-:::warning
 * 若想使用 save 方法來執行資料庫的 Update 操作之前
     * 要先確認這筆數據是否真的存在
         * 存在才會 Update
         * 不存在會 Insert
-:::
 * class StudentController
 ```java=
 package com.example.demo;
@@ -2124,19 +1966,15 @@ public class StudentController {
 ```
 
 ## ( 6-5 ) 自定義查詢條件
-:::warning
 * Query vs findByXxx
     * 優先使用 findByXxx 命名規則
     * 複雜的邏輯才使用 @Query
-:::
 
 ### ( 6-5-1 ) @Query
-:::warning
 * 在 Spring Data JPA 執行原生 SQL 指令
 * nativeQuery
     * true：一般 SQL 語法
     * false：JPQL
-:::
 ![](https://i.imgur.com/STOH5aL.png)
 
 ### ( 6-5-2 ) findByXxx
@@ -2146,7 +1984,6 @@ public class StudentController {
 ![](https://i.imgur.com/6WU3KOp.png)
 
 ## ( 6-6 ) Spring Data JPA 總結
-:::warning
 * 建立 ORM 對應關係
     * @Entity
     * @Table、@Column、@Id
@@ -2157,4 +1994,3 @@ public class StudentController {
 * 自定義查詢條件
     * findByXxx 命名規則
     * @Query 執行sql 語法
-:::

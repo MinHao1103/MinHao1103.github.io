@@ -1,12 +1,7 @@
 Java - 進階
 ===
-# 目錄
-* [Java - 基礎](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/BkgzGkBat)
-* [Java - 物件導向程式設計(實務應用一)](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/Sk5lzBi1c)
-* [Java - 物件導向程式設計(實務應用二)](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/SkP5SREW9)
 
 # Java存取修飾字
-:::warning
 * public
     * Visible to the world
     * 所有類別皆能存取
@@ -23,27 +18,25 @@ Java - 進階
 * 存取修飾子大至小
     * public --> protected --> default -->private
 * 注意
-    * <font color="#f00">**類別只能使用public與default兩種修飾子。**</font>
+    * **類別只能使用public與default兩種修飾子。**
     * 方法變數(區域變數)不能使用存取修飾子。
         * 因為區域變數的存取是由它所屬方法決定好的
     * 若要使用default，並不是寫default關鍵字，而是空白即可。
-:::
 ![](https://i.imgur.com/i3yO0t8.png)
 ![](https://i.imgur.com/32IPbAi.png)
 
 # 封裝(Encapsulation)
-:::warning
 * 什麼是封裝?
-    * <font color="#f00">**封裝就是將屬性、方法放進物件，這就是封裝**</font>
+    * **封裝就是將屬性、方法放進物件，這就是封裝**
 * 目的：
-    * <font color="#f00">**透過"存取修飾字"來限制其他類別存取此類別的資料和方法成員**</font>
+    * **透過"存取修飾字"來限制其他類別存取此類別的資料和方法成員**
         * 必須透過該物件的成員方法來對資料進行存取
         * 其他程式無法直接對此物件的資料存取
-    * <font color="#f00">**封裝的基本就是類別**</font>
+    * **封裝的基本就是類別**
     * Java使用4種存取修飾子作為封裝權限的等級
         * private, default, protected, public
 * 封裝設計
-    * 設計類別時，建議實體變數( instance variable )設定為 <font color="#f00"> **private 權限**</font>
+    * 設計類別時，建議實體變數( instance variable )設定為 **private 權限**
     * 只能藉由自己類別中的方法來修改或查看
     * 這些方法(getter / setter)應該包含程式碼和運作邏輯，
     * 以確保變數不會設定成不適當的值
@@ -54,7 +47,6 @@ Java - 進階
     * 運用分析
         * 類別設計
         * 資料、方法存取控制
-:::
 ## 封裝：NG範例
 ```java=
 package module16_19;
@@ -87,10 +79,8 @@ public class PenTestNG {
 ```
 
 ## 封裝：正確範例
-:::warning
 * 在方法裡加上對資料的驗證檢查邏輯
 * 確保外界對我們資料存取的正確性
-:::
 ```java=
 /*
  * 正確的資料封裝處理示範
@@ -137,32 +127,25 @@ public class PenTestGood {
 }
 ```
 
-
-
-:::warning
 * 因為資料皆須被保護，故需使用封裝機制，
 * 但設定資料時，會造成程式碼的重複性高。
 * 故衍伸出建構子。
-:::
-
 
 # 建構子
-:::warning
-* <font color="#f00">**建構子名稱需與類別名稱相同**</font>
+* **建構子名稱需與類別名稱相同**
 * 建構子宣告：
     * [modifier] constructor_name([arguments]){...}
     * 一個類別可以有多個建構子
-        * <font color="#f00">**建構子有overloading機制**</font>
+        * **建構子有overloading機制**
     * 一個建構子可以傳入零至多個參數
     * 建構子類似方法，可以存放修飾子
     * 建構子沒有宣告回傳型別，加了回傳型別即成為一般方法
 
-:exclamation:<font color="#f00">**必須使用 new 關鍵字呼叫建構子產生物件，且同時初始化該物件的實體變數**</font>
+:exclamation:**必須使用 new 關鍵字呼叫建構子產生物件，且同時初始化該物件的實體變數**
 
-:exclamation:<font color="#f00">**Java預設會自動給一個不帶參數的建構子**</font>
+:exclamation:**Java預設會自動給一個不帶參數的建構子**
 
-:exclamation:<font color="#f00">**一旦宣告其他建構子，Java會自動將此預設建構子移除**</font>
-:::
+:exclamation:**一旦宣告其他建構子，Java會自動將此預設建構子移除**
 
 ## 建構子：範例
 ```java=
@@ -249,13 +232,10 @@ public class AnimalTest {
 }
 ```
 
-
 ## 建構子覆載(Overloading)
-:::warning
-* 可以藉由 <font color="#f00">**this**</font> 關鍵字呼叫同類別底下的另一個建構子
+* 可以藉由 **this** 關鍵字呼叫同類別底下的另一個建構子
 * 建構子第一行只要有this()，則進行呼叫其它建構子
 * this代表的是：這個"物件"
-:::
 
 ```java=
 package module16_19;
@@ -310,32 +290,25 @@ public class PenConstOverload {
 ```
 
 # Static 關鍵字
-:::warning
 * 實體變數和方法若宣告為 static
-    * 變數成為<font color="#f00">  **類別變數 ( 靜態變數 )**  </font>
-    * 方法成為<font color="#f00">  **類別方法 ( 靜態方法 )**  </font>
+    * 變數成為**類別變數 ( 靜態變數 )**
+    * 方法成為**類別方法 ( 靜態方法 )**
 * 宣告為static的變數和方法，不是由任何此類別的物件單獨擁有，而是
-    * <font color="#f00">**屬於此類別的所有物件共同擁有**</font>
+    * **屬於此類別的所有物件共同擁有**
 * 補充1：實體變數由物件各自獨立維護，彼此不受干擾
 * 補充2：static 類別變數是屬於類別的變數，但卻可由該類別所創造(new)出來的物件共用
 * 補充3：儲存類別變數和方法的記憶體空間為 global，與儲存物件的記憶體空間是分開的
 * 補充4：使用 static 變數和 static 方法的方式有兩種：
     * 經由類別的任何實體來呼叫 (不好也不鼓勵使用)
     * 經由類別的名稱來呼叫 (較好的方式)
-:::
-:::warning
 * static宣告的變數為共享共用
     * 例如：銀行裡的錢與客戶的錢
         * 客戶01向銀行提錢
         * 客戶02向銀行存錢
         * 都是針對static銀行裡的錢進行存取
-:::
 ## static機制
-:::warning
 * 當類別第一次被載入JVM時，在任何實體被建構之前
-* <font color="#f00">**靜態的變數與方法就會先被載入**</font>
-    * <font color="#f00">**static方法不可使用this**</font>
-    * <font color="#f00">**static方法不可被覆寫(override)**</font>
+* **靜態的變數與方法就會先被載入*****static方法不可使用this*****static方法不可被覆寫(override)**
         * 類別方法不存在覆寫機制(因為是屬於類別的項目，非物件的行為)
         * 且子類別裡不可出現跟父類別static方法相同的一般方法
     * 宣告為靜態static方法，不可以存取該類別中non-static的變數和方法，只可以存取該類別中static的變數和方法
@@ -344,7 +317,6 @@ public class PenConstOverload {
         因此實體變數/一般方法還未new出物件時
         static沒有辦法找到實體變數/一般方法
     * 宣告為non-static的方法，可以存取該類別中non-static的變數和方法，也可以存取該類別中static的變數和方法
-:::
 
 ```java=
 public class TestCount {
@@ -390,9 +362,7 @@ public class Count2 {
 	}
 }
 ```
-:::warning
 * static方法不得存取non-static變數
-:::
 ```java=
 public class Demo01 {
 	private int number; //non-static的變數
@@ -403,12 +373,10 @@ public class Demo01 {
 ```
 
 ### 使用static方法與main方法
-:::warning
-* <font color="#f00">**main 方法本身帶有 static**</font>
+* **main 方法本身帶有 static**
     * 同類別下想要在main方法裡使用一般方法
         * 必須將一般方法宣告成static 或
         * 在main方法裡new出物件 即可
-:::
 ```java=
 public class TestStaticMethod {
 
@@ -430,9 +398,7 @@ public class TestStaticMethod {
 	}
 }
 ```
-:::warning
 * 範例
-:::
 ```java=
 public class InitialBlock {
 	private String brand;
@@ -496,7 +462,6 @@ public class InitialBlock {
 ```
 
 ## java結構
-:::warning
 * 類別
     * 資料
         * 變數 ( 基本型別(存值)、類別型別(存址的值) )
@@ -508,18 +473,14 @@ public class InitialBlock {
         * 建構子(名稱必須與類別相同)
         * 一般方法(成員變數)
         * 類別方法(必須有static宣告)
-:::
-
 
 # 繼承(Inheritance)
-:::warning
 * 什麼是繼承?
     * 比如說大家都是人，但職業都不相同，有工程師、老師，他們各自代表不同身分，也都是人，所以可以繼承人的屬性、方法
 * 繼承的目的?
-    * <font color="#f00">**去除重複的程式碼，提高程式的重複使用性**</font>
+    * **去除重複的程式碼，提高程式的重複使用性**
 * 說明
-    * <font color="#f00">**子類別會繼承父類別所有變數與方法**</font>
-    * <font color="#f00">**共同資料以及處理共同資料的成員方法只描述一次**</font>
+    * **子類別會繼承父類別所有變數與方法*****共同資料以及處理共同資料的成員方法只描述一次**
         * 為子類別( subclass )延伸( extends )自父類別( superclass )
         * 父類別( superclass )
             * 具有共同成員的類別
@@ -536,29 +497,21 @@ public class InitialBlock {
             * getSalary();
         * 子類別繼承父類別功能之後：還可以再加入新方法 ( method )
         * 也可以覆寫(override)從父類別而來的方法，建立一個專屬自己類別的運作邏輯
-:::
 ## 繼承語法與注意事項
-:::warning
 * 語法
-:::
 ```java=
 class SubClassName extends SuperClassName
 class FullTimeEmployee extends Employee {
     private double monthlySalary; //月薪
 }
 ```
-:::warning
 * 注意
-    * <font color="#f00">**不支援多重繼承**</font>
+    * **不支援多重繼承**
         * 一個子類別只能extends一個父類別
-    * <font color="#f00">**建構子(Constructor)無法被繼承**</font>
-    * <font color="#f00">**java.lang.Object 類別是所有類別的共同父類別**</font>
-:::
+    * **建構子(Constructor)無法被繼承*****java.lang.Object 類別是所有類別的共同父類別**
 
 ##  is a 與 has a 觀念建立
-:::warning
 *  當B繼承自A，以「B is a A」表示
-:::
 ```java=
 class FullTimeEmployee extends Employee {
     private double monthlySalary; //月薪
@@ -568,27 +521,23 @@ class FullTimeEmployee extends Employee {
 ```
 
 ## 繼承的方法覆寫( override )機制
-:::warning
 * 目的：
     * 子類別繼承父類別後，不滿意父類別定義的方法
-        * <font color="#f00">**子類別可以在繼承後重新改寫，即為overriding**</font>
+        * **子類別可以在繼承後重新改寫，即為overriding**
 * 規定：
     * 子類別宣告覆寫(overriding)方法時
-        * <font color="#f00">**方法名稱、參數個數、參數型別與回傳值**</font>皆須跟父類別裡被覆寫的方法相同
+        * **方法名稱、參數個數、參數型別與回傳值**皆須跟父類別裡被覆寫的方法相同
         * JDK 1.5開始，如回傳型態是類別，則可以是原方法回傳值型別的子類別
-        * <font color="#f00">**存取修飾子的等級不可以小於原方法**</font>
+        * **存取修飾子的等級不可以小於原方法**
             * 指可以一樣或是更加寬廣
-        * <font color="#f00">**子類別覆寫父類別定義有throws的方法時**</font>
+        * **子類別覆寫父類別定義有throws的方法時**
             * 不得比父類別被覆寫方法的Exception還要高階** 
 
 :exclamation: 只是對方法內容作改變，原則上只要跟父類別的方法格式相同就符合改寫規則
-:::
 
 ### 子類別覆寫(override)父類別的方法
-:::warning
 * 其存取控制的範圍不可小於原方法
     * 必須是相同或是開放等級更高
-:::
 ```java=
 public class Father {
     protected void doSomething() {…}
@@ -678,36 +627,28 @@ public class Manager extends FullTimeEmployee {
 ```
 
 ## final關鍵字
-:::warning
-* 類別宣告為final：<font color="#f00">**類別不能被繼承**</font>
-* 方法宣告為final：<font color="#f00">**方法不能被覆寫(Override)**</font>
-* 變數宣告為final：<font color="#f00">**變數初始值化後，不得改變其值，也就是常數(Constant)**</font>
-* 物件參考變數宣告為final：<font color="#f00">**變數初始值化後，不得再指向另一個物件**</font>
-:::
+* 類別宣告為final：**類別不能被繼承**
+* 方法宣告為final：**方法不能被覆寫(Override)**
+* 變數宣告為final：**變數初始值化後，不得改變其值，也就是常數(Constant)**
+* 物件參考變數宣告為final：**變數初始值化後，不得再指向另一個物件**
 
 ## super呼叫父類別方法
-:::warning
 * 子類別透過 super. 可以呼叫上一層類別的方法
 * 語法 ： super.methodName( );
-* 其中的 methodName( ) 為上一層類別的方法，<font color="#f00">**無法越級呼叫.**</font>
-
-:exclamation: <font color="#f00">**多在覆寫時用到，但非必要**</font>
-:::
+* 其中的 methodName( ) 為上一層類別的方法，**無法越級呼叫.**:exclamation:**多在覆寫時用到，但非必要**
 
 ### 呼叫父類別的建構子
-:::warning
 * 共同的資料應使用父類別的建構子
 * 子類別透過建構子super(…)將共同的建構子參數傳給父類別
-* 物件產生時，<font color="#f00">**建構子呼叫的順序為先父類別再子類別**</font>
+* 物件產生時，**建構子呼叫的順序為先父類別再子類別**
     * 保證子類別物件裡的共同資料一定都有初始化的動作
-    * 建構子中若有出現 super(…)，<font color="#f00">**一定要放在第一個敘述位置**</font>
-    * 建構子中若未出現 super(…)，<font color="#f00">**Java預設會有一個隱形的 super()**</font>
+    * 建構子中若有出現 super(…)，**一定要放在第一個敘述位置**
+    * 建構子中若未出現 super(…)，**Java預設會有一個隱形的 super()**
 * 【呼叫父類別不帶參數的建構子】預設自動放在第一個敘述的位置
 * super(...) 與 this(...)
     * 都只能放在建構子第一個敘述的位子
     * 才能符合建構子執行順序
     * 所以兩者只能擇一使用
-:::
 * 父類別
 ```java=
 package February14;
@@ -803,9 +744,7 @@ public class AnimalTest {
 ```
 ## 員工算薪水
 
-:::warning
 * employee
-:::
 
 ```java=
 public class Employee {
@@ -850,9 +789,7 @@ public class Employee {
 	}
 }
 ```
-:::warning
 * FullTimeEmployee
-:::
 ```java=
 public class FullTimeEmployee extends Employee {
 	private double monthlySalary; // 月薪
@@ -871,9 +808,7 @@ public class FullTimeEmployee extends Employee {
 	}
 }
 ```
-:::warning
 * Manager
-:::
 ```java=
 public class Manager extends FullTimeEmployee {
 	private double bonus; // 獎金; 額外津貼; 特別補助
@@ -894,9 +829,7 @@ public class Manager extends FullTimeEmployee {
 	}
 }
 ```
-:::warning
 * main方法
-:::
 ```java=
 public class SalaryTest {
 
@@ -911,18 +844,14 @@ public class SalaryTest {
 
 }
 ```
-:::warning
 * employee一種薪水算法，Manager是另一種薪水算法
 * 若還有parttime、約聘等員工
 * 就要有非常多算薪水的方法
-* <font color="#f00">**故衍伸出多型(Polymorphism)**</font>
-:::
-
+* **故衍伸出多型(Polymorphism)**
 
 # 多型 (Polymorphism)
-:::warning
 * 什麼是多型?
-* <font color="#f00">**一個物件有多種外型**</font>
+* **一個物件有多種外型**
 * 例如 
     * 我有三個物件
     *  一個物件是人
@@ -931,24 +860,21 @@ public class SalaryTest {
     * 那老師物件一定是老師，當然也是一個人
     * 所以外型是人，物件是老師
 * 繼承 與 多型
-    * 多型 是運用類別間<font color="#f00"> **繼承關係**</font>
-    * 使父類別可當成子類別的<font color="#f00"> **通用型態**</font>
+    * 多型 是運用類別間**繼承關係**
+    * 使父類別可當成子類別的**通用型態**
     * 如：class FullTimeEmployee extends Employee
         * 正職員工「是一種」員工
         * class Manager extends FullTimeEmployee
         * 經理「是一種」正職員工
         * 經理也可以視為「是一種」員工
 * 多型資料一致性操作
-    * <font color="#f00">**對於不同的物件實體找出可通用的型別作為宣告**</font>
-:::
+    * **對於不同的物件實體找出可通用的型別作為宣告**
 # 型別多樣化
-:::warning
 * 回憶基本型別的晉升( promotion )關係：
     * double weight = 60; // OK 
     * long uid = 10000; // OK 
 * 只要符合類別間的繼承關係
     * 在宣告參考變數時，子類別(位階低)物件實體可以升級成父類別(位階高)
-:::
 ```java=
 //new後面呼叫哪個建構子，就是用該類別來產生物件實體出來
 Employee e1 = new FullTimeEmployee(); // OK
@@ -956,13 +882,10 @@ Employee e2 = new Manager(); // OK
 Employee e3 = new PartTimeEmployee(); // OK
 ```
 
-:::warning
 Manager繼承FullTimeEmployee
 FullTimeEmployee繼承Employee
 PartTimeEmployee繼承Employee
-:::
 ![](https://i.imgur.com/ng8tkKa.png)
-
 
 ```java=
 Manager m1 = new Manager();
@@ -972,7 +895,6 @@ Object (Everything is an object)在java世界，所見及物件
 ```
 
 ## 類別型別轉換(Cast)
-:::warning
 * 基本型別的強制轉型(Cast)關係：
     * float weight = 65.0f; // OK 
     * int i1 = (int)10.0; // OK 
@@ -980,7 +902,7 @@ Object (Everything is an object)在java世界，所見及物件
 * 父類別參考變數若是要轉型回子類別，則需要靠強迫轉型(Cast)，但是會在執行時期檢查是否能夠轉回適當的子類別
     * 如：Employee e1 = new FullTimeEmployee();
     * FullTimeEmployee f = (FullTimeEmployee)e1; // OK
-    * Manager m = (Manager)e1;  <font color="#f00">**//執行發生執行發生java.lang.ClassCastException**</font>
+    * Manager m = (Manager)e1;  **//執行發生執行發生java.lang.ClassCastException**
         * 轉型失敗例外
 * 從程式碼寫好到執行得到結果，java可分三大時期
     * 1.編譯時期
@@ -989,10 +911,7 @@ Object (Everything is an object)在java世界，所見及物件
     * 編譯器在編譯時期，物件實體尚未創建
         * 故一開始也無法得知參考物件指向甚麼
         * 所以無法在編譯時期判斷是否符合轉型
-:::
-:::warning
 * 轉型失敗例外範例
-:::
 ```java=
 package module20_23;
 
@@ -1015,13 +934,11 @@ public class TestPolymorphism1 {
 ```
 
 ## instanceof關鍵字
-:::warning
 * instanceof 運算子
-    * <font color="#f00">**判斷父類別參考變數真正指向何種子類別的物件實體**</font>
+    * **判斷父類別參考變數真正指向何種子類別的物件實體**
 * 語法：物件參考變數 instanceof 類別名稱
 * 說明：檢查左邊參考的物件是否可以轉型為右邊的類別型別
     * 如果可以回傳true，否則為false
-:::
 ```java=
 Employee e1 = new FullTimeEmployee();
 System.out.println(e1 instanceof FullTimeEmployee); // true
@@ -1166,7 +1083,6 @@ public class PartTimeEmployeePoly extends EmployeePoly {
        System.out.println("work hour=" + workHour);
      }
 
-
      public PartTimeEmployeePoly(int empno , String ename , double hourPay, int workHour) {
           super(empno, ename);
           this.hourPay = hourPay;
@@ -1225,11 +1141,9 @@ public class TestPolymorphism2 {
 }
 ```
 ## 多型資料一致性操作
-:::warning
-* <font color="#f00">**對於不同的物件實體找出可通用的型別作為宣告**</font>
+* **對於不同的物件實體找出可通用的型別作為宣告**
     * 實現資料操作上的一致性，可以讓程式碼變得更加簡潔
     * 也易於日後資料的擴充設計與維護
-:::
 ```java=
 public class TestPolymorphism2 {
 	public static void main(String[] args) {
@@ -1242,29 +1156,23 @@ public class TestPolymorphism2 {
 	}
 }
 ```
-:::warning
 :exclamation: getSalary()對不同類型的物件進行一致性的操作，簡化程式碼的撰寫
-:::
 
 ## 動態繫結( dynamic binding )
-:::warning
 * 動態就是執行時期
 * 又稱延遲繫結( late binding )
 * 用父類別的型別(參考)，指向子類別的物件，並對應到子類別overriding的方法
 * 父類別會先判斷實際的子類別物件是哪一個，再呼叫此子類別裡對應的overriding方法
-:::
 ```java=
 Manager m = new Manager(7003, “David”, 50000.0, 10000,0);
 double salary = m.getSalary();
 Employee e = new Manager(7003, “David”, 50000.0, 10000.0);
 double salary = e.getSalary();
 ```
-:::warning
 * getSalary()在最後執行時，都是子類別Manager的方法
 * 但父類別的getSalary()還是不可省去，否則無法進行對應造成錯誤
 * 編譯器透過宣告型別(類別)，來確認我們存取的方法 / 屬性是否都有定義
-* 結論：<font color="#f00">**身分(型別)決定了特徵與行為**</font>
-:::
+* 結論：**身分(型別)決定了特徵與行為**
 ### 動態繫結範例
 ```java=
 //Employee
@@ -1391,27 +1299,23 @@ public class Employee {
 	}
 }
 ```
-:::warning
 * 在Employee的getSalary的方法中發現
-    * <font color="#f00">**return 0 ; 毫無意義**</font>
+    * **return 0 ; 毫無意義**
 * java 有針對此情形提供一些機制
 * 故衍伸出 abstract
-:::
 
 # 抽象機制與目的
 ## 抽象類別 (abstract class)
-:::warning
 * 抽象方法沒有方法主體
     * public abstract void myMethod();
         * 一般方法變成抽象方法
-            * <font color="#f00">**必須加上abstract修飾子**</font>
+            * **必須加上abstract修飾子**
             * 不能有大括號
             * 最後加上分號
 * 抽象類別不一定要有抽象方法
-    * <font color="#f00">**但具有抽象方法的類別，一定要宣告為抽象類別**</font>
+    * **但具有抽象方法的類別，一定要宣告為抽象類別**
         * public abstract class MyClass {…}
-    * <font color="#f00">**類別只要加上abstract修飾子**</font>
-        * <font color="#f00">**即使類別不含 abstract 方法，類別就無法產生實體**</font>
+    * **類別只要加上abstract修飾子*****即使類別不含 abstract 方法，類別就無法產生實體**
         * 只能透過繼承來建立延伸子類別
 * 說明
     * 該類別若繼承了抽象父類別，除非它實作了抽象父類別當中的所有抽象方法，否則它仍然只是個抽象類別
@@ -1419,16 +1323,13 @@ public class Employee {
         * 就會繼承抽象父類別的抽象方法
         * 等於子類別就會有抽象方法
         * 所以子類別就無法產生實體
-        * <font color="#f00">**解決方法就是子類別將父類別抽象方法實作出來**</font>
+        * **解決方法就是子類別將父類別抽象方法實作出來**
 * 建立類別若有方法尚未決定如何設計內容主體時
     * 就可將此方法加上 abstract 修飾子成為抽象方法
     * 之後再由繼承的子類別來實做
-:::
-:::warning
 * 一個.java檔可以宣告多個類別：
     * 最多只有一個public class
     * 此public class 名稱就是檔名
-:::
 ```java=
 package module24_26;
 
@@ -1469,45 +1370,34 @@ public class TestAbstract {
 
 # 介面 (Interface)
 ## 前提
-:::warning
 * 濫用繼承
     * 1.資料關係與現實生活不相符
     * 2.子類別可能從父類別得到錯誤或不必要的項目
-:::
 ![](https://i.imgur.com/g4oFAUs.png)
-:::warning
 * 透過實作介面，可以改善濫用繼承
-:::
 ![](https://i.imgur.com/rneLBNM.png)
 
 ## Interface 介紹
-:::warning
 * Java使用介面(interface)的主要五大功能
     * 多重繼承
     * 定義規格
     * 貼標籤
     * 型別轉換
     * 降低相依性
-:::
 
 ### 多重繼承
-:::warning
-* Java只能單一繼承，<font color="#f00">**而介面可以實現物件導向中的多重繼承**</font>
+* Java只能單一繼承，**而介面可以實現物件導向中的多重繼承**
     * (替代C++中的多重繼承)
 * 語句
     * class 子類別 extends 父類別 implements 介面1, 介面2, … {…}
     * class 子類別 implements 介面1, 介面2, … {…}
-:::
 
 ### 定義規格
-:::warning
 * 預先定義規格給實作此介面的所有子類別
-* <font color="#f00">**介面的所有方法皆為抽象方法的抽象類別**</font>
-* <font color="#f00">**所以子類別必須實作介面的所有抽象方法**</font>
-* <font color="#f00">**介面跟介面之間是可以再繼承(extends)**</font>
+* **介面的所有方法皆為抽象方法的抽象類別*****所以子類別必須實作介面的所有抽象方法*****介面跟介面之間是可以再繼承(extends)**
 * 介面宣告的屬性
     * 由編譯器預設自動加入以下三個修飾關鍵字
-        * <font color="#f00">**public static final**</font> ( 公開、靜態、常數 )　
+        * **public static final** ( 公開、靜態、常數 )　
             * 代表在介面裡宣告的資料都是常數
             * 為什麼要宣告成常數？
                 * 因為要讓大家都能取得這個資料
@@ -1516,13 +1406,12 @@ public class TestAbstract {
                 * 所以會預設為final
 * 介面宣告的方法
     * 由編譯器預設自動加入以下兩個修飾關鍵字：
-        * <font color="#f00">**public abstract**</font> ( 公開、抽象 )
-        * <font color="#f00">**介面裡宣告的方法強制為抽象方法**</font>
+        * **public abstract** ( 公開、抽象 )
+        * **介面裡宣告的方法強制為抽象方法**
 * 因為介面做為定義規格的用途
     * 對任何實作介面的類別來說，資料需為一致，也就是所謂的"標準"
     * 既然是實作同一個介面，理所當然地從介面得到的資料都是相同的。
     * 但方法是可以在各個實作類別裡自行完成
-:::
 ```java=
 //宣告介面
 interface Display {
@@ -1571,23 +1460,17 @@ public class TestInterface {
 
 ```
 ### 介面延伸
-:::warning
 * Java使用介面(interface)的主要目的：
     * 因為介面對Java來說是個規格較特殊的類別(class)
         * 介面也是一種參考型別，也就是介面提供了另一種彈性
-        * <font color="#f00">**使子類別在繼承原父類別的特性之外**</font>
-        * <font color="#f00">**能具有其他型別的特性**</font>
+        * **使子類別在繼承原父類別的特性之外*****能具有其他型別的特性**
     * 因為一個物件可以實作多個介面
         * 所以每一個父介面都可以當作此物件的(父)多型之一
         * 因此用介面來幫物件作型態轉換將是一件容易的事情
-:::
-
 
 ### 介面範例
-:::warning
 * 請運用多型設計讓Powder, Plane, Dog這三個類別藉由getWeightTool()方法可以顯示出各自適合的量體重的工具
 * (如: Powder使用天秤, Plane使用地磅, Dog使用體重計)
-:::
 * Dog
 ```java=
 package February16;
@@ -1736,29 +1619,25 @@ public class Demo01 {
 ```
 
 ### 介面與多型、相依性關係
-:::warning
 * 介面與多型比起繼承又更有彈性
 * 我們將類別之間從 is - a 的關係(繼承)
-* <font color="#f00">**轉化成"有共同行為"的關係( interface )**</font>
+* **轉化成"有共同行為"的關係( interface )**
 * 例如：
     * 鳥類、飛機、超人
 * 雖然沒有現實生活上的"是一"種"關係
 * 但他們都具備了"飛"的行為，所以也能達到資料一致性的操作
-:::
 ### 降低相依性
-:::warning
-* :x: <font color="#f00">**低凝聚性 - 高相依性**</font>
+* :x: **低凝聚性 - 高相依性**
     * Pencil.java,
     * InkBrush.java,
     * WorkWithPens.java,
     * WriteBusinessTest.java
-* :ballot_box_with_check: <font color="#f00">**高凝聚性 - 低相依性**</font>
+* :ballot_box_with_check: **高凝聚性 - 低相依性**
     * IWritable.java,
     * Pencil2.java, 
     * InkBrusch2.java, 
     * WorkWithPens2.java, 
     * WriteBusinessTest2.java
-:::
 
 ```java=
 
@@ -1770,7 +1649,6 @@ public class Printer2 implements USB {
 
 }
 
-
 public class Mouse2 implements USB {
 	
 	public void work() {
@@ -1779,7 +1657,6 @@ public class Mouse2 implements USB {
 
 }
 
-
 public class Keyboard2 implements USB {
 	
 	public void work() {
@@ -1787,7 +1664,6 @@ public class Keyboard2 implements USB {
 	}
 
 }
-
 
 public class Computer2 {
 	private USB usb;
@@ -1800,7 +1676,6 @@ public class Computer2 {
 		usb.work();
 	}
 }
-
 
 public class CustomerTest2 {
 	
@@ -1823,8 +1698,7 @@ public class CustomerTest2 {
 ```
 ![](https://i.imgur.com/tnfQ5iS.png)
 ### 空介面 (Tag interface)：貼標籤
-:::warning
-* <font color="#f00">**沒有定義任何方法的介面叫做空介面**</font>
+* **沒有定義任何方法的介面叫做空介面**
 * 一個類別可以 implements 某個空介面
     * 不需實作任何方法
     * 但該類別的任何實體即已經成為該介面的一個合法實體
@@ -1836,21 +1710,18 @@ public class CustomerTest2 {
 * 一個類別implements java.io.Serializable空介面
     * 該類別的物件才可以做物件的序列化
     * (將物件永久儲存(persistence)，稱做序列化)
-:::
 
 # 修飾子適用場合
 ![](https://i.imgur.com/oyz0BGX.png)
 
 # 套件介紹 (package)
 ## Java原始檔案格式
-:::warning
 * Java檔案中可能會出現三個稱為編譯單元( compilation units )的元素
 * 這些元素皆非必要
 * 但如果有這些元素，則一定要依以下順序出現：
     * 1. package 宣告
     * 2. import 引用敘述
     * 3. class 類別
-:::
 
 ```java=
 // 1.
@@ -1863,9 +1734,7 @@ import yourPackageName2.*;
 class MyClass {…}
 ```
 
-
 ## 套件(package)建議命名英文小寫
-:::warning
 * Java提供套件(Package)機制就像管理容器
     * 可將所定義的名稱區隔管理在package底下
     * 不會有類別名稱相互衝突的情況發生
@@ -1877,10 +1746,8 @@ class MyClass {…}
     - 宣告於原始檔案的第一行
     - package 套件名稱(myPackageName);
     - package com.ibm;
-:::
 
 ## Java API 與常用套件
-:::warning
 * Java標準API有許多已經設計好的類別與其相關的內容
 * 方便我們程式設計師可以更輕鬆快速實現所需要的功能和應用
 * 例如：
@@ -1890,10 +1757,8 @@ class MyClass {…}
     * java.sql (關聯式資料庫互動用JDBC)
     * java.util (utility、工具)、(集合API)
     * java.util.function (Java 8新增)
-:::
 
 ## 套件編譯與執行
-:::warning
 * 所有屬於 myPackageName 類別庫的 .class 檔案都必須儲存在 myPackageName 資料夾下
     * 若不使用package宣告，Java預設會將類別檔置於目前工作環境所在的目錄中
 * 因為source檔( .java檔 )與 .class 檔不一定要放在同一個目錄下
@@ -1903,10 +1768,8 @@ class MyClass {…}
     * 【註：「.」指編譯後的class檔置於目前的目錄位置】
 * 執行： java packageName.HelloWorld
     * 【註：要在原來的目錄下執行】
-:::
 
 # import (引用) 套件
-:::warning
 * import 可用來引入API中的功能 或 是自行定義的套件(package)
 * Java會自動引用的兩個套件：
     * java.lang.*：常用的類別，如String類別已置於此套件中
@@ -1915,10 +1778,8 @@ class MyClass {…}
     * 如：import java.xxx.*;
     * 註：不包含其子目錄的類別
         * 如import java.xxx.yyy.*; 是引用不同的套件
-:::
 
 ## import (引用) 套件或特定類別
-:::warning
 * 引用套件中所有類別：
     * import java.sql.*;
     * Date date = new Date(…);
@@ -1928,10 +1789,8 @@ class MyClass {…}
 * 如不使用import敘述，則必須使用類別長名稱
     * java.sql.Date date = new java.sql.Date(…);
     * java.util.Date date = new java.util.Date(…);
-:::
 
 ## 靜態引用套件 ( static import )
-:::warning
 * 靜態引用套件 【JDK 5加入的功能】
     * 可導入類別內的所有的
     * static fields 、 static methods
@@ -1942,10 +1801,8 @@ class MyClass {…}
         * r = sin(PI * 2); 相當於
         * r = Math.sin(PI * 2);
 * 避免過度使用static import功能，否則容易造成混淆而不利於維護
-:::
 
 # 類別路徑(classpath)
-:::warning
 * classpath可以讓Java應用程式在編譯和執行時，找到要用的相關類別
 * 根據JDK文件說明，Java以下面三類classpath順序，依序找尋所需的class
 * 1. Bootstrap classes(Core classes)：
@@ -1969,16 +1826,11 @@ class MyClass {…}
             * javac –classpath “%classpath%;C:\myLib2\zzz.jar;C:\myClass2;“ HelloWorld.java
             * java –classpath “%classpath%;C:\myLib2\zzz.jar;C:\myClass2;” HelloWorld 
         * (4)-cp
-:::
-:::warning
 * classpath路徑設定
-:::
 ![](https://i.imgur.com/kCmluOV.png)
-
 
 # Object類別
 ## 所有Java類別共同父類別 - Object
-:::warning
 * Java的所有類別，全部繼承自java.lang.Object類別
     * 若一類別無繼承任何類別，則Java會自動用Object類別作為此類別的父類別
 * Object類別常用的方法：
@@ -1995,14 +1847,11 @@ class MyClass {…}
     * protected void finalize()
         * 給垃圾收集器呼叫的方法，當一個物件要被釋放前執行
     * final void wait() notify() notifyAll() 【屬於執行緒的部份】
-:::
 
 ## Object.equals (override)
-:::warning
 * Modifier and Type：boolean
 * equals(Object obj)
     * Indicates whether some other object is "equal to" this one.
-:::
 ```java=
 public class Employee {
 	private int empno;
@@ -2082,11 +1931,9 @@ public class TestEquals {
 ```
 
 ## 垃圾處理機制
-:::warning
 * Modifier and Type：protected void
 * protected void finalize()
     * Called by the garbage collector on an object when garbage collection determines that there are no more references to the object.
-:::
 ```java=
 package module27_30;
 
@@ -2108,7 +1955,6 @@ public class TestFinalize {
 ```
 
 ## String toString()
-:::warning
 * Modifier and Type：String
 * toString()
     * Returns a string representation of the object.
@@ -2116,7 +1962,6 @@ public class TestFinalize {
     * 所以我們可以 override toString()裡面的方法
     * 將它改成我們想要呈現的形式
 
-:::
 * 原本Object裡面toString()內容
 ```java=
  public String toString() {
@@ -2146,11 +1991,9 @@ public class HelloWorld {
 ```
 
 ## clone() 複製
-:::warning
 * Modifier and Type：protected Object
 * clone()
     * Creates and returns a copy of this object.
-:::
 ![](https://i.imgur.com/rNmcRNw.png)
 ```java=
 public class TestCloneableShirt implements Cloneable {
@@ -2192,13 +2035,10 @@ public class TestCloneableShirt implements Cloneable {
 ```
 
 # 包裝類別 ( Wrapper Class )
-:::warning
 * Java每一個基本資料型態，都有一個相對應的Wrapper類別(包裝類別)
-:::
 ![](https://i.imgur.com/KvgJGSB.png)
 
 ## 使用包裝類別
-:::warning
 * boxing：將基本型別，置入相對應的包裝類別中
     * Integer i = new Integer(10);
     * JDK 9 以後不建議此方法
@@ -2215,14 +2055,11 @@ public class TestCloneableShirt implements Cloneable {
     * 例如：Integer i = Integer.valueOf(“1”); 
 * 比較兩個物件是否相等
     * 使用 boolean equals(Object obj)
-:::
 
 ### Wrapper Class 的繼承與覆寫
-:::warning
 * Integer物件
     * 繼承 Object
     * override euqals( ) and toString( )
-:::
 ```java=
 package February17;
 
@@ -2250,7 +2087,6 @@ public class Test01 {
 ```
 
 ## 自動裝箱 / 拆箱機制 (Auto-boxing / unboxing)
-:::warning
 * Autoboxing / Unboxing
     * 如果 int 的基本資料型別放到 Collection 中的話要怎麼辦呢？
     * Autoboxing(自動裝箱)：
@@ -2267,7 +2103,6 @@ public class Test01 {
         * 不過為了我們使用上的方便，Java 提供了基本型別。
     * 同時存在這兩種型別常常會造成我們在設計上要加上許多額外的程式碼，例如在做數字運算時，使用 int 或 double 型別來處理，但是要將數字存入容器時，必須要將其轉換成 Integer 或 Double 型別，才能使用 add(new Integer(i))，在使用容器或多型處理時常常要多一道轉型手續。
     * Java 1.5 中，已經增加了這方面的處理，稱之為 Autoboxing 和 Auto-unboxing，編譯器會自動幫我們在 int 和 Integer 之中轉換。 
-:::
 
 ```java=
 public class TestAutoboxing {

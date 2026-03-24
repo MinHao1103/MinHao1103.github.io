@@ -1,23 +1,15 @@
 Java - 基礎
 ===
 
-# 目錄
-* [Java - 進階](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/ryarjMM15)
-* [Java - 物件導向程式設計(實務應用一)](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/Sk5lzBi1c)
-* [Java - 物件導向程式設計(實務應用二)](https://hackmd.io/@KfriURWvR1OWM2V5ZWsnQA/SkP5SREW9)
-
 # 基本觀念與編譯執行
 ![](https://i.imgur.com/L8GquyT.png)
-:::warning
 * JAVA 將 source code 編譯成位元組 (byte code).class檔，
 * 依賴 JAVA Virtual Machine 解釋 .class檔，
-* <font color="#f00">**一次編寫，到處執行**</font>(Write once run anywhere)=>誇平台。 
+* **一次編寫，到處執行**(Write once run anywhere)=>誇平台。 
 * JDK(Java Development Kit) => Java軟體開發工具包
 * JRE(Java Runtime Environment) => Java執行環境
-* <font color="#f00">**所有Java程式都需要在JRE下才能執行**</font>，若只要執行Java程式只需安裝JRE
+* **所有Java程式都需要在JRE下才能執行**，若只要執行Java程式只需安裝JRE
 * 為了保持JDK獨立性和完整性，安裝JDK時也安裝JRE的一部分，所以JDK安裝目錄下有JRE的目錄
-:::
-
 
 # 基本資料字面常數
 
@@ -36,19 +28,15 @@ Java - 基礎
 
 ## 變數種類整理
 ### 區域變數( Local variables )
-:::warning
 * 宣告在方法 ( method ) 或程式碼區塊( block ) 內
 * 區域變數只能在它們被宣告的方法內存取
 * 又稱 automatic, temporary 或 stack variables
-:::
 
 ### 實體變數( Instance variables )
-:::warning
 * 宣告在方法之外，類別之內，且沒有static修飾子
 * 實體變數可被類別內任何非static方法存取
 * 又稱member variables(成員變數)、attribute variables(屬性變數)
-* 注意：<font color="#f00">**加上 static 修飾子為類別變數，也稱為靜態變數。**</font>
-:::
+* 注意：**加上 static 修飾子為類別變數，也稱為靜態變數。**
 ## 變數範例
 ```java=
 public class MyTest{
@@ -79,9 +67,7 @@ public class MyTest{
 ```
 
 ## final
-:::warning
-* 變數宣告為final，<font color="#f00">**變數初始化後不能再變更其值**</font>。
-:::
+* 變數宣告為final，**變數初始化後不能再變更其值**。
 ```java=
 public class TestDemo4 {
 
@@ -99,7 +85,6 @@ It must be blank and not using a compound assignment
 ```
 
 # 運算子與運算元
-:::warning
 * 運算子(Operator)可對一個以上的運算元(Operand)進行運算動作
 * 運算子執行運算之後將回傳值，而其回傳值型態視運算元而定
 * 算數運算子： + , - , * , / , %
@@ -110,7 +95,6 @@ It must be blank and not using a compound assignment
 * 位元運算子： & , | , ^ , ~
 * 移位運算子： << , >> , >>>
 * 三元運算子：?:
-:::
 
 ## 算數運算子
 ```java=
@@ -151,12 +135,10 @@ public class Demo01 {
 }    
 ```
 ## 指定運算子
-:::warning
 * 將右邊運算完成的結果指定給左邊的變數保存
 * 要注意位階.高低順序
     * double > float > long > int > short > byte
 
-:::
 ```java=
 a = 2   --->  a = 2
 a += 2  --->  a = a + 2
@@ -181,18 +163,14 @@ public class TestAssignOP {
 ```
 
 ## 條件運算子
-:::warning
 * 將兩個部林值合併起來的運算子，運算結果仍為布林值
 * a && b ---> a和b都是true才回傳true
 * a || b ---> a和b只要有一個是true就回傳true
 * !a     ---> 傳回相反的布林值
-:::
 
 ## 位元運算子
-:::warning
 * &(and)、|(or)、^(xor)可用在整數的位元運算
 * ~(位元反轉運算子)：用於整數，將位元1變成0，0變成1
-:::
 ```java=
 /*
  * 以下為位元運算測試
@@ -225,14 +203,12 @@ public class TestBitOP {
 }
 ```
 ## 移位運算子
-:::warning
 * 整數型態的位元移位運算
     * a >> b   ---> 將a向右移動b個位元(具正負值)
     * a << b   ---> 將a向左移動b個位元(具正負值)
     * a >>> b  ---> 將a向右移動b個位元(不具正負值向右移位，以.位元補進)
 * 備註
     * 移位運算子的右邊參數，若超過型態本身的位元數，則以餘數作為移位的次數
-:::
 ```java=
 package module01_06;
 
@@ -380,9 +356,7 @@ public class TestPrimitiveType {
 }
 ```
 
-
 ## 晉升與型別轉換
-:::warning
 * 晉升(Promotion)
     * 指較小的資料型別(等號的右邊)自動晉升較大的資料型別(等號左邊)
 * 型別轉換(Typecasting)
@@ -395,7 +369,6 @@ public class TestPrimitiveType {
             double y = 2.2;
             y = x + 1; //晉升
             x = int(y) + 1; //型別強制轉換
-:::
 ### 晉升與型別轉換：範例
 ```java=
 public class TestCast {
@@ -437,12 +410,10 @@ switch(x){
         default;
 }
 ```
-:::warning
 * x 必須是 整數(int) or 字串(string)
 * default可以單獨存在
 * case數字不可重複
 * break要加入
-:::
 ```java=
 /*
  * JDK 7以後switch - case也可進行字串比對
@@ -516,7 +487,6 @@ public class Demo01 {
 ```
 
 # 迴圈設計介紹
-:::warning
 * java有三種迴圈：for , while , do...while
 * 迴圈三個要素：初值設定、條件判斷、計次。
     * 初值設定：起始值
@@ -529,7 +499,6 @@ public class Demo01 {
     * for、while 執行 0 ~ n 次
     * do...while 執行 1 ~ n 次
 * while(true){...}：無窮迴圈
-:::
 ## for 
 ### 無窮迴圈 (不建議使用，閱讀性差)
 ```java=
@@ -639,28 +608,21 @@ public class Demo01 {
 	}
 }
 ```
-:::warning
 * 雙層迴圈剛好對應到矩形(二維)的資料結構
 * 外層控制的是縱向資料的變化，如同 y 軸
 * 內層控制的是橫向資料的變化，如同 x 軸
-:::
-
 
 # break and continue
-:::warning
 * break：跳離迴圈
 * continue：跳過continue以下的敘述，回到迴圈的起始點
 * break and continue 通常配合 if 敘述使用
 * 無窮迴圈經常會搭配break使用
-* <font color="#f00">**break只能在迴圈與switch case內使用**</font>
-:::
+* **break只能在迴圈與switch case內使用**
 
 ## 標籤
-:::warning
 * 可以直接退到最外層迴圈
 * 標籤的下一行必須是迴圈
 * 邊謙名稱可自行命名
-:::
 ## 迴圈搭配break與標籤的範例說明
 ```java=
 public class TestBreakContinue1 {
@@ -706,9 +668,7 @@ public class TestBreakContinue2 {
 ```
 # 方法
 ## 傳遞參數與回傳值
-:::warning
-* <font color="#f00">**如果有回傳值，則不是用void，而是必須加return**</font>
-:::
+* **如果有回傳值，則不是用void，而是必須加return**
 ```java=
 package January21;
 
@@ -731,10 +691,8 @@ public class Calculator {
 ```
 
 ## 方法覆載機制(Overloading)
-:::warning
 * 觀念：
-    * <font color="#f00">**Overloding 將功能類似的方法提供相同的方法名稱**</font>
-    * <font color="#f00">**java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。**</font>
+    * **Overloding 將功能類似的方法提供相同的方法名稱*****java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。**
     * 例如：
         * public void println(int i)
         * public void println(float f)
@@ -744,7 +702,6 @@ public class Calculator {
         * void method(int i)
         * int method(int i)
         * String method(int i)
-:::
 ```java=
 public class TestOverloading {
 	// 圓形面積
@@ -807,7 +764,6 @@ public class Demo02 {
 ```
 
 # 類別與物件
-:::warning
 * 五字箴言：所見即物件
 * 物件：
     * 屬性 ( attribute ) 或稱為特徵 ( Characteristics )
@@ -817,11 +773,9 @@ public class Demo02 {
     * 資料成員( Data Member  -->  變數Variable )
     * 方法成員( Method Member --> 方法Method )
 * 先設計類別(class)才能產生物件，
-    * <font color="#f00">**一個物件是由某類別產生的實體(Instance)**</font>
-:::
+    * **一個物件是由某類別產生的實體(Instance)**
 
 ## 建立物件進行操作
-:::warning
 * 實體化與初始化物件
     * 流程
         * 宣告：
@@ -836,7 +790,6 @@ public class Demo02 {
         * 注意：
             * 物件參考變數(Object Reference Variable)
             * 是一個儲存物件在記憶體中位址的變數
-:::
 
 ### 建立物件進行操作：範例
 ```java=
@@ -866,8 +819,6 @@ public class PenTest {
 ```
 ## 實體變數(屬性)預設初始值
 
-
-
 | 變數型態 | 值 |
 | -------- | -------- |
 |byte    |0       |
@@ -880,19 +831,16 @@ public class PenTest {
 |char    |"\u0000"|
 |類別型態  |null    |
 
-
 ## 區域變數 / 實體變數
 ![](https://i.imgur.com/irz6SQz.png)
 
-:::warning
 * 區域變數 ( local )
     * 宣告
         * 宣告在方法裡或流程控制的區域裡
     * 初始值   
-        * <font color="#f00">**沒有預設初始值，存取之前，要給予初始值。**</font>
-        * <font color="#f00">**可以先宣告後再給值**</font>
+        * **沒有預設初始值，存取之前，要給予初始值。*****可以先宣告後再給值**
     * 存取
-        * 只能在自己所宣告的區域內使用,<font color="#f00">**不能跨區直接使用**</font> 
+        * 只能在自己所宣告的區域內使用,**不能跨區直接使用** 
     * 生命週期(scope)
         * 跟著自己所屬的區域或方法, 執行時存活,
         * 當該區域或方法執行完畢, 此變數即被釋放
@@ -900,7 +848,7 @@ public class PenTest {
     * 宣告
         * 宣告在方法外, 類別裡面, 而且沒有static關鍵字
     * 初始值
-        * 宣告後，<font color="#f00">**Java會根據資料型別的不同給予對應的預設初始值**</font>
+        * 宣告後，**Java會根據資料型別的不同給予對應的預設初始值**
         * 若是想要指定自己的初始值，只能在宣告的同時指定。
     * 存取
         * 只要在同個類別裡, 可以跨不同方法使用
@@ -908,24 +856,19 @@ public class PenTest {
     * 生命週期(scope)
         * 跟著所屬的物件實體創建而存在,
         * 只要該物件實體還在, 此實體變數就會隨著物件存活著, 直到該物件消失才結束
-:::
 ## 變數於記憶運作機制
 ![](https://i.imgur.com/z9Z7jcG.png)
 
 ![](https://i.imgur.com/eKYe9Ff.png)
 
-
-:::warning 
+ 
 * 類別 ( class ) 只用來決定( Object ) 形成的樣子
     * 當物件 ( Object ) 形成時，物件就變成一個記憶體中的空間
-:::
 ![](https://i.imgur.com/5XGijy0.png)
 
 ### pass by value / pass by reference
-:::warning
 * 傳遞參數為基本資料型別，採用pass by value (傳值)
 * 傳遞參數為物件，則採用pass by reference  (傳址)
-:::
 ```java=
 /*
  * 此範例為傳值傳址測試
@@ -954,7 +897,6 @@ public class PassArgTest {
 ```
 
 # 物件導向程式語言(OOP)
-:::warning
 * 物件導向三種特性：
     * 封裝(Encapsulation)
         * 依類別成員存取權限分為
@@ -962,14 +904,12 @@ public class PassArgTest {
     * 繼承(Inheritance)
         * 子類別可繼承父類別的成員
         * 可修改或是新增自有成員
-        * <font color="#f00">**可 Override 從父類別繼承的方法**</font>
+        * **可 Override 從父類別繼承的方法**
     * 多型(Polymorphism)
         * 父類別指向子類別物件，並對應到子類別適用的方法
-        並對應到子類別 overriding 的方法，稱<font color="#f00">**動態繫結( dynamic binding )**</font>
+        並對應到子類別 overriding 的方法，稱**動態繫結( dynamic binding )**
 * OOP 使用訊息傳遞(Message Passing)，透過物件接受訊息、處理訊息、傳送訊息來實現功能
-:::
 # 陣列(Array)
-:::warning
 * 陣列是由一群相同資料型態的變數所組成的一種資料結構。
 * 變數與陣列的比較
 * 變數：
@@ -980,16 +920,13 @@ public class PassArgTest {
     * Pen myPen[] = new Pen[3];
 * 程式進入點main可以接受零至多個字串當作參數(String args[])傳入，
 * String args[]其實就是一個字串陣列
-:::
 
 ## 宣告陣列與元素存取
 ### 宣告陣列
-:::warning
 * 陣列(Array)宣告：
     * 陣列也是一種Reference資料型態
     * 也是傳遞陣列的記憶體位址(memory address)
     * 注意：new 宣告的同時必須指定長度且不可再更改
-:::
 ```java=
 public class Main {
 
@@ -1029,7 +966,6 @@ public class Main {
 ```
 
 ### 元素存取
-:::warning
 * 取得陣列的長度
     * 語法：陣列名稱.length (如 myAttay.length)
     * 注意：
@@ -1041,7 +977,6 @@ public class Main {
         * 可藉由索引值(index)存取陣列中儲存的資料值
         * 注意：索引值從0開始
 * 陣列使用 new 關鍵字分配好儲存空間後，所有元素都會自動賦予初始值 
-:::
  
 ### 陣列宣告的預設初始值
 | 型別 | 基本型別 | 預設值 |
@@ -1099,9 +1034,7 @@ public class Main {
 }
 ```
 ### 觀察陣列的傳值
-:::warning
 *  使用指定運算子(=)
-:::
 ```java=
 public class TestAssignArray1 {
 
@@ -1139,7 +1072,6 @@ public class TestAssignArray2 {
 ```
 
 ## 陣列進階運用
-:::warning
 * 陣列的排序
     * static void Arrays.sort(欲排序陣列名稱)，可讓陣列元素由小到大排序
     * 遞增排序:Arrays.sort(陣列名稱)
@@ -1151,7 +1083,6 @@ public class TestAssignArray2 {
 * 陣列的複製(copyOf())
     * static複製的陣列型別Arrays.copyOf() (複製的陣列名稱，複製的長度)
     * 複製出新的陣列可以不用預先初始化(不用new)，直接回傳(複製出)一個新的陣列
-:::
 
 ### Arrays類別常用方法示範
 ```java=
@@ -1216,11 +1147,9 @@ public class TestBubble {
 ```
 
 ### 陣列3x3範例
-:::warning
 * 請分別建立x, y, z三個3x3的int陣列
 * 把x和y陣列的加總存放到z陣列裡，
 * 再將結果顯示於螢幕上
-:::
 ```java=
 public class Demo01 {
 
@@ -1280,9 +1209,7 @@ public class Demo01 {
 }
 
 ```
-:::warning
 重構
-:::
 ```java=
 package February12;
 
@@ -1335,12 +1262,10 @@ public class RandomArray2 {
 ```
 
 ### Arrays、ArrayList、stream
-:::warning
 * 有個一維陣列如下:
 * {29, 100, 39, 41, 50, 8, 66, 77, 95, 15}
 * 請寫出一隻程式能輸出此陣列所有元素的平均值與大於平均值的元素
 * (提示:陣列,length屬性)
-:::
 ```java=
 package February12;
 import java.util.ArrayList;
@@ -1384,11 +1309,8 @@ public class Homework01 {
 }
 ```
 # 字串不可變與字串池
-:::warning
 * String物件特性
-    * <font color="#f00">**不可變(immutable)字串：**</font>
-        * <font color="#f00">**String一旦宣告後，即不能在原所在記憶體位置改變字串內容**</font>
-        * <font color="#f00">**使用String類別任何方法時，傳回的字串都會放在新的記憶體空間**</font>
+    * **不可變(immutable)字串：*****String一旦宣告後，即不能在原所在記憶體位置改變字串內容*****使用String類別任何方法時，傳回的字串都會放在新的記憶體空間**
     * String s1 = new String("Hello");
         * 有自己的記憶體空間
     * String s1 = "Hello";
@@ -1397,19 +1319,16 @@ public class Homework01 {
 * 因為字串池內容不可改變(immutable)
 所以可以讓多個變數參考相同物件
 不用怕有修改的問題發生
-達到<font color="#f00">**重複使用、減少資源消耗**</font>
-:::
+達到**重複使用、減少資源消耗**
 ![](https://i.imgur.com/vnnF7jv.png)
 
 ## 字串比較 == 、 equals
-:::warning
 * Java字串的 == 與 equals
 * String的比較
     * 比較字串內容時，並非使用 == ，因為 == 在Java字串中，比較的是記憶體位址
     * 指的是占用相同的記憶體空間，而不是內容
     * 比較字串內時，應該使用String物件本身提供的方法
     * public boolean equals(Object anObject)
-:::
 ```java=
 public class Demo01 {
 	public static void main(String[] args) {
@@ -1427,9 +1346,7 @@ public class Demo01 {
 ```
 
 ## 字串常用方法示範
-:::warning
 * String常用方法
-:::
 ```java=
     public char charAt(int index)：
         透過索引值取得字串內某一字元
@@ -1453,11 +1370,9 @@ public class Demo01 {
         若回傳值>0，表示左邊字串大於右邊字串
         若回傳值<0，表示左邊字串小於右邊字串
 ```
-:::warning
 * null 空值
 * 不代表任何記憶體位址，沒有指向任何實體
 * 多用在宣告物件操考變數時的起始值
-:::
 ```java=
 public class Demo03 {
 	public static void main(String[] args) {
@@ -1484,12 +1399,9 @@ public class Demo03 {
 }
 ```
 
-
 # main方法的參數
-:::warning
 * 程式進入點main方法可以接受零至多個字串當作參數傳入
 * String[] args 指的就是一個字串陣列
-:::
 ## args測試
 ### 命令提示cmd
 ```java=
@@ -1500,10 +1412,7 @@ public class Demo01 {
 }
 ```
 ![](https://i.imgur.com/4NvmleM.png)
-:::warning
 * 編譯時出現亂碼，需要將儲存的編碼格式修改為：ANSI
-:::
-
 
 ### Eclipse
 ![](https://i.imgur.com/qX4w61o.png)
@@ -1511,9 +1420,7 @@ public class Demo01 {
 ![](https://i.imgur.com/Kkjgi4G.png)
 ![](https://i.imgur.com/Cup3sfi.png)
 
-
 ## 不固定參數機制(varargs)
-:::warning
 * Varargs(不固定參數個數 / 可變數目的參數)
     * 方法內可使用 [...]點號，宣告[可變數目的參數]
     * 可變參數必須放在參數列的最後面
@@ -1524,7 +1431,6 @@ public class Demo01 {
         * 呼叫methodTest2的方法時就可變化如：
             * methodTest2("Xx");
             * methodTest2("xx", "yy");
-:::
 
 ```java=
 public class AddInt {
