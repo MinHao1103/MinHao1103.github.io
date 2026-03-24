@@ -1,230 +1,73 @@
-( 十 ) 使用 Hibernate 撰寫 查詢 方法 及 Session 進階操作
-===
+# Hibernate Session 狀態管理與查詢優化
 
-# ( 1 ) 查詢方法
-* 說明
-    * 查詢方法底層使用的是 SQL 的 select 敘述
-    * get()、load() 會取得永續狀態 ( Persistent ) 的實體物件
-    * 只適用藉由 OID 查詢單筆資料
-    * 若想查詢多筆資料，可使用 createQuery()
-    * 其他查詢方式
-        * HQL、Criteria 與 Native SQL
+在 Hibernate 的實戰開發中，如何精準掌握 Session 的開關時機與資料的快取狀態（Persistence Context），是決定系統效能與交易一致性的關鍵。這篇筆記主要記錄 Hibernate 查詢方法的差異、Session Cache 的管理，以及 MVC 架構中的交易控制實踐。
 
-## ( 1-1 ) 相關方法
-* \<T\> T load(Class\<T\> theClass, Serializable id)
-    * 說明
-        * 從實體類別對應的資料表中查詢
-        * 因為會使用延遲載入 ( Lazy loading ) 機制
-        * 所以只適用在確定對應的資料存在的情況下
-    * 參數
-        * theClass：實體類別
-        * id：欲查詢的識別值
-    * 回傳
-        * 查詢到的實體物件，永續狀態(Persistent)
+---
 
-## ( 1-2 ) get() vs. load()
-![](https://i.imgur.com/nULSzsi.png)
+## 1. 核心查詢方法：get() vs load()
 
-### ( 1-2-1 ) get()
-```java=
-public static MemberPojo selectByIdUseGet(Integer id) {
-	Session session = getSessionFactory().openSession();
-	try {
-		Transaction transaction = session.beginTransaction();
-		MemberPojo member = session.get(MemberPojo.class, id);
-		transaction.commit();
-		return member;
-	} catch (Exception e) {
-		session.getTransaction().rollback();
-		e.printStackTrace();
-		return null;
-	}
-}
-```
+在僅依賴主鍵 (OID) 查詢單筆資料時，最常用到的是 `get()` 與 `load()`。目前實務上必須清楚區分兩者的底層行為差異，否則容易踩到 `LazyInitializationException` 或是多餘的 SQL 查詢。
 
-### ( 1-2-2 ) load()
-```java=
-public static MemberPojo selectByIdUseLoad(Integer id) {
-	Session session = getSessionFactory().openSession();
-	try {
-		Transaction transaction = session.beginTransaction();
-		MemberPojo member = session.load(MemberPojo.class, id);
-		Hibernate.initialize(member); // 此行與延遲載入有關
-		transaction.commit();
-		return member;
-	} catch (Exception e) {
-		session.getTransaction().rollback();
-		e.printStackTrace();
-		return null;
-	}
-}
-```
+### Session.get()
+- **行為**：立即發送 SELECT 語句至資料庫查詢。
+- **回傳值**：若資料存在，回傳實體物件 (Persistent 狀態)；若不存在，回傳 `null`。
+- **使用場景**：當你不確定資料庫中是否有這筆資料，且需要立即使用時。
 
-# ( 2 ) Session 其他方法
-* 說明
-    * Session 物件 是 Hibernate 程式中的核心物件
-        * 又稱 Persistence Context
-    * Session 物件其中一項工作為
-        * 控制實體物件，這些物件都儲存在 Session Cache 中
-    * Session 物件基本上會自動控制 Session Cache
-        * 特殊情況下需手動控制 Session Cache，例如
-            * 移除 Session Cache 中的實體物件
-    * 另外，若透過 sessionFactory.openSession() 來取得 Session 物件
-        * 在執行新刪修動作時，有時必須手動刷新 Session Cache
+### Session.load()
+- **行為**：**延遲載入 (Lazy Loading)**。不會立刻發送 SQL，而是回傳一個具有該 OID 的「代理物件 (Proxy)」。
+- **回傳值**：回傳 Proxy。若後續操作該物件且資料庫中無此資料，會拋出 `ObjectNotFoundException`。
+- **使用場景**：當你「非常確定」資料存在，且只是需要這個物件來當作 Foreign Key 關聯（例如建立 Order 時塞入一個已知的 User），此時用 `load()` 可以省下一次 SELECT 查詢。
 
-## ( 2-1 ) 相關方法
-* void evict ( Object object )
-    * 說明
-        * 從 Session Cache 中移除實體物件
-    * 參數
-        * Object：欲移除的實體物件
-* void clear()
-    * 說明
-        * 移除所有 Session Cache 中的實體物件
-* void flush()
-    * 說明
-        * 強制刷新 Session Cache
-        * 此方法須在 transaction.commit() 和 session.close() 之前呼叫
+---
 
-### ( 2-1-1 ) 使用 flush()
-```java=
-public boolean deleteByIdFlush(Integer id) {
-	Member member = new Member();
-	member.setId(id);
-	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	Session session = sessionFactory.openSession();
-	try {
-		Transaction transaction = session.beginTransaction();
-		session.delete(member);
-		session.flush();
-		transaction.commit();
-		session.close();
-		return true;
-	} catch (HibernateException e) {
-		session.getTransaction().rollback();
-		e.printStackTrace();
-	}
-	return false;
-}
-```
+## 2. Session Cache (L1 Cache) 手動管理
 
-# ( 3 ) MVC 架構中的 Session 物件
-* Hibernate 是用來存取資料庫
-    * 相關程式都應撰寫在 DAO 層 ( Data Access Object Layer )
-* 但在 MVC 設計架構中
-    * 通常希望在 Service 層中負責商業邏輯，做資料庫的交易控制 ( Transaction Control )
-* 根據以上兩點會遇到什麼問題 ?
-    * 因為在 MVC 架構中的 Service 層會呼叫 DAO 層
-    * 並且做資料庫的交易控制
-    * 而在 Hibernate 中，若要取得 Transaction 物件，要透過 Session 取得
-        * 在這說明一下，在這之前練習的 DAO 範例，都是用
-        * Session session = getSessionFactory().openSession();
-        * 再用此 session 做交易控制，例如：
-        * Transaction transaction = session.beginTransaction();
-        * transaction.commit();
-        * 這樣就會導致交易控制在 DAO 層就結束了
-        * 但 MVC 設計架構下，是要在 Service 層來處理交易控制
-    * 如果 Transaction 物件都在 DAO 方法中取得
-    * 就無法讓多個 DAO 方法在同一個交易中
-    * Service 層就無法做交易控制
+Hibernate 的 Session 扮演著「一級快取 (L1 Cache)」的角色。被查出的物件會被納入 Persistence Context 中，若同一個 Session 內再次查詢相同的 OID，Hibernate 會直接從記憶體返回物件，而不會敲資料庫。
 
-## ( 3-1 ) 解決方法
-* DAO 方法中
-    * 透過 sessionFactory.getCurrentSession() 來取得 Session 物件
-    * 不呼叫 Transaction 的 beginTransaction() / commit() / rollback() 方法
-* Service 方法中
-    * 控制 Transaction 物件，呼叫 brginTransaction() / commit() / rollback() 方法
-* 原本在 DAO 層做交易控制，轉移到 Service 層
-* 在 Spring 環境中，可使用 TransactionManager 物件
-    * 加上 @Transactional 來解決此問題
+但在批次處理或特殊業務情境下，我們預計需要手動介入管理：
 
-* DAO 層
-```java=
-package com.members.dao.impl;
+- **`session.evict(Object)`**：將單一物件從 Session Cache 中剔除（變為 Detached 狀態）。
+- **`session.clear()`**：清空目前 Session 中的所有快取物件。通常在迴圈處理大量資料 (Batch Insert/Update) 時使用，避免發生 OutOfMemoryError (OOM)。
+- **`session.flush()`**：強制將目前 Cache 中的變更轉換為 SQL 語句發送到資料庫（但尚未 Commit）。原因是我們可能需要在 Commit 前讓某些觸發器 (Trigger) 生效，或取得資料庫生成的 Auto-Increment ID。
 
-import static core.util.HibernateUtil.*;
+---
 
-import java.util.List;
-import org.hibernate.Session;
-import com.members.dao.MemberDao;
-import com.members.pojo.MemberPojo;
+## 3. MVC 架構下的 Session 與交易管理 (Transaction)
 
-public class MemberDaoImpl implements MemberDao {
+這是一個常見的架構設計考題：**「Transaction 應該要放在 DAO 層還是 Service 層？」**
 
-	private Session getSession() {
-		return getSessionFactory().getCurrentSession();
-	}
+### 現況與問題分析
+在初學階段，我們常常在 DAO 層裡面寫 `sessionFactory.openSession()` 並直接 `commit`。
+這會導致嚴重的問題：**一個業務邏輯通常包含多個 DAO 操作（例如：扣款 + 建立訂單）。如果每個 DAO 各自 openSession 並 commit，只要中間某個步驟報錯，前面的操作已經寫入資料庫了，完全無法 Rollback。**
 
-	@Override
-	public Integer insert(MemberPojo member) {
-		getSession().persist(member);
-		return 1;
-	}
+### 實戰解法：將交易提升至 Service 層
+我們必須確保整個 Service 邏輯都在「同一個 Session」與「同一個 Transaction」中執行。
 
-	@Override
-	public Integer deleteById(Integer id) {
-		Session session = getSession();
-		MemberPojo member = session.load(MemberPojo.class, id);
-		session.delete(member);
-		return 1;
-	}
+1. **DAO 層只負責拿連線與操作**：
+   使用 `sessionFactory.getCurrentSession()` 獲取綁定在當前執行緒的 Session，**絕對不**在這裡執行 commit 或 rollback。
+   ```java
+   public Member findById(Integer id) {
+       // 取得當前 Context 下的 Session
+       return getSessionFactory().getCurrentSession().get(Member.class, id);
+   }
+   ```
 
-	@Override
-	public Integer update(MemberPojo newMember) {
-		MemberPojo member = getSession().load(MemberPojo.class, newMember.getMemberId());
-		member.setPassword(newMember.getAccount());
-		return 1;
-	}
+2. **Service 層負責交易邊界**：
+   在這裡控制 Transaction，確保多個 DAO 動作的原子性 (Atomicity)。
+   ```java
+   public void processCheckout(Integer memberId, Order order) {
+       Session session = getSessionFactory().getCurrentSession();
+       Transaction tx = session.beginTransaction();
+       try {
+           memberDao.deductBalance(memberId, order.getAmount());
+           orderDao.createOrder(order);
+           tx.commit(); // 全部成功才寫入
+       } catch (Exception e) {
+           tx.rollback(); // 發生錯誤則全部復原
+           throw e;
+       }
+   }
+   ```
 
-	@Override
-	public MemberPojo selectById(Integer id) {
-		return getSession().get(MemberPojo.class, id);
-	}
-
-	@Override
-	public List<MemberPojo> selectAll() {
-		return getSession().createQuery("from Member", MemberPojo.class).list();
-	}
-	
-}
-```
-* Service 層
-```java=
-package com.members.service.impl;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import com.members.dao.MemberDao;
-import com.members.dao.impl.MemberDaoImpl;
-import com.members.service.MemberService;
-
-import core.util.HibernateUtil;
-
-public class MemberServiceImpl implements MemberService {
-
-	private MemberDao dao;
-
-	public MemberServiceImpl() {
-		dao = new MemberDaoImpl();
-	}
-
-	public void someMethod() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			Transaction transaction = session.beginTransaction();
-
-			// dao.insert(member); // 新增
-			// dao.deleteById(1); // 刪除
-			// dao.update(member); // 修改
-			// Member member = dao.selectById(1); // 查單筆
-			// List<Member> list = dao.selectAll(); // 查多筆
-
-			transaction.commit();
-		} catch (Exception e) {
-			session.getTransaction().rollback();
-			e.printStackTrace();
-		}
-	}
-}
-```
+> 💡 **現代架構的下一步 (Spring Data JPA)**：
+> 目前在 Spring Boot 生態系中，我們幾乎不再手動寫 `beginTransaction()` 與 `commit()`。只要在 Service 層的方法上掛上 `@Transactional` 註解，Spring 的 AOP 就會自動幫我們接管上述的 `getCurrentSession` 與交易控制邏輯。
