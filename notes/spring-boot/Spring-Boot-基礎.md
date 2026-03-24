@@ -329,12 +329,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyAspect {
 
-    @Before("execution(* com.example.demo.HpPrinter.*(..))")
+    @Before("execution( com.example.demo.HpPrinter.(..))")
     public void before(){
         System.out.println("I'm before ! ");
     }
 
-    @After("execution(* com.example.demo.HpPrinter.*(..))")
+    @After("execution( com.example.demo.HpPrinter.(..))")
     public void after(){
         System.out.println("I'm after ! ");
     }
@@ -357,7 +357,7 @@ import java.util.Date;
 @Component
 public class MyAspect {
 
-    @Around("execution(* com.example.demo.HpPrinter.*(..))")
+    @Around("execution( com.example.demo.HpPrinter.(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
 
         System.out.println("------ Before ------");

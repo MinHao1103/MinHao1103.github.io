@@ -12,13 +12,13 @@
 
 - `@Entity`：(必填) 宣告這是一個需要被 Hibernate 管理的實體類別。
 - `@Table`：設定對應的資料庫 Table 名稱。例如 `@Table(name = "members")`。
-  - *Tip*: 若 Java 類別名稱與 Table 名稱完全相同（不區分大小寫），此註解可省略。
+  - Tip: 若 Java 類別名稱與 Table 名稱完全相同（不區分大小寫），此註解可省略。
 
 ### 屬性與主鍵設定
 - `@Id`：(必填) 宣告此屬性為 Table 的 Primary Key (主鍵/識別值)。
 - `@GeneratedValue`：設定主鍵的自動生成策略。最常用的是 `GenerationType.IDENTITY`（依賴資料庫的 Auto-Increment 功能）。
 - `@Column`：設定映射的欄位名稱。
-  - *Tip*: 基於自動映射機制，若屬性名稱為 `userName`，Hibernate 預設會自動映射到資料庫的 `user_name` 欄位（駝峰轉底線）。如果名稱一致，此註解可省略。
+  - Tip: 基於自動映射機制，若屬性名稱為 `userName`，Hibernate 預設會自動映射到資料庫的 `user_name` 欄位（駝峰轉底線）。如果名稱一致，此註解可省略。
 - `@Transient`：設定不被映射的屬性。如果某個變數只是為了在程式中做暫時計算（例如 `age` 是由 `birthday` 算出來的），不希望它在資料庫產生對應欄位，就必須加上這個註解。
 
 ---

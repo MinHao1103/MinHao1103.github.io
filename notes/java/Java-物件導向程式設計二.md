@@ -357,7 +357,7 @@ public class TestDate {
 		System.out.println("java.sql.Date()  = " + ds1);
 
 		// java.sql.Date(30天後)(如:2010-09-17)
-		long long2 = du.getTime() + 30 * 24 * 60 * 60 * 1000L;
+		long long2 = du.getTime() + 30  24  60  60  1000L;
 		java.sql.Date ds2 = new java.sql.Date(long2);
 		System.out.println("java.sql.Date()  = " + ds2);
 	}

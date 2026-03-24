@@ -105,7 +105,7 @@ public class TestArithmeticOP {
 		double numD = 2.0;
 		System.out.println(num1 + num2);
 		System.out.println(num1 - num2);
-		System.out.println(num1 * num2 * numD);
+		System.out.println(num1  num2  numD);
 		System.out.println(num1 / num2);
 		System.out.println(num1 / numD);
 		System.out.println(num1 % num2);
@@ -143,7 +143,7 @@ public class Demo01 {
 a = 2   --->  a = 2
 a += 2  --->  a = a + 2
 a -= 2  --->  a = a - 2
-a *= 2  --->  a = a * 2
+a = 2  --->  a = a  2
 a /= 2  --->  a = a / 2
 a %= 2  --->  a = a % 2
 ```
@@ -587,7 +587,7 @@ public class NineNineLoop {
 		int i, j;
 		for (i = 1; i <= 9; i++) {
 			for (j = 1; j <= 9; j++)
-				System.out.print(i + "*" + j + "=" + i * j + "\t");
+				System.out.print(i + "" + j + "=" + i  j + "\t");
 			System.out.println();
 		}
 	}
@@ -692,7 +692,7 @@ public class Calculator {
 
 ## 方法覆載機制(Overloading)
 * 觀念：
-    * Overloding 將功能類似的方法提供相同的方法名稱*java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。
+     Overloding 將功能類似的方法提供相同的方法名稱java 會自動依據參數的數目及不同的資料型別，自動呼叫對應的方法。
     * 例如：
         * public void println(int i)
         * public void println(float f)
@@ -706,7 +706,7 @@ public class Calculator {
 public class TestOverloading {
 	// 圓形面積
 	public static double areaMeasure(double radius) {
-		return radius * radius * 3.14;
+		return radius  radius  3.14;
 	}
 	// 長方形面積
 	public static double areaMeasure(double height, double width) {
@@ -838,7 +838,7 @@ public class PenTest {
     * 宣告
         * 宣告在方法裡或流程控制的區域裡
     * 初始值   
-        * 沒有預設初始值，存取之前，要給予初始值。*可以先宣告後再給值
+         沒有預設初始值，存取之前，要給予初始值。可以先宣告後再給值
     * 存取
         * 只能在自己所宣告的區域內使用,不能跨區直接使用 
     * 生命週期(scope)
@@ -1310,7 +1310,7 @@ public class Homework01 {
 ```
 # 字串不可變與字串池
 * String物件特性
-    * 不可變(immutable)字串：*String一旦宣告後，即不能在原所在記憶體位置改變字串內容*使用String類別任何方法時，傳回的字串都會放在新的記憶體空間
+     不可變(immutable)字串：String一旦宣告後，即不能在原所在記憶體位置改變字串內容*使用String類別任何方法時，傳回的字串都會放在新的記憶體空間
     * String s1 = new String("Hello");
         * 有自己的記憶體空間
     * String s1 = "Hello";

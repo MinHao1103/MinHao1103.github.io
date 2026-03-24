@@ -172,7 +172,7 @@ public class TestStackTrace {
 ## 自訂例外設計
 * 要自訂例外類別時
     * 必須繼承其中一個
-        * Throwable*Exception*RuntimeException
+         ThrowableException*RuntimeException
 * 可利用 throw 關鍵字
     * 將例外拋給負責處理此例外的 catch { } 區塊處理
 * 自訂的例外類別，通常會包含兩個建構子
@@ -256,7 +256,7 @@ public class CubeTest {
 ```
 ## 例外拋出方法與覆寫關係
 * 子類別覆寫父類別定義有 throws的方法時
-    * 子類別所 throws 的 Exception*必須與父類別被覆寫方法的 Exception 一樣或是更低階
+     子類別所 throws 的 Exception必須與父類別被覆寫方法的 Exception 一樣或是更低階
 ```java=
 public class BaseClass {
     public void method() throws IOException { }

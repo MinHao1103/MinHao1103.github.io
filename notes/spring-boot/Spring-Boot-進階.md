@@ -91,10 +91,10 @@ public class SecurityAspect {
 ### 常見失效場景
 1. 同類別內的內部呼叫 (Self-Invocation)：
    若 Class A 有 `method1()` 沒有加 `@Transactional`，而內部呼叫了有加的 `method2()`，交易會失效。原因是內部呼叫不會經過 Spring 生成的 Proxy 物件。
-   *解法*：把 `method2()` 抽到另一個 Service 裡，或透過 `AopContext.currentProxy()` 呼叫自己。
+   解法：把 `method2()` 抽到另一個 Service 裡，或透過 `AopContext.currentProxy()` 呼叫自己。
 2. 非 RuntimeException 不會回滾：
    預設情況下，只有發生 `RuntimeException` (Unchecked Exception) 時才會 rollback。如果拋出 `IOException` 等 Checked Exception，交易照樣會 commit。
-   *解法*：使用 `@Transactional(rollbackFor = Exception.class)`。
+   解法：使用 `@Transactional(rollbackFor = Exception.class)`。
 
 ---
 
