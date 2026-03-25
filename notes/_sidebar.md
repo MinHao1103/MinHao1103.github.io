@@ -31,6 +31,7 @@
   - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
   - [ActiveMQ 安裝與環境設定](devops/ActiveMQ-安裝與環境設定.md)
   - [Kubernetes K8S 入門與安裝](devops/Kubernetes-K8S-入門與安裝.md)
+  - [AWS 雲端服務入門](devops/AWS-雲端服務入門.md)
 
 - **🔧 開發工具**
   - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
