@@ -8,7 +8,7 @@
 
 ## 1. 核心 JPA 註解 (Annotation)
 
-在 Java 端被映射的類別，我們通常稱為 Entity (實體類別)。預計要在類別或屬性上加上以下註解：
+在 Java 端被映射的類別，我們通常稱為 Entity (實體類別)。需要在類別或屬性上加上以下註解：
 
 - `@Entity`：(必填) 宣告這是一個需要被 Hibernate 管理的實體類別。
 - `@Table`：設定對應的資料庫 Table 名稱。例如 `@Table(name = "members")`。

@@ -1,6 +1,6 @@
 > 🌱 **歷史存檔聲明**：
 > 這是早期初學階段留下的學習筆記與基礎練習紀錄，保留於此作為自己一路走來的初心回顧。
-> 若面試官或同行前輩想看進階架構與實戰踩坑，再麻煩直接參考上方「Java 底層與架構」或「Spring 生態系解析」等章節，謝謝！
+> 若面試官或同行前輩想看進階架構與實戰踩坑，請直接參考上方「Java 底層與架構」或「Spring 生態系解析」等章節，謝謝！
 
 ---
 
@@ -41,6 +41,6 @@ public class HibernateUtil {
 ---
 
 ## 2. 現況與下一步
-目前微服務專案中，再麻煩直接忘記這個工具類。Spring Boot 的 `DataSourceAutoConfiguration` 會在啟動時全自動幫你處理好所有的連線池與 `SessionFactory` 生命週期管理。
+目前微服務專案中，建議直接忽略這個工具類。Spring Boot 的 `DataSourceAutoConfiguration` 會在啟動時全自動幫你處理好所有的連線池與 `SessionFactory` 生命週期管理。
 
 ---

@@ -24,7 +24,7 @@
 
 Hibernate 的 Session 扮演著「一級快取 (L1 Cache)」的角色。被查出的物件會被納入 Persistence Context 中，若同一個 Session 內再次查詢相同的 OID，Hibernate 會直接從記憶體返回物件，而不會敲資料庫。
 
-但在批次處理或特殊業務情境下，我們預計需要手動介入管理：
+但在批次處理或特殊業務情境下，我們需要手動介入管理：
 
 - `session.evict(Object)`：將單一物件從 Session Cache 中剔除（變為 Detached 狀態）。
 - `session.clear()`：清空目前 Session 中的所有快取物件。通常在迴圈處理大量資料 (Batch Insert/Update) 時使用，避免發生 OutOfMemoryError (OOM)。

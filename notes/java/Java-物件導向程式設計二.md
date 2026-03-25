@@ -15,7 +15,7 @@
 ### BigDecimal 最佳實踐
 目前開發中，預計遇到小數運算一律使用 `BigDecimal`。
 - **踩坑點**：建構 `BigDecimal` 時，**一定要傳入字串 (`String`)**，不要傳入 `double`，否則依然會失去精度。
-- **除法例外**：如果除法產生無限循環小數，會拋出 `ArithmeticException`。再麻煩務必指定小數位數與進位模式。
+- **除法例外**：如果除法產生無限循環小數，會拋出 `ArithmeticException`。務必指定小數位數與進位模式。
 
 ```java
 // 正確建構方式
@@ -51,7 +51,7 @@ String result = sb.toString();
 
 ### 常見實戰範例
 在 Java 中，可以直接使用 `String.matches(regex)` 來進行快速驗證。
-> 💡 Tip: **Tip:** Java 字串中的反斜線 `\` 必須跳脫，所以寫正則時要用 `\\`。
+> 💡 Tip: Java 字串中的反斜線 `\` 必須跳脫，所以寫正則時要用 `\\`。
 
 ```java
 // 驗證台灣身分證字號 (首字大寫英文，第二碼 1 或 2，後面 8 碼數字)
@@ -67,7 +67,7 @@ boolean isValid = "T123456789".matches(regex);
 早期的 `java.util.Date` 與 `java.util.Calendar` 設計不良，且不是執行緒安全的。目前已被淘汰。
 
 ### 現代最佳實踐 (Java 8 引入的 `java.time` 套件)
-預計在處理時間時，全面改用 Java 8 的新 API。這些物件都是不可變的 (Immutable)，保證執行緒安全。
+在處理時間時，全面改用 Java 8 的新 API。這些物件都是不可變的 (Immutable)，保證執行緒安全。
 
 - **`LocalDate`**：僅處理日期 (年-月-日)，無時區概念。
 - **`LocalTime`**：僅處理時間 (時:分:秒)。

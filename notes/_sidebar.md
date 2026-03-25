@@ -4,8 +4,8 @@
 
 - **☕ Java 底層與架構**
   - [Java 進階核心機制](java/Java-進階.md)
-  - [Java OOP 設計模式實戰(一)](java/Java-物件導向程式設計一.md)
-  - [Java OOP 設計模式實戰(二)](java/Java-物件導向程式設計二.md)
+  - [Java 例外、集合與並發設計](java/Java-物件導向程式設計一.md)
+  - [Java 常用類別與精準運算](java/Java-物件導向程式設計二.md)
 
 - **🍃 Spring 生態系解析**
   - [Spring Boot 核心機制剖析](spring-boot/Spring-Boot-進階.md)
@@ -16,7 +16,6 @@
   - [Hibernate Session 狀態管理與 HQL](hibernate/撰寫-查詢方法及-Session-操作.md)
   - [Hibernate 效能優化與延遲載入](hibernate/延遲載入.md)
   - [Entity 實體與映射設計](hibernate/Hibernate-映射設定.md)
-  - [Hibernate 基本組態設定](hibernate/Hibernate-基本組態設定.md)
 
 - **🐳 DevOps 與雲端部署**
   - [Docker 常用指令與技巧](devops/docker.md)
@@ -27,6 +26,7 @@
   - [IntelliJ 開發效率技巧](spring-boot/IntelliJ-開發效率技巧.md)
   - [IntelliJ 管理資料庫數據](spring-boot/IntelliJ-管理資料庫數據.md)
   - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
+  - [Hibernate 基本組態設定](hibernate/Hibernate-基本組態設定.md)
   - [Hibernate 介紹與前置作業](hibernate/Hibernate-介紹.md)
   - [Hibernate 程式的基本架構](hibernate/Hibernate-程式的基本架構.md)
   - [Hibernate 實體與類別物件](hibernate/實體-類別物件.md)

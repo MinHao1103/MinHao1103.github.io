@@ -43,7 +43,7 @@
 ```
 
 ### 方式二：使用 JNDI 中的 DataSource (適用於正式環境)
-預計部署到正式伺服器（如 Tomcat / WebLogic）時，通常會使用 JNDI 來管理連線池。好處是程式碼不需要知道真實的帳密，只要去伺服器取名為 `java:comp/env/jdbc/my_db` 的資源就好。
+部署到正式伺服器（如 Tomcat / WebLogic）時，通常會使用 JNDI 來管理連線池。好處是程式碼不需要知道真實的帳密，只要去伺服器取名為 `java:comp/env/jdbc/my_db` 的資源就好。
 
 ```xml
 <hibernate-configuration>
@@ -57,7 +57,7 @@
 
 ## 3. 其他常用與效能除錯設定
 
-再麻煩注意，開發階段建議開啟 SQL 顯示功能，這樣在除錯與觀察效能（例如排查 N+1 問題）時會非常方便。
+注意：開發階段建議開啟 SQL 顯示功能，這樣在除錯與觀察效能（例如排查 N+1 問題）時會非常方便。
 
 ```xml
 <hibernate-configuration>

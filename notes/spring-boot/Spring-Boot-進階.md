@@ -103,7 +103,7 @@ public class SecurityAspect {
 身為資深工程師，寫出可測試的代碼與寫出能跑的代碼一樣重要。
 
 ### JUnit 5 + Mockito 實戰
-在 Service 層的測試中，預計不應該啟動整個 Spring 容器，也「絕對不要」連線真實資料庫，而是使用 Mockito 將 Repository 模擬出來。
+在 Service 層的測試中，不應該啟動整個 Spring 容器，也「絕對不要」連線真實資料庫，而是使用 Mockito 將 Repository 模擬出來。
 
 ```java
 @ExtendWith(MockitoExtension.class)
@@ -130,4 +130,4 @@ class OrderServiceTest {
     }
 }
 ```
-再麻煩注意，如果是要測 API 端點的行為，則會使用 `@WebMvcTest` 搭配 `MockMvc` 來進行表現層的隔離測試。
+注意：如果是要測 API 端點的行為，則會使用 `@WebMvcTest` 搭配 `MockMvc` 來進行表現層的隔離測試。

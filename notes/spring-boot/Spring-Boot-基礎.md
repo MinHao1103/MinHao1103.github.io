@@ -16,7 +16,7 @@
 - **限制**：只能用在你自己寫的原始碼上。如果是第三方 Library 的類別（例如 `ObjectMapper` 或是 `RedisTemplate`），你無法去改別人的原始碼加註解。
 
 ### 方法二：使用 `@Configuration` + `@Bean`
-當你預計需要實例化第三方套件的物件，或是需要經過複雜的初始化設定時，這是唯一的做法。
+當你需要實例化第三方套件的物件，或是需要經過複雜的初始化設定時，這是唯一的做法。
 ```java
 @Configuration
 public class MyConfig {
@@ -100,4 +100,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 }
 ```
 
-> 💡 Tip: **Tip:** 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），再麻煩退回使用 `Criteria API`、`QueryDSL` 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
+> 💡 Tip: 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），再麻煩退回使用 `Criteria API`、`QueryDSL` 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
