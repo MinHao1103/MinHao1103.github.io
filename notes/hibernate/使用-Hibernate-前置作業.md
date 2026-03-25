@@ -4,102 +4,20 @@
 
 ---
 
-( 六 ) 使用 Hibernate 前置作業
-===
-# ( 1 ) 加入 Hibernate Library
-```xm;
-<dependencies>
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-core</artifactId>
-		<version>5.6.7.Final</version>
-	</dependency>
-</dependencies>
-```
+# 使用 Hibernate 的前置作業
 
-# ( 2 ) 使用框架皆須設定組態，Hibernate 也不例外
-## ( 2-1 ) 新建核心組態檔
-* → Hibernate → Hibernate Configuration File(cfg.xml) → Next → Next → Finish
-## ( 2-2 ) Hibernate 組態設定 ( Connection )
-* 資料庫連線設定
-    * Session Factory → Properties → Connection
-* Driver Class 輸入
-    * com.mysql.cj.jdbc.Driver
-* URL 輸入
-    * jdbc:mysql://localhost:3306/JAVA_FRAMEWORK
-* Username 輸入
-    * root
-* Password 輸入
-    * 你的密碼
-## ( 2-2 ) Hibernate 組態設定 ( Hibernate )
-* 其他設定
-    * Session Factory → Properties → Hibernate
-* Dialect 輸入
-    * org.hibernate.dialect.MySQL8Dialect
-* Show Sql 選 true
-* Format Sql 選 true
+這篇筆記記錄了在傳統 Java 專案中，如何手動初始化 Hibernate 的配置。
+原因是這有助於理解 ORM 框架在底層需要哪些基礎資訊才能運作。
 
-## ( 2-3 ) 確認組態檔
-* 切換至 Source 模式
-* 將 \<session-factory name=""\> 改成 \<session-factory\> (即刪除name屬性) 存檔
-# ( 3 ) Hibernate 映射設定 ( Annotation 的方式 )
-* @Column(name="xxx")
-* 由於資料庫端對應的欄位名，含有底線 ( _ ) 與Java端不同
-* 所以須另外以 name 屬性設定其名稱
-## ( 3-1 ) 註冊實體
-* 開啟 核心組態檔 ( hibernate.cfg.xml )
-* 在 \<session-factory\> 中加入 \<mapping\>
-# ( 4 ) 純 Hibernate 環境下，須使用 HibernateUtil
-* 說明
-    * 純 Hibernate環境下，須使用 HibernateUtil
-        * 用來載入 Hibernate 組態
-* 新建 HibernateUtil 類別
-    * src/main/java → core → util → 右鍵
-    * → New → Class → Name 輸入 HibernateUtil → Finish
-```java=
-public class HibernateUtil {
-	private static StandardServiceRegistry registry;
-	private static SessionFactory sessionFactory;
+## 1. 建立核心組態檔
+- 在 `src/main/resources` 下建立 `hibernate.cfg.xml`。
+- 這是 Hibernate 啟動時預設會尋找的設定檔。
 
-	private static void buildSessionFactory() {
-		try {
-			registry = new StandardServiceRegistryBuilder().configure().build();
-			MetadataSources metadataSource = new MetadataSources(registry);
-			Metadata metadata = metadataSource.getMetadataBuilder().build();
-			sessionFactory = metadata.getSessionFactoryBuilder().build();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+## 2. 設定連線與方言 (Dialect)
+- 填入資料庫的 URL、Username 與 Password。
+- 指定方言（例如 `org.hibernate.dialect.MySQL8Dialect`），這決定了 Hibernate 產生的 SQL 語法會針對哪個資料庫進行最佳化。
+- 預計在開發環境中，會開啟 `show_sql` 與 `format_sql` 以便除錯。
 
-	public static SessionFactory getSessionFactory() {
-		if (sessionFactory == null) {
-			buildSessionFactory();
-		}
-		return sessionFactory;
-	}
-
-	public static void shutdown() {
-		if (registry != null) {
-			StandardServiceRegistryBuilder.destroy(registry);
-		}
-	}
-}
-```
-
-## ( 4-1 ) 使用 main 測試
-```java=
-public class TestApp {
-    public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Member member = session.get(Member.class, 1);
-        System.out.println(member.getNickname());
-        HibernateUtil.shutdown();
-    }
-}
-```
-# ( 5 ) 介紹工具類別
-* java 中 Math 是一個工具類別
-    * 為什麼在 Math 類別中，需要一個建構值是 private 無參數建構值
-    * 因為本身是一個工具類別，不會有需要 Math 物件的存在
-    * 而它的修飾字為 public static ( 公開 靜態 )
+## 3. 註冊實體與測試
+- 使用 `<mapping class="com.example.Entity" />` 將加上了 `@Entity` 註解的類別註冊到組態檔中。
+- 透過 `main` 方法執行 `Configuration().configure().buildSessionFactory()` 來測試連線是否成功建立。
