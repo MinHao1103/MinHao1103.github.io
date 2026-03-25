@@ -10,12 +10,12 @@
 
 除了我們在進階篇提到的 IoC 機制，目前實務上創建 Bean 有兩種最常見的方式。
 
-### 方法一：使用 `@Component` 及其衍生註解
-最常見的做法。只要在 Class 上加上 `@Component`（或 `@Service`, `@Controller`, `@Repository`），Spring 啟動時掃描到就會自動幫你實例化並放進容器裡。
+### 方法一：使用 @Component 及其衍生註解
+最常見的做法。只要在 Class 上加上 **`@Component`**（或 `@Service`, `@Controller`, `@Repository`），Spring 啟動時掃描到就會自動幫你實例化並放進容器裡。
 - **優點**：簡單快速，直接在自己寫的類別上加個註解就好。
-- **限制**：只能用在你自己寫的原始碼上。如果是第三方 Library 的類別（例如 `ObjectMapper` 或是 `RedisTemplate`），你無法去改別人的原始碼加註解。
+- **限制**：只能用在你自己寫的原始碼上。如果是第三方 Library 的類別，你無法去改別人的原始碼加註解。
 
-### 方法二：使用 `@Configuration` + `@Bean`
+### 方法二：使用 @Configuration + @Bean
 當你需要實例化第三方套件的物件，或是需要經過複雜的初始化設定時，這是唯一的做法。
 ```java
 @Configuration
@@ -33,7 +33,7 @@ public class MyConfig {
 
 ## 2. Spring MVC 核心概念
 
-Spring MVC 是我們開發 RESTful API 的核心。
+**Spring MVC** 是我們開發 RESTful API 的核心。
 
 ### 常用註解速查
 - **`@RestController`**：等於 `@Controller` + `@ResponseBody`。它會告訴 Spring，這個類別回傳的資料不是 HTML 網頁，而是要直接轉換成 JSON 格式回傳給前端。
@@ -45,9 +45,9 @@ Spring MVC 是我們開發 RESTful API 的核心。
   - `@DeleteMapping`：對應 HTTP DELETE (刪除資料)
 
 ### 參數接收方式 (Parameter Binding)
-1. **`@RequestParam`**：接收 URL Query String。例如 `/api/users?name=Hao`。
-2. **`@PathVariable`**：接收 URL 路徑變數。例如 `/api/users/{id}`。
-3. **`@RequestBody`**：接收 HTTP 請求的 Body (通常是 JSON 格式)，並自動反序列化 (Deserialize) 成 Java 物件。
+1. **`@RequestParam`**：接收 URL Query String。
+2. **`@PathVariable`**：接收 URL 路徑變數。
+3. **`@RequestBody`**：接收 HTTP 請求的 Body，並自動反序列化 (**Deserialize**) 成 Java 物件。
 
 ---
 
@@ -58,7 +58,7 @@ Spring MVC 是我們開發 RESTful API 的核心。
 ### 實戰寫法
 1. 確保 `pom.xml` 有引入 `spring-boot-starter-validation`。
 2. 在 DTO 的欄位上加上驗證註解，例如 `@NotNull`, `@NotBlank`, `@Email`, `@Min`, `@Max`。
-3. 在 Controller 接收參數時加上 `@Valid`。
+3. 在 Controller 接收參數時加上 **`@Valid`**。
 
 ```java
 // DTO 定義
@@ -73,7 +73,6 @@ public class UserRequest {
 // Controller 接收
 @PostMapping("/users")
 public ResponseEntity<String> createUser(@RequestBody @Valid UserRequest request) {
-    // 只要有任何一個欄位不符合規範，Spring 會自動拋出 MethodArgumentNotValidException，並回傳 400 Bad Request
     return ResponseEntity.ok("新增成功");
 }
 ```
@@ -82,16 +81,15 @@ public ResponseEntity<String> createUser(@RequestBody @Valid UserRequest request
 
 ## 4. Spring Data JPA 基礎
 
-相比於手寫 SQL (Spring JDBC) 或複雜的 Hibernate 映射，目前業界最常使用 Spring Data JPA 來大幅減少 CRUD 的程式碼。
+相比於手寫 SQL (Spring JDBC)，目前業界最常使用 **Spring Data JPA** 來大幅減少 CRUD 的程式碼。
 
 ### Repository 介面
-只要繼承 `CrudRepository` 或 `JpaRepository`，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法（例如 `findById`, `save`, `deleteById`）。
+只要繼承 **`CrudRepository`** 或 **`JpaRepository`**，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法。
 
 ```java
 public interface UserRepository extends JpaRepository<User, Integer> {
     
     // 方法名稱查詢 (Method Name Query Generation)
-    // 只要按照規範命名，Spring 會自動幫你轉譯成對應的 SQL
     List<User> findByNameAndAgeGreaterThan(String name, Integer age);
     
     // 自定義 HQL
@@ -100,4 +98,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 }
 ```
 
-> 💡 Tip: 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），建議退回使用 `Criteria API`、`QueryDSL` 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
+> 💡 Tip: 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），建議退回使用 Criteria API、QueryDSL 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
+
+---
