@@ -11,8 +11,6 @@
     * 繁瑣且無技術價值
 * 只要撰寫存取關聯式資料庫的程式，都會遇到此種問題
     * 故發展出 ORM 概念
-![](https://i.imgur.com/s9olKjx.png)
-
 # ( 2 ) 什麼是 ORM，Object Relational Mapping ?
 * 物件導向程式語言 ( 由軟體工程發展而來 )
 * 關聯式資料庫 ( 由數學中發展出來 )
@@ -34,7 +32,6 @@
             * Hibernate 可自動生成SQL語句，自動執行
 
 # ( 4 ) Hibernate 架構
-![](https://i.imgur.com/u7dplNm.png)
 * 名詞解釋
     * Data Access Layer ( 數據訪問層，DAL ) -> DAO
         * 在物件導向中，數據訪問層可能會回傳對象的引用及它的屬性

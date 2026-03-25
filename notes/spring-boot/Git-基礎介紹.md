@@ -14,8 +14,6 @@ Git 版本控制
 * 軟體工程：
     * 面對一個大型系統，工程師們要如何分工合作，一起解決問題？
     * MVC 架構模式、Git 版本控制
-![](https://i.imgur.com/cO64gIE.png)
-
 ## ( 1-1 ) Git 專有名詞
 * Remote：雲端
 * Local：自己的電腦
@@ -27,30 +25,20 @@ Git 版本控制
 # ( 2 ) 在 Git 建立 Repository
 
 ## ( 2-1 ) New repository
-![](https://i.imgur.com/VTktOlP.png)
-
 ## ( 2-2 ) IntelliJ
 * File → New → Project from Version Controller
     * URL：剛才在 Git 創建的 repository 的網址
-![](https://i.imgur.com/PwePrgN.png)
-
 ## ( 2-3 ) Git 按鈕
 * Update Project：Pull，藍色向下箭頭
 * commit：打勾的符號
 * push：綠色向上箭頭
-![](https://i.imgur.com/eMhnw2v.png)
-
 ## ( 2-4 ) commit
 * 上方勾選要 commit 的檔案
 * 下方填寫修改的資訊
 * 建議一次不要 commit 太多檔案
-![](https://i.imgur.com/WAW6geu.png)
-
 # ( 3 ) Git 多人開發
 * Git 中的 branch ( 分支 ) 概念，多人開發的精隨
 * 每一個 branch就是一個平行世界，各個 branch 之間不會互相影響
-![](https://i.imgur.com/EZrz75x.png)
-
 ## ( 3-1 ) Git 專有名詞
 * Branch：分支
 * Checkout：切換 branch
@@ -58,8 +46,6 @@ Git 版本控制
 * master：自己電腦上的 master branch
 
 ## ( 3-2 ) 創建 branch
-![](https://i.imgur.com/fOWKBq0.png)
-
 ## ( 3-3 ) 合併 branch 兩種方法
 * 使用 Git 的 merge 指令 ( 較少使用 )
 * 提交 Pull Request ( 最常用 )

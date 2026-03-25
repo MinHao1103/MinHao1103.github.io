@@ -10,8 +10,6 @@ IntelliJ
 # ( 1 ) IntelliJ 中的 Debug 模式
 * 可以新增斷點 ( breakpoint )，一行一行的執行程式
 * 可以馬上知道運行中變數的值
-![](https://i.imgur.com/Vx88G31.png)
-
 ## ( 1-1 ) Debug 視窗左側按鈕介紹
 * Resume
     * 繼續 Spring Boot 程式，直到下一個斷點
@@ -35,8 +33,6 @@ IntelliJ
 
 ## ( 1-3 ) 在斷點上按下右鍵
 * 可以在 For Loop 加上條件
-![](https://i.imgur.com/cB7uoZ8.png)
-
 ## ( 1-4 ) DeBug Lambda 表達式
 * Trace Currnet Stream Chain
     * 較複雜的 Lambda 表達式，不建議使用
@@ -60,16 +56,10 @@ IntelliJ
 
 ## ( 2-1 ) 如何根據 url 路徑，找到所在的 Controller
 * 下方 Encoding，IntelliJ 會列出所有 url Mapping
-![](https://i.imgur.com/9CKuf0L.png)
-
 ## ( 2-2 ) 定位當前所在的位置
 * Select Opened File
-![](https://i.imgur.com/v7h01Ra.png)
-
 ## ( 2-3 ) 查看某支程式的 class 有哪些方法
 * Structure 標籤
-![](https://i.imgur.com/Gy4p6TK.png)
-
 ## ( 2-4 ) 如何同時載入多個 Project
 * File → Model from Existing Source
     * 開啟另一個 Project 的 pom.xml 檔
@@ -80,17 +70,11 @@ IntelliJ
 
 ## ( 3-1 ) Nyan Progress Bar
 * 進度條變成彩虹貓
-![](https://i.imgur.com/FZtwdT9.png)
-
 ## ( 3-2 ) One Dark theme
 * 讓編輯器顏色變豐富
-![](https://i.imgur.com/eDrFwvM.png)
-
 # ( 4 ) [IDEA 修改錯誤提示顏色](https://blog.csdn.net/qq_34120430/article/details/98483186)
 * File → Settings → Editor → Color Scheme → General
     * Errors and Warnings → Warning → Effects ( C0C0C0 )
-![](https://i.imgur.com/LOAt7Ti.png)
-
 # ( 5 ) [Code With Me](https://www.jetbrains.com/help/idea/code-with-me.html)
 * 可用 IntelliJ 共同編輯
 
@@ -99,8 +83,6 @@ IntelliJ
 * 使用條件：
     * pom.xml 中加上 Lombok
     * IntelliJ 中安裝 Lombok 插件
-![](https://i.imgur.com/KFnnele.png)
-
 ## @Getter、@Setter
 * 自動生成 @Getter、@Setter
 * Student.java

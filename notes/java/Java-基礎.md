@@ -8,7 +8,6 @@ Java - 基礎
 ===
 
 # 基本觀念與編譯執行
-![](https://i.imgur.com/L8GquyT.png)
 * JAVA 將 source code 編譯成位元組 (byte code).class檔，
 * 依賴 JAVA Virtual Machine 解釋 .class檔，
 * 一次編寫，到處執行(Write once run anywhere)=>誇平台。 
@@ -27,11 +26,7 @@ Java - 基礎
 | 邏輯     | boolean     | false     |
 
 ## 基本資料型態
-![](https://i.imgur.com/xRPrdN0.png)
-
 ## 基本資料型態其初始值指定
-![](https://i.imgur.com/EkzjG22.png)
-
 ## 變數種類整理
 ### 區域變數( Local variables )
 * 宣告在方法 ( method ) 或程式碼區塊( block ) 內
@@ -242,7 +237,6 @@ public class TestTernaryOP {
 ```
 
 ## 關係運算子
-![](https://i.imgur.com/mVxn2sy.png)
 ```java=
 public class TestRelationalOP {
 	public static void main(String[] args) {
@@ -838,8 +832,6 @@ public class PenTest {
 |類別型態  |null    |
 
 ## 區域變數 / 實體變數
-![](https://i.imgur.com/irz6SQz.png)
-
 * 區域變數 ( local )
     * 宣告
         * 宣告在方法裡或流程控制的區域裡
@@ -863,15 +855,8 @@ public class PenTest {
         * 跟著所屬的物件實體創建而存在,
         * 只要該物件實體還在, 此實體變數就會隨著物件存活著, 直到該物件消失才結束
 ## 變數於記憶運作機制
-![](https://i.imgur.com/z9Z7jcG.png)
-
-![](https://i.imgur.com/eKYe9Ff.png)
-
- 
 * 類別 ( class ) 只用來決定( Object ) 形成的樣子
     * 當物件 ( Object ) 形成時，物件就變成一個記憶體中的空間
-![](https://i.imgur.com/5XGijy0.png)
-
 ### pass by value / pass by reference
 * 傳遞參數為基本資料型別，採用pass by value (傳值)
 * 傳遞參數為物件，則採用pass by reference  (傳址)
@@ -1326,8 +1311,6 @@ public class Homework01 {
 所以可以讓多個變數參考相同物件
 不用怕有修改的問題發生
 達到重複使用、減少資源消耗
-![](https://i.imgur.com/vnnF7jv.png)
-
 ## 字串比較 == 、 equals
 * Java字串的 == 與 equals
 * String的比較
@@ -1417,15 +1400,9 @@ public class Demo01 {
 	}
 }
 ```
-![](https://i.imgur.com/4NvmleM.png)
 * 編譯時出現亂碼，需要將儲存的編碼格式修改為：ANSI
 
 ### Eclipse
-![](https://i.imgur.com/qX4w61o.png)
-![](https://i.imgur.com/g4q15ug.png)
-![](https://i.imgur.com/Kkjgi4G.png)
-![](https://i.imgur.com/Cup3sfi.png)
-
 ## 不固定參數機制(varargs)
 * Varargs(不固定參數個數 / 可變數目的參數)
     * 方法內可使用 [...]點號，宣告[可變數目的參數]
