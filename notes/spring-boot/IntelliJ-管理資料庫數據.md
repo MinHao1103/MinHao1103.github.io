@@ -4,91 +4,18 @@
 
 ---
 
-使用 IntelliJ 管理資料庫數據
-===
-# ( 1 ) Database
-* 在 IntelliJ 視窗的右邊有一個 Database
-* 點選 + 號 -> Data Source -> MySQL
-# ( 2 ) 設定 Database
-* Name：可任意名稱，方便自己辨識
-* Host、Port：不用改
-* User、Password：輸入自己的資料庫帳號密碼
-* 最後按下 Test Connection
-# ( 3 ) 下載相對應的 Driver Files
-# ( 4 ) 成功畫面
-# ( 5 ) 建立資料庫
-* mysql local 右鍵 -> Jump to Query Console
-* console ( Default )
-* 輸入 CREATE DATABASE myjdbc 並且按下執行
-# ( 6 ) 建立 Table
-```sql=
-CREATE TABLE student(
-    id INT PRIMARY KEY,
-    name VARCHAR(30)
-)
-```
-* 寫好創建 Table 的 SQL 語法後
-* 記得要指定在哪一個 DataBase 創建 Table
-* 如下表所示
-# ( 7 ) 使用快捷鍵執行 SQL 語法
-* 將鼠標移至欲執行的 SQL 指令
-# ( 8 ) 基本 SQL 指令
-```sql=
--- 新增 C
-INSERT INTO student(id, name) VALUE (1,'Eden');
+# IntelliJ 內建資料庫管理
 
--- 查詢 R
-SELECT * FROM student;
+這篇筆記記錄了如何使用 IntelliJ 內建的 Database 工具。
+原因是不需要額外開啟 DBeaver 或 DataGrip，直接在 IDE 內就能完成資料庫操作，效率最高。
 
--- 修改 U
-UPDATE student SET name = 'Peter' WHERE id = 1;
+## 1. 連線設定
+- 在右側邊欄打開 **Database** 面板。
+- 點擊 `+` 新增 Data Source (例如 MySQL)。
+- 輸入 URL、User、Password，並點擊 **Test Connection** 確保連線正常。
 
--- 刪除 D
-DELETE FROM student WHERE id = 1;
-```
-
-# ( 9 ) 圖形化介面 操作 資料庫
-* 點擊 student Table 兩下
-## ( 9-1 ) 新增
-* 點擊 + 號，新增一筆資料
-* 輸入完成後，按下 DB Submit 按鈕即可
-## ( 9-2 ) 修改
-* 直接修改後，按下 DB Submit 即可
-## ( 9-3 ) 刪除
-* 點擊 - 號，刪除一筆資料
-* 按下 DB Submit 按鈕即可
-## ( 9-4 ) 重新整理
-* 如果是不小心修改到資料庫中的數據
-* 按下 Reload Page，可以回復到一開始的狀態
-## ( 9-5 ) 查詢
-## ( 9-6 ) Teanspose 行列反轉
-# ( 10 ) pom.xml 資料庫連線設定
-## ( 10-1 ) 讓 Spring Boot 程式，可以使用 Spring JDBC 的功能
-```xml=
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-jdbc</artifactId>
-</dependency>
-```
-
-## ( 10-2 ) [MySQL Drivers](https://mvnrepository.com/artifact/mysql/mysql-connector-java)
-* 選擇你需要的版本，添加 MySQL 的 Driver
-* 讓 Spring Boot 程式，能夠成功連線到 MySQL 資料庫
-```xml=
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.22</version>
-</dependency>
-```
-## ( 10-3 ) application.properties
-* [MySQL Timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-```properties=
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/myjdbc?serverTimezone=Asia/Taipei&characterEncoding=utf-8
-spring.datasource.username=root
-spring.datasource.password=root
-```
-## ( 10-4 ) Bean NamedParameterJdbcTemplate
-* 當 ( 10-1 ) ~ ( 10-3 ) 都設定好之後
-* Spring JDBC 會自動創建 NamedParameterJdbcTemplate 的 Bean
+## 2. 實戰應用
+目前我在開發 Spring Boot 時，預計都會直接使用這個工具：
+- 撰寫 SQL 時享有**自動補全 (Auto-Completion)**。
+- 雙擊 Table 直接檢視與修改資料。
+- 快速匯出/匯入 DDL 與 DML 腳本。
