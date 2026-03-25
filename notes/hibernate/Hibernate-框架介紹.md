@@ -18,7 +18,7 @@
 ---
 
 ## 2. 與 JPA 的關係
-- **JPA (Java Persistence API)**：是 Java 官方制定的 ORM「規範/介面」。
+- **JPA** (Java Persistence API)：是 Java 官方制定的 ORM「規範/介面」。
 - **Hibernate**：是 JPA 規範最主流的「實作體」。
 - **現況**：目前在微服務專案中，我們預計直接使用 Spring Data JPA，它底層預設就是封裝了 Hibernate。
 

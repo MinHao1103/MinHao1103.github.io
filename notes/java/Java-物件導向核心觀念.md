@@ -6,12 +6,12 @@
 
 ## 1. 封裝 (Encapsulation) 與存取修飾字
 
-封裝的本質是**隱藏物件的內部實作細節，僅對外開放安全的存取介面 (Getter/Setter)**。
+封裝的本質是**隱藏物件的內部實作細節，僅對外開放安全的存取介面** (Getter/Setter)。
 
 ### 存取權限等級
 由嚴格到寬鬆依序為：
 1. **`private`**：僅限類別內部存取。（實體變數的最佳實踐）
-2. **`default` (預設/不寫)**：同一個 Package 下可存取。
+2. **`default`** (預設/不寫)：同一個 Package 下可存取。
 3. **`protected`**：同 Package，或是不同 Package 但為「子類別」時可存取。
 4. **`public`**：對所有類別開放。
 
@@ -24,10 +24,10 @@
 `static` 是一個容易踩坑的關鍵字。被宣告為 `static` 的變數或方法，**不屬於任何單一物件，而是屬於整個類別共用**。
 
 ### 核心特性
-- **靜態變數 (Static Variables)**：
+- **靜態變數** (Static Variables)：
   - 儲存在 Method Area (方法區)，全域共用一份記憶體。
   - 通常用來定義常數 (搭配 `final`)。例如：`public static final double PI = 3.14;`
-- **靜態方法 (Static Methods)**：
+- **靜態方法** (Static Methods)：
   - 不需要 `new` 出物件就能直接透過 `ClassName.methodName()` 呼叫（如 `Math.random()`）。
   - > ⚠️ 踩坑點：靜態方法內絕對不能直接存取非靜態 (實體) 的變數或方法，也不能使用 `this` 或 `super` 關鍵字，因為靜態方法執行時，物件可能根本還沒被創建。
 
@@ -60,7 +60,7 @@ myPet.makeSound(); // 執行時會印出 "汪汪"，而非 Animal 的叫聲
 
 ### 為什麼需要多型？
 原因是為了讓程式具備極佳的**擴展性與彈性**。
-例如，在設計一個 `vetService(Animal pet)` 方法時，我們不需要為了 Dog 或 Cat 分別寫不同的方法，只要傳入不同的子類實體，Java 就會透過**動態繫結 (Dynamic Binding)** 在執行期 (Runtime) 決定要呼叫哪個子類別的實作。
+例如，在設計一個 `vetService(Animal pet)` 方法時，我們不需要為了 Dog 或 Cat 分別寫不同的方法，只要傳入不同的子類實體，Java 就會透過**動態繫結** (Dynamic Binding) 在執行期 (Runtime) 決定要呼叫哪個子類別的實作。
 
 ### 強制轉型與 instanceof
 如果要使用子類別獨有的方法，必須向下轉型 (Downcasting)。為了避免 `ClassCastException`，轉型前一定要先檢查：

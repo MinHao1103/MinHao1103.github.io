@@ -14,7 +14,7 @@
 - **使用場景**：當你不確定資料庫中是否有這筆資料，且需要立即使用時。
 
 ### Session.load()
-- **行為**：**延遲載入 (Lazy Loading)**。不會立刻發送 SQL，而是回傳一個具有該 OID 的「代理物件 (Proxy)」。
+- **行為**：**延遲載入** (Lazy Loading)。不會立刻發送 SQL，而是回傳一個具有該 OID 的「代理物件 (Proxy)」。
 - **回傳值**：回傳 Proxy。若後續操作該物件且資料庫中無此資料，會拋出 `ObjectNotFoundException`。
 - **使用場規**：當你「非常確定」資料存在，且只是需要這個物件來當作 Foreign Key 關聯（例如建立 Order 時塞入一個已知的 User），此時用 `load()` 可以省下一次 SELECT 查詢。
 
@@ -22,7 +22,7 @@
 
 ## 2. Session Cache (L1 Cache) 手動管理
 
-Hibernate 的 Session 扮演著「**一級快取 (L1 Cache)**」的角色。被查出的物件會被納入 Persistence Context 中，若同一個 Session 內再次查詢相同的 OID，Hibernate 會直接從記憶體返回物件，而不會敲資料庫。
+Hibernate 的 Session 扮演著「**一級快取** (L1 Cache)」的角色。被查出的物件會被納入 Persistence Context 中，若同一個 Session 內再次查詢相同的 OID，Hibernate 會直接從記憶體返回物件，而不會敲資料庫。
 
 但在批次處理或特殊業務情境下，我們需要手動介入管理：
 

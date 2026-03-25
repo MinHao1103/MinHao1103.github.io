@@ -12,7 +12,7 @@
 ---
 
 ## 1. 核心開發工具
-- **STS (Spring Tool Suite)**：基於 Eclipse 的 IDE，內建對 Spring 的支援。
+- **STS** (Spring Tool Suite)：基於 Eclipse 的 IDE，內建對 Spring 的支援。
 - **JDK**：建議安裝 LTS 版本並設定好環境變數。
 - **JBoss Tools**：在 STS 內安裝，用來輔助撰寫 `hibernate.cfg.xml` 與 `.hbm.xml` 等設定檔。
 

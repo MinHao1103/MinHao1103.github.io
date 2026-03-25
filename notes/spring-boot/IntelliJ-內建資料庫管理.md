@@ -20,7 +20,7 @@
 
 ## 2. 實戰應用
 目前我在開發 Spring Boot 時，都會直接使用這個工具：
-- 撰寫 SQL 時享有**自動補全 (Auto-Completion)**。
+- 撰寫 SQL 時享有**自動補全** (Auto-Completion)。
 - 雙擊 Table 直接檢視與修改資料。
 - 快速匯出/匯入 DDL 與 DML 腳本。
 

@@ -12,9 +12,9 @@
 ---
 
 ## 1. 實體類別的四大規範 (POJO)
-1. **必須有預設建構子 (No-args Constructor)**：Hibernate 底層依賴無參數建構子來實例化物件。
-2. **屬性必須私有化 (Private)**：遵守封裝原則，並提供 `public` 的 Getter/Setter。
-3. **必須有一個主鍵 (OID)**：用來唯一識別資料庫中的紀錄 (對應 `@Id`)。
+1. **必須有預設建構子** (No-args Constructor)：Hibernate 底層依賴無參數建構子來實例化物件。
+2. **屬性必須私有化** (Private)：遵守封裝原則，並提供 `public` 的 Getter/Setter。
+3. **必須有一個主鍵** (OID)：用來唯一識別資料庫中的紀錄 (對應 `@Id`)。
 4. **不要宣告為 `final`**：如果類別是 final，Hibernate 就無法產生 Proxy 物件，會導致延遲載入 (Lazy Loading) 失效。
 
 ---

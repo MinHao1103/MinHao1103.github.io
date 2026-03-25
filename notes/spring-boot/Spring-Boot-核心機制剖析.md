@@ -10,10 +10,10 @@
 
 ### 為什麼需要 IoC？
 傳統開發中，當 Class A 需要使用 Class B 的功能時，會在 A 裡面直接 `new B()`。這導致了高度的耦合，當 B 的建構邏輯改變時，所有依賴 B 的地方都要跟著改。
-**IoC (Inversion of Control)** 的精神是將「創建與管理物件的權力」，交還給 Spring 的 IoC 容器 (ApplicationContext)。
+**IoC** (Inversion of Control) 的精神是將「創建與管理物件的權力」，交還給 Spring 的 IoC 容器 (ApplicationContext)。
 
 ### DI 注入方式與最佳實踐
-目前實務上最推薦的是 **建構子注入 (Constructor Injection)**，而非 `@Autowired` 欄位注入。
+目前實務上最推薦的是 **建構子注入** (Constructor Injection)，而非 `@Autowired` 欄位注入。
 
 ```java
 @Service
@@ -39,11 +39,11 @@ public class OrderService {
 Spring 容器在啟動時，會掃描所有標註 `@Component`（包含 `@Service`, `@Controller`）的類別，並將其實例化為 Bean。
 
 ### 生命週期階段
-1. **實例化 (Instantiation)**：調用建構子產生 Bean。
-2. **屬性賦值 (Populate Properties)**：將 DI 依賴注入。
-3. **初始化前 (Pre-Initialization)**：執行 `BeanPostProcessor` 的 `postProcessBeforeInitialization`。
+1. **實例化** (Instantiation)：調用建構子產生 Bean。
+2. **屬性賦值** (Populate Properties)：將 DI 依賴注入。
+3. **初始化前** (Pre-Initialization)：執行 `BeanPostProcessor` 的 `postProcessBeforeInitialization`。
 4. **自定義初始化**：執行帶有 `@PostConstruct` 的方法。
-5. **初始化後 (Post-Initialization)**：在這裡通常會進行**AOP 的動態代理 (Proxy)** 生成。
+5. **初始化後** (Post-Initialization)：在這裡通常會進行**AOP 的動態代理** (Proxy) 生成。
 6. **銷毀**：容器關閉時執行 `@PreDestroy` 方法。
 
 > 💡 Tip: 若要讓一段程式在 Spring 啟動完成後「立刻執行一次」，除了 `@PostConstruct` 外，實作 `CommandLineRunner` 介面也是很常見的做法。
@@ -89,7 +89,7 @@ public class SecurityAspect {
 **`@Transactional`** 底層就是透過 AOP 生成代理物件來控制 `commit` 和 `rollback`。
 
 ### 常見失效場景
-1. **同類別內的內部呼叫 (Self-Invocation)**：
+1. **同類別內的內部呼叫** (Self-Invocation)：
    若 Class A 有 `method1()` 沒有加 `@Transactional`，而內部呼叫了有加的 `method2()`，交易會**失效**。原因是內部呼叫不會經過 Spring 生成的 Proxy 物件。
    *解法*：把 `method2()` 抽到另一個 Service 裡，或透過 `AopContext.currentProxy()` 呼叫自己。
 2. **非 RuntimeException 不會回滾**：

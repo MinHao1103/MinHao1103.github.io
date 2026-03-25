@@ -1,12 +1,12 @@
 # Hibernate 延遲載入 (Lazy Loading) 與效能優化
 
-在開發企業級應用時，資料庫的查詢效能往往是系統的瓶頸。ORM 框架（如 Hibernate / Spring Data JPA）為了避免在查詢主實體時將所有關聯實體一次性全部撈出導致記憶體與網路 I/O 浪費，預設引入了 **延遲載入 (Lazy Loading)** 機制。
+在開發企業級應用時，資料庫的查詢效能往往是系統的瓶頸。ORM 框架（如 Hibernate / Spring Data JPA）為了避免在查詢主實體時將所有關聯實體一次性全部撈出導致記憶體與網路 I/O 浪費，預設引入了 **延遲載入** (Lazy Loading) 機制。
 
 ---
 
 ## 1. 核心概念與底層機制
 
-Lazy Loading 是一種設計模式（延遲初始化）。當我們從資料庫查詢一筆實體資料時，Hibernate 不會立刻查詢它的關聯物件或延遲屬性，而是回傳一個 **Proxy (代理物件)**。
+Lazy Loading 是一種設計模式（延遲初始化）。當我們從資料庫查詢一筆實體資料時，Hibernate 不會立刻查詢它的關聯物件或延遲屬性，而是回傳一個 **Proxy** (代理物件)。
 
 - **觸發時機**：只有當程式真正在呼叫關聯物件的 Getter（且該屬性非 OID 識別碼）時，Hibernate 才會觸發一條新的 SQL 語句去資料庫抓取資料。
 - **限制**：呼叫 Getter 時，**必須確保 Hibernate Session 仍然處於開啟狀態**。
@@ -44,7 +44,7 @@ Optional<Order> findById(Long id);
 ```
 
 ### 方法三：DTO Projection (最佳實踐)
-不要將 Entity 直接傳到表現層，而是在查詢時就將需要的欄位直接映射成 **DTO (Data Transfer Object)**。這能從根本上避免 Lazy Loading 異常，且只撈出真正需要的欄位，效能最佳。
+不要將 Entity 直接傳到表現層，而是在查詢時就將需要的欄位直接映射成 **DTO** (Data Transfer Object)。這能從根本上避免 Lazy Loading 異常，且只撈出真正需要的欄位，效能最佳。
 ```java
 @Query("SELECT new com.example.dto.OrderSummaryDTO(o.id, o.status, i.productName) " +
        "FROM Order o JOIN o.items i WHERE o.id = :id")
@@ -67,6 +67,6 @@ public Order getOrderDetails(Long id) {
 ## 4. 總結
 1. **單一實體查詢**預設使用 Lazy Loading 沒問題，但關聯查詢要特別注意。
 2. 絕對避免開啟 `spring.jpa.open-in-view=true`。
-3. 高併發系統中，優先考慮 **DTO 投影 (Projection)**與**Fetch Join** 來精準控制 SQL 查詢次數，徹底解決 N+1 查詢問題與 LazyInitializationException。
+3. 高併發系統中，優先考慮 **DTO 投影** (Projection) 與 **Fetch Join** 來精準控制 SQL 查詢次數，徹底解決 N+1 查詢問題與 LazyInitializationException。
 
 ---

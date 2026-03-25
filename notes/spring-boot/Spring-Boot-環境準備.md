@@ -12,7 +12,7 @@
 
 ## 1. 核心開發工具安裝
 
-- **JDK (Java Development Kit)**
+- **JDK** (Java Development Kit)
   - 建議下載 OpenJDK 11 或 17 (目前主流 LTS 版本)。
   - 安裝後於終端機輸入 `java -version` 確認是否設定成功。
 - **IDE 開發環境**-**IntelliJ IDEA Ultimate**：目前開發 Spring Boot 最強大的工具，內建資料庫連線與 HTTP Client。

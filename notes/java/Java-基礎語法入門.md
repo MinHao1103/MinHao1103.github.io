@@ -12,7 +12,7 @@
 ---
 
 ## 1. 變數與基本資料型別
-- **基本型別 (Primitive Types)**：包含整數 (`int`, `long`)、浮點數 (`double`)、字元 (`char`) 與布林值 (`boolean`)。
+- **基本型別** (Primitive Types)：包含整數 (`int`, `long`)、浮點數 (`double`)、字元 (`char`) 與布林值 (`boolean`)。
 - **變數生命週期**：區域變數必須給定初始值才能使用；實體變數則有預設值。
 
 ---
@@ -24,8 +24,8 @@
 ---
 
 ## 3. 陣列與字串
-- **陣列 (Array)**：宣告後長度固定。實務上現在多改用 `ArrayList` 來動態管理。
-- **字串池 (String Pool)**：`String` 是不可變物件 (Immutable)。
+- **陣列** (Array)：宣告後長度固定。實務上現在多改用 `ArrayList` 來動態管理。
+- **字串池** (String Pool)：`String` 是不可變物件 (Immutable)。
   - 踩坑點：比較字串內容時，再麻煩一定要使用 `equals()`，絕對不要使用 `==` (這只會比較記憶體位址)。
 
 ---

@@ -47,7 +47,7 @@ try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
 在高併發系統中，直接 `new Thread()` 是絕對禁止的，因為頻繁建立與銷毀執行緒的系統開銷極大。
 
 ### 執行緒池 (Thread Pool) 實戰
-所有多執行緒任務都應該交由 **`ExecutorService` (執行緒池)** 來管理。
+所有多執行緒任務都應該交由 **`ExecutorService`** (執行緒池) 來管理。
 ```java
 // 建立一個固定大小的執行緒池
 ExecutorService executor = Executors.newFixedThreadPool(10);

@@ -12,9 +12,9 @@
 ---
 
 ## 1. 核心觀念
-- **工作區 (Working Directory)**：目前正在修改檔案的區域。
-- **暫存區 (Staging Area)**：準備要 Commit 的檔案清單。
-- **儲存庫 (Repository)**：已經 Commit 的本地歷史紀錄。
+- **工作區** (Working Directory)：目前正在修改檔案的區域。
+- **暫存區** (Staging Area)：準備要 Commit 的檔案清單。
+- **儲存庫** (Repository)：已經 Commit 的本地歷史紀錄。
 
 ---
 
