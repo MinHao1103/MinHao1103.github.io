@@ -10,7 +10,6 @@
     - [Java 多執行緒與同步控制](java/Java-多執行緒與同步控制.md)
     - [Java Process 與 Thread 概念](java/Java-Process-與-Thread.md)
     - [Java 設計模式：工廠與策略](java/Java-設計模式-工廠與策略.md)
-    - [Java 與 Node.js 開發比較](java/Java-與-NodeJS-開發比較.md)
 
 - **🍃 Spring 生態系解析**
     - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
