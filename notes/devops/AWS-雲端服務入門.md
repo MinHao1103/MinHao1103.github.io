@@ -1,7 +1,5 @@
 # Amazon Web Services (AWS) 雲端服務入門
 
-![AWS Logo](images/aws-logo.png)
-
 AWS 是 Amazon 提供的雲端運算平台，讓企業和開發者能租用伺服器、儲存、資料庫等資源，不需自己架設實體設備，並按用量計費。
 
 ---

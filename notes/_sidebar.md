@@ -37,6 +37,7 @@
   - [Kubernetes K8S 入門與安裝](devops/Kubernetes-K8S-入門與安裝.md)
   - [AWS 雲端服務入門](devops/AWS-雲端服務入門.md)
   - [Ngrok 內網穿透工具](devops/Ngrok-內網穿透工具.md)
+  - [Ollama 本地 AI 模型部署](devops/Ollama-本地-AI-模型部署.md)
 
 - **🔧 開發工具**
   - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
