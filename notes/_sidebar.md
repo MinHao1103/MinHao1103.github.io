@@ -3,32 +3,34 @@
   - [⬅️ 返回履歷首頁](../index.html)
 
 - **☕ Java 底層與架構**
-  - [Java 進階核心機制](java/Java-進階.md)
-  - [Java 例外、集合與並發設計](java/Java-物件導向程式設計一.md)
-  - [Java 常用類別與精準運算](java/Java-物件導向程式設計二.md)
+  - [Java 基礎語法入門](java/Java-基礎語法入門.md)
+  - [Java 物件導向核心觀念](java/Java-物件導向核心觀念.md)
+  - [Java 常用類別與精準運算](java/Java-常用類別與精準運算.md)
+  - [Java 例外、集合與並發設計](java/Java-例外-集合與並發設計.md)
 
 - **🍃 Spring 生態系解析**
-  - [Spring Boot 核心機制剖析](spring-boot/Spring-Boot-進階.md)
-  - [Spring Boot 基礎架構](spring-boot/Spring-Boot-基礎.md)
-  - [Spring Cloud 微服務架構實戰](spring-cloud/intro.md)
+  - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
+  - [Spring Boot 基礎架構](spring-boot/Spring-Boot-基礎架構.md)
+  - [Spring Boot 核心機制剖析](spring-boot/Spring-Boot-核心機制剖析.md)
+  - [Spring Cloud 微服務架構實戰](spring-cloud/Spring-Cloud-微服務架構實戰.md)
 
-- **💾 資料庫與 ORM 效能優化**
-  - [Hibernate Session 狀態管理與 HQL](hibernate/撰寫-查詢方法及-Session-操作.md)
-  - [Hibernate 效能優化與延遲載入](hibernate/延遲載入.md)
-  - [Entity 實體與映射設計](hibernate/Hibernate-映射設定.md)
+- **💾 Hibernate**
+  - [Hibernate 框架介紹](hibernate/Hibernate-框架介紹.md)
+  - [Hibernate 環境準備](hibernate/Hibernate-環境準備.md)
+  - [Hibernate 前置作業設定](hibernate/Hibernate-前置作業設定.md)
+  - [Hibernate 組態設定](hibernate/Hibernate-組態設定.md)
+  - [Hibernate 組態載入](hibernate/Hibernate-組態載入.md)
+  - [Hibernate 基礎程式架構](hibernate/Hibernate-基礎程式架構.md)
+  - [Hibernate Entity 規範](hibernate/Hibernate-Entity-規範.md)
+  - [Hibernate 基礎 CRUD 操作](hibernate/Hibernate-基礎-CRUD-操作.md)
+  - [Hibernate 實體映射設定](hibernate/Hibernate-實體映射設定.md)
+  - [Hibernate Session 與查詢優化](hibernate/Hibernate-Session-與查詢優化.md)
+  - [Hibernate 延遲載入與效能優化](hibernate/Hibernate-延遲載入與效能優化.md)
 
 - **🐳 DevOps 與雲端部署**
-  - [Docker 常用指令與技巧](devops/docker.md)
+  - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
 
-- **🌱 早期學習備份 (Archive)**
-  - [Java 基礎打底紀錄](java/Java-基礎.md)
-  - [Git 基礎與版控](spring-boot/Git-基礎介紹.md)
+- **🔧 開發工具**
+  - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
   - [IntelliJ 開發效率技巧](spring-boot/IntelliJ-開發效率技巧.md)
-  - [IntelliJ 管理資料庫數據](spring-boot/IntelliJ-管理資料庫數據.md)
-  - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
-  - [Hibernate 基本組態設定](hibernate/Hibernate-基本組態設定.md)
-  - [Hibernate 介紹與前置作業](hibernate/Hibernate-介紹.md)
-  - [Hibernate 程式的基本架構](hibernate/Hibernate-程式的基本架構.md)
-  - [Hibernate 實體與類別物件](hibernate/實體-類別物件.md)
-  - [Hibernate 撰寫新刪修方法](hibernate/撰寫-新刪修-方法.md)
-  - [Hibernate 載入組態](hibernate/載入-Hibernate-組態.md)
+  - [IntelliJ 內建資料庫管理](spring-boot/IntelliJ-內建資料庫管理.md)
