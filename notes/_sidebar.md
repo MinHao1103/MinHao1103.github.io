@@ -1,6 +1,6 @@
 - **🏠 首頁導覽**
   - [筆記首頁](/)
-  - [⬅️ 返回履歷首頁](../index.html)
+  - <a href="../index.html">⬅️ 返回履歷首頁</a>
 
 - **☕ Java 底層與架構**
   - [Java 基礎語法入門](java/Java-基礎語法入門.md)
@@ -30,6 +30,7 @@
 - **🐳 DevOps 與雲端部署**
   - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
   - [ActiveMQ 安裝與環境設定](devops/ActiveMQ-安裝與環境設定.md)
+  - [Kubernetes K8S 入門與安裝](devops/Kubernetes-K8S-入門與安裝.md)
 
 - **🔧 開發工具**
   - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
