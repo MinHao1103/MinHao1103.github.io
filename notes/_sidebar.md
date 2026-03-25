@@ -13,6 +13,8 @@
     - [Java Garbage Collection 核心觀念](java/Java-Garbage-Collection.md)
     - [Java Guava Cache 核心觀念與實作](java/Java-Guava-Cache.md)
     - [Java Guava EventBus 核心觀念與實作](java/Java-Guava-EventBus.md)
+    - [Java HTTP Server 實作：Jetty 與 Jersey 整合](java/Java-HTTP-Server-Jetty-Jersey.md)
+    - [Java Reflection API 核心觀念與實作](java/Java-Reflection-API.md)
 
 - **🍃 Spring 生態系解析**
     - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
@@ -51,6 +53,7 @@
 
 - **🔐 資安與認證**
     - [JWT 身份驗證機制](security/JWT-身份驗證機制.md)
+    - [Gradle JWT 初始化實作](security/Gradle-JWT-初始化實作.md)
 
 - **🔧 開發工具**
     - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
