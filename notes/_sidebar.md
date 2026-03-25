@@ -39,6 +39,7 @@
     - [Docker 安裝與基礎指令](devops/Docker-安裝與基礎指令.md)
     - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
     - [Nginx 網頁伺服器與反向代理](devops/Nginx-網頁伺服器與反向代理.md)
+    - [OpenResty 入門與負載平衡實作](devops/OpenResty-入門與實作.md)
     - [ActiveMQ 安裝與環境設定](devops/ActiveMQ-安裝與環境設定.md)
     - [JMS、MQTT 與 ActiveMQ 概念](devops/JMS-MQTT-訊息傳遞概念.md)
     - [JMS 與 ActiveMQ 訊息佇列實作](devops/JMS-ActiveMQ-訊息佇列實作.md)
