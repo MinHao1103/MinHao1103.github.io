@@ -9,6 +9,8 @@
     - [Java 例外、集合與並發設計](java/Java-例外-集合與並發設計.md)
     - [Java 多執行緒與同步控制](java/Java-多執行緒與同步控制.md)
     - [Java Process 與 Thread 概念](java/Java-Process-與-Thread.md)
+    - [Java 設計模式：工廠與策略](java/Java-設計模式-工廠與策略.md)
+    - [Java 與 Node.js 開發比較](java/Java-與-NodeJS-開發比較.md)
 
 - **🍃 Spring 生態系解析**
     - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
@@ -36,11 +38,16 @@
     - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
     - [Nginx 網頁伺服器與反向代理](devops/Nginx-網頁伺服器與反向代理.md)
     - [ActiveMQ 安裝與環境設定](devops/ActiveMQ-安裝與環境設定.md)
+    - [JMS、MQTT 與 ActiveMQ 概念](devops/JMS-MQTT-訊息傳遞概念.md)
     - [JMS 與 ActiveMQ 訊息佇列實作](devops/JMS-ActiveMQ-訊息佇列實作.md)
     - [Kubernetes K8S 入門與安裝](devops/Kubernetes-K8S-入門與安裝.md)
     - [AWS 雲端服務入門](devops/AWS-雲端服務入門.md)
+    - [CI/CD 持續整合與部署](devops/CI-CD-持續整合與部署.md)
     - [Ngrok 內網穿透工具](devops/Ngrok-內網穿透工具.md)
     - [Ollama 本地 AI 模型部署](devops/Ollama-本地-AI-模型部署.md)
+
+- **🔐 資安與認證**
+    - [JWT 身份驗證機制](security/JWT-身份驗證機制.md)
 
 - **🔧 開發工具**
     - [Git 基礎與版控](spring-boot/Git-基礎與版控.md)
