@@ -28,6 +28,6 @@
 - 預計將工作區 (Workspace)、CSS、HTML、JSP 的文字編碼全部統一設定為 **UTF-8**。
 - 設定 **Auto Activation**，讓 Java 程式碼能自動提示與補全。
 
-> 💡 **現況總結**：目前在使用 Spring Boot 時，我們不再需要手動安裝 Tomcat，也不需要手動掛載 JBoss Tools。這些步驟已全數自動化。
+> 💡 Tip: **現況總結**：目前在使用 Spring Boot 時，我們不再需要手動安裝 Tomcat，也不需要手動掛載 JBoss Tools。這些步驟已全數自動化。
 
 ---

@@ -84,5 +84,5 @@ if (myPet instanceof Dog) {
 | 屬性變數 | 可宣告各種變數。 | 只能宣告 `public static final` 的常數。 |
 | 建構子 | 有建構子 (供子類別 `super()` 呼叫)。 | 沒有建構子。 |
 
-> 💡 Java 8 以後的 Interface 變革：
+> 💡 Tip: Java 8 以後的 Interface 變革：
 > 目前的 Interface 允許使用 `default` 或 `static` 關鍵字來撰寫具有實作內容的方法。原因是為了解決向後相容的問題（例如讓現有的 `List` 介面可以直接擴充 `forEach` 等功能，而不影響舊程式碼）。

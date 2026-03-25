@@ -100,4 +100,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 }
 ```
 
-> 💡 **Tip:** 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），再麻煩退回使用 `Criteria API`、`QueryDSL` 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
+> 💡 Tip: **Tip:** 若查詢邏輯過於複雜（包含大量 JOIN 或動態條件），再麻煩退回使用 `Criteria API`、`QueryDSL` 或是直接寫 MyBatis/MyBatis-Plus，不要硬寫一長串的方法名稱，以免後續難以維護。
