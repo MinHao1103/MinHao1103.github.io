@@ -2,7 +2,7 @@
 
 目前在開發企業級應用時，Spring Boot 幾乎是唯一首選。原因是它利用了「約定優於配置 (Convention Over Configuration)」的特性，大幅降低了起手難度。
 
-但在資深工程師的日常中，如果只會寫 Controller 跟 Service 是不夠的。這裡整理了 Spring 底層最核心的 **IoC**、**AOP** 機制、**Bean 的生命週期**，以及在交易管理與測試上常遇到的踩坑紀錄。
+但在資深工程師的日常中，如果只會寫 Controller 跟 Service 是不夠的。這裡整理了 Spring 底層最核心的 **IoC**、**AOP**機制、**Bean 的生命週期**，以及在交易管理與測試上常遇到的踩坑紀錄。
 
 ---
 
@@ -43,7 +43,7 @@ Spring 容器在啟動時，會掃描所有標註 `@Component`（包含 `@Servic
 2. **屬性賦值 (Populate Properties)**：將 DI 依賴注入。
 3. **初始化前 (Pre-Initialization)**：執行 `BeanPostProcessor` 的 `postProcessBeforeInitialization`。
 4. **自定義初始化**：執行帶有 `@PostConstruct` 的方法。
-5. **初始化後 (Post-Initialization)**：在這裡通常會進行 **AOP 的動態代理 (Proxy)** 生成。
+5. **初始化後 (Post-Initialization)**：在這裡通常會進行**AOP 的動態代理 (Proxy)** 生成。
 6. **銷毀**：容器關閉時執行 `@PreDestroy` 方法。
 
 > 💡 Tip: 若要讓一段程式在 Spring 啟動完成後「立刻執行一次」，除了 `@PostConstruct` 外，實作 `CommandLineRunner` 介面也是很常見的做法。
@@ -130,6 +130,6 @@ class OrderServiceTest {
     }
 }
 ```
-注意：如果是要測 API 端點的行為，則會使用 **`@WebMvcTest`** 搭配 **`MockMvc`** 來進行表現層的隔離測試。
+注意：如果是要測 API 端點的行為，則會使用 **`@WebMvcTest`**搭配**`MockMvc`** 來進行表現層的隔離測試。
 
 ---

@@ -84,7 +84,7 @@ public ResponseEntity<String> createUser(@RequestBody @Valid UserRequest request
 相比於手寫 SQL (Spring JDBC)，目前業界最常使用 **Spring Data JPA** 來大幅減少 CRUD 的程式碼。
 
 ### Repository 介面
-只要繼承 **`CrudRepository`** 或 **`JpaRepository`**，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法。
+只要繼承 **`CrudRepository`**或**`JpaRepository`**，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法。
 
 ```java
 public interface UserRepository extends JpaRepository<User, Integer> {

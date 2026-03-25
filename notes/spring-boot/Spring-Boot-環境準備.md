@@ -15,10 +15,8 @@
 - **JDK (Java Development Kit)**
   - 建議下載 OpenJDK 11 或 17 (目前主流 LTS 版本)。
   - 安裝後於終端機輸入 `java -version` 確認是否設定成功。
-- **IDE 開發環境**
-  - **IntelliJ IDEA Ultimate**：目前開發 Spring Boot 最強大的工具，內建資料庫連線與 HTTP Client。
-- **版本控制**
-  - **Git**：安裝 Git for Windows，並設定全域 `user.name` 與 `user.email`。
+- **IDE 開發環境**-**IntelliJ IDEA Ultimate**：目前開發 Spring Boot 最強大的工具，內建資料庫連線與 HTTP Client。
+- **版本控制**-**Git**：安裝 Git for Windows，並設定全域 `user.name` 與 `user.email`。
 
 ---
 
@@ -27,7 +25,6 @@
 - **MySQL Server**
   - 安裝 MySQL Community Server。
   - 安裝過程中需設定 `root` 密碼，並建議將編碼預設改為 `utf8mb4`。
-- **API 測試工具**
-  - **Postman** 或 Chrome 擴充功能 **Talend API Tester**：用來測試 Spring Boot 寫出來的 RESTful API。
+- **API 測試工具**-**Postman**或 Chrome 擴充功能**Talend API Tester**：用來測試 Spring Boot 寫出來的 RESTful API。
 
 ---

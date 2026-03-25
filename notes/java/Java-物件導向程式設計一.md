@@ -9,9 +9,9 @@
 在微服務架構中，精準的例外處理與統一的錯誤代碼 (Error Code) 是系統穩定性的基礎。
 
 ### Checked vs Unchecked Exception
-- **Checked Exception (編譯期例外)**：繼承自 `Exception`（但不包含 `RuntimeException`），如 `IOException`。必須強制 `try-catch` 或 `throws`。
+- **Checked Exception** (編譯期例外) ：繼承自 `Exception`（但不包含 `RuntimeException`），如 `IOException`。必須強制 `try-catch` 或 `throws`。
   - *實戰建議*：目前現代 Java 開發（如 Spring 框架）傾向於將 Checked Exception 轉換為 Unchecked Exception 拋出，原因是強制捕獲往往導致程式碼充滿無意義的 `catch` 區塊，降低可讀性。
-- **Unchecked Exception (執行期例外)**：繼承自 `RuntimeException`，如 `NullPointerException`。
+- **Unchecked Exception** (執行期例外) ：繼承自 `RuntimeException`，如 `NullPointerException`。
   - *實戰建議*：業務邏輯的錯誤（如「查無此用戶」、「餘額不足」）都應該自定義繼承自 `RuntimeException` 的例外類別，並交由 Spring 的 `@RestControllerAdvice` 統一攔截處理。
 
 ### try-with-resources 機制
@@ -36,9 +36,9 @@ try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
 - **LinkedList**：底層為雙向鏈結串列。查詢慢 (`O(n)`)，但在頭尾新增/刪除快。
 
 ### Map 與 Set 家族
-- **HashMap / HashSet**：底層為 **Hash Table**（JDK 8 後加入紅黑樹優化）。查找時間複雜度為 `O(1)`，但不保證順序。
+- **HashMap / HashSet**：底層為**Hash Table**（JDK 8 後加入紅黑樹優化）。查找時間複雜度為 `O(1)`，但不保證順序。
   - > ⚠️ 踩坑點：當作為 Key 的物件沒有正確覆寫 `hashCode()` 與 `equals()` 時，會導致資料無法正確存取與 Memory Leak。
-- **TreeMap / TreeSet**：底層為 **紅黑樹**。可以保證元素按自然順序（或自訂的 `Comparator`）排序，查找時間複雜度為 `O(log n)`。
+- **TreeMap / TreeSet**：底層為**紅黑樹**。可以保證元素按自然順序（或自訂的 `Comparator`）排序，查找時間複雜度為 `O(log n)`。
 
 ---
 

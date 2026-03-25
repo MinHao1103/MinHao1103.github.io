@@ -26,7 +26,7 @@ Hibernate 的 Session 扮演著「**一級快取 (L1 Cache)**」的角色。被�
 
 但在批次處理或特殊業務情境下，我們需要手動介入管理：
 
-- **`session.evict(Object)`**：將單一物件從 Session Cache 中剔除（變為 **Detached** 狀態）。
+- **`session.evict(Object)`**：將單一物件從 Session Cache 中剔除（變為**Detached** 狀態）。
 - **`session.clear()`**：清空目前 Session 中的所有快取物件。通常在迴圈處理大量資料 (Batch Insert/Update) 時使用，避免發生 OutOfMemoryError (OOM)。
 - **`session.flush()`**：強制將目前 Cache 中的變更轉換為 SQL 語句發送到資料庫（但尚未 Commit）。原因是我們可能需要在 Commit 前讓某些觸發器 (Trigger) 生效，或取得資料庫生成的 Auto-Increment ID。
 
