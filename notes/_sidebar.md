@@ -33,6 +33,7 @@
 
 - **🐳 DevOps 與雲端部署**
   - [Docker 容器化與實戰指令](devops/Docker-容器化與實戰指令.md)
+  - [Nginx 網頁伺服器與反向代理](devops/Nginx-網頁伺服器與反向代理.md)
   - [ActiveMQ 安裝與環境設定](devops/ActiveMQ-安裝與環境設定.md)
   - [Kubernetes K8S 入門與安裝](devops/Kubernetes-K8S-入門與安裝.md)
   - [AWS 雲端服務入門](devops/AWS-雲端服務入門.md)
