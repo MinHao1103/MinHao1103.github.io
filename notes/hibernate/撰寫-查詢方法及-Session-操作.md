@@ -71,3 +71,5 @@ Hibernate 的 Session 扮演著「一級快取 (L1 Cache)」的角色。被查�
 
 > 💡 現代架構的下一步 (Spring Data JPA)：
 > 目前在 Spring Boot 生態系中，我們幾乎不再手動寫 `beginTransaction()` 與 `commit()`。只要在 Service 層的方法上掛上 `@Transactional` 註解，Spring 的 AOP 就會自動幫我們接管上述的 `getCurrentSession` 與交易控制邏輯。
+
+---

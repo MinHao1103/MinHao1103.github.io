@@ -9,11 +9,15 @@
 這篇筆記記錄了傳統 Hibernate 程式的標準執行流程。
 原因是雖然現在 Spring Boot 自動處理了這些步驟，但了解底層的 `SessionFactory` 與 `Session` 運作，對排查連線問題非常有幫助。
 
+---
+
 ## 1. 核心物件解析
 - **Configuration**：讀取 `hibernate.cfg.xml` 設定檔。
 - **SessionFactory**：重量級物件，負責建立資料庫連線池。整個應用程式通常只需一個實例（Singleton）。
 - **Session**：輕量級物件，代表一次資料庫連線上下文 (Persistence Context)。
 - **Transaction**：交易控制，確保資料的一致性 (ACID)。
+
+---
 
 ## 2. 傳統執行流程
 預計的標準步驟如下：
@@ -35,3 +39,5 @@ try (Session session = factory.openSession()) {
 }
 ```
 再麻煩注意，現代開發一律交由 Spring 的 `@Transactional` 接管。
+
+---

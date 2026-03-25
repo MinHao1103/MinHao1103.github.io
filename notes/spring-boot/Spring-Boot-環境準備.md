@@ -8,6 +8,8 @@
 
 這篇筆記記錄了早期在 Windows 環境下，從零開始建置 Java 與 Spring Boot 開發環境的流程。
 
+---
+
 ## 1. 核心開發工具安裝
 
 - **JDK (Java Development Kit)**
@@ -18,6 +20,8 @@
 - **版本控制**
   - **Git**：安裝 Git for Windows，並設定全域 `user.name` 與 `user.email`。
 
+---
+
 ## 2. 資料庫與輔助工具
 
 - **MySQL Server**
@@ -25,3 +29,5 @@
   - 安裝過程中需設定 `root` 密碼，並建議將編碼預設改為 `utf8mb4`。
 - **API 測試工具**
   - **Postman** 或 Chrome 擴充功能 **Talend API Tester**：用來測試 Spring Boot 寫出來的 RESTful API。
+
+---

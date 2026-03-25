@@ -2,6 +2,8 @@
 
 在微服務架構與 CI/CD 流程中，Docker 已經是不可或缺的基礎設施。本篇筆記整理了在正式環境 (Production) 與開發環境 (Development) 中，容器管理的實戰技巧與常用指令。
 
+---
+
 ## 1. 容器生命週期與管理 (Container Management)
 
 在維運伺服器時，快速定位問題與清理資源是工程師的日常。
@@ -31,6 +33,8 @@ docker logs -f --tail 100 <container_name>
 docker logs --since "2024-03-01T10:00:00" <container_name>
 ```
 
+---
+
 ## 2. 映像檔與空間清理 (Image & Storage)
 
 長時間運行的伺服器經常會遇到硬碟空間被舊的 Image 塞滿的問題。
@@ -46,6 +50,8 @@ docker system df
 # 加上 -a 會連同沒有被任何容器引用的 Image 一併刪除
 docker system prune -a -f
 ```
+
+---
 
 ## 3. Docker Compose 多容器編排
 
@@ -98,6 +104,10 @@ docker-compose down
 docker-compose up -d --build backend-api
 ```
 
+---
+
 ## 4. 實戰踩坑紀錄
 > 💡 時區問題 (Timezone)：
 > Docker 容器預設的時區通常是 UTC。如果你的 Java 程式沒有強制設定時區，寫入 MySQL 的 `LocalDateTime` 可能會產生 8 小時的落差。解法：在 Dockerfile 或 docker-compose 中掛載主機的 `/etc/localtime` 或設定環境變數 `TZ=Asia/Taipei`。
+
+---

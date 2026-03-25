@@ -77,5 +77,7 @@
 </hibernate-configuration>
 ```
 
-### 💡 實戰小提醒
+> 💡 Tip:
 > 在正式上線 (Production) 時，請務必將 `show_sql` 關閉，否則大量的 I/O 輸出會嚴重拖垮伺服器效能。
+
+---

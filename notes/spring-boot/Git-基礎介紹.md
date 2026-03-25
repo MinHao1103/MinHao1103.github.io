@@ -9,10 +9,14 @@
 目前所有企業級專案都依賴 Git 進行版本控制。這篇記錄了早期學習 Git 的核心概念與指令。
 原因是熟悉版控能大幅減少團隊協作時的衝突。
 
+---
+
 ## 1. 核心觀念
 - **工作區 (Working Directory)**：目前正在修改檔案的區域。
 - **暫存區 (Staging Area)**：準備要 Commit 的檔案清單。
 - **儲存庫 (Repository)**：已經 Commit 的本地歷史紀錄。
+
+---
 
 ## 2. 常用指令
 ```bash
@@ -29,3 +33,5 @@ git push origin main
 git pull
 ```
 預計在實戰中，都會搭配 GitHub Actions 或 GitLab CI/CD 進行自動化部署。
+
+---

@@ -9,6 +9,8 @@
 這篇筆記記錄了如何在沒有 Spring 框架協助的情況下，手動載入 Hibernate 設定檔並建立連線池。
 原因是 `SessionFactory` 建立過程非常耗時，必須被設計為單例模式 (Singleton)。
 
+---
+
 ## 1. HibernateUtil 設計模式
 在傳統架構中，我們預計會建立一個 `HibernateUtil` 類別來管理全域唯一的 `SessionFactory`。
 
@@ -36,5 +38,9 @@ public class HibernateUtil {
 }
 ```
 
+---
+
 ## 2. 現況與下一步
 目前微服務專案中，再麻煩直接忘記這個工具類。Spring Boot 的 `DataSourceAutoConfiguration` 會在啟動時全自動幫你處理好所有的連線池與 `SessionFactory` 生命週期管理。
+
+---
