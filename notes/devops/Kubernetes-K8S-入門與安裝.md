@@ -1,7 +1,5 @@
 # Kubernetes (K8S) 入門與安裝
 
-![Kubernetes Logo](images/kubernetes-logo.webp)
-
 Kubernetes（通常簡稱 K8S）是一個開源的容器編排平台，用於自動化部署、擴展和管理容器化應用程式。最初由 Google 開發，現由 Cloud Native Computing Foundation (CNCF) 維護。
 
 ---

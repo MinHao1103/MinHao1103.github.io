@@ -7,11 +7,15 @@
   - [Java 物件導向核心觀念](java/Java-物件導向核心觀念.md)
   - [Java 常用類別與精準運算](java/Java-常用類別與精準運算.md)
   - [Java 例外、集合與並發設計](java/Java-例外-集合與並發設計.md)
+  - [Java 多執行緒與同步控制](java/Java-多執行緒與同步控制.md)
+  - [Java Process 與 Thread 概念](java/Java-Process-與-Thread.md)
 
 - **🍃 Spring 生態系解析**
   - [Spring Boot 環境準備](spring-boot/Spring-Boot-環境準備.md)
+  - [Spring Boot 專案建置與 H2 設定](spring-boot/Spring-Boot-專案建置與H2設定.md)
   - [Spring Boot 基礎架構](spring-boot/Spring-Boot-基礎架構.md)
   - [Spring Boot 核心機制剖析](spring-boot/Spring-Boot-核心機制剖析.md)
+  - [Spring Data JPA 與三層架構實作](spring-boot/Spring-Data-JPA-三層架構實作.md)
   - [Spring Cloud 微服務架構實戰](spring-cloud/Spring-Cloud-微服務架構實戰.md)
 
 - **💾 Hibernate**
