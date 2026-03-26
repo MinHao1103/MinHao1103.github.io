@@ -26,9 +26,9 @@ Hibernate 的 Session 扮演著「**一級快取** (L1 Cache)」的角色。被�
 
 但在批次處理或特殊業務情境下，我們需要手動介入管理：
 
-- **`session.evict(Object)`**：將單一物件從 Session Cache 中剔除（變為**Detached** 狀態）。
-- **`session.clear()`**：清空目前 Session 中的所有快取物件。通常在迴圈處理大量資料 (Batch Insert/Update) 時使用，避免發生 OutOfMemoryError (OOM)。
-- **`session.flush()`**：強制將目前 Cache 中的變更轉換為 SQL 語句發送到資料庫（但尚未 Commit）。原因是我們可能需要在 Commit 前讓某些觸發器 (Trigger) 生效，或取得資料庫生成的 Auto-Increment ID。
+- `session.evict(Object)`：將單一物件從 Session Cache 中剔除（變為**Detached** 狀態）。
+- `session.clear()`：清空目前 Session 中的所有快取物件。通常在迴圈處理大量資料 (Batch Insert/Update) 時使用，避免發生 OutOfMemoryError (OOM)。
+- `session.flush()`：強制將目前 Cache 中的變更轉換為 SQL 語句發送到資料庫（但尚未 Commit）。原因是我們可能需要在 Commit 前讓某些觸發器 (Trigger) 生效，或取得資料庫生成的 Auto-Increment ID。
 
 ---
 
@@ -44,7 +44,7 @@ Hibernate 的 Session 扮演著「**一級快取** (L1 Cache)」的角色。被�
 我們必須確保整個 Service 邏輯都在「同一個 Session」與「同一個 Transaction」中執行。
 
 1. **DAO 層只負責拿連線與操作**：
-   使用 **`sessionFactory.getCurrentSession()`** 獲獲取綁定在當前執行緒的 Session，絕對不不在這裡執行 commit 或 rollback。
+   使用 `sessionFactory.getCurrentSession()` 獲獲取綁定在當前執行緒的 Session，絕對不不在這裡執行 commit 或 rollback。
    ```java
    public Member findById(Integer id) {
        return getSessionFactory().getCurrentSession().get(Member.class, id);
@@ -68,6 +68,6 @@ Hibernate 的 Session 扮演著「**一級快取** (L1 Cache)」的角色。被�
    }
    ```
 
-> 💡 Tip: 目前在 Spring Boot 生態系中，我們幾乎不再手動寫 `beginTransaction()` 與 `commit()`。只要在 Service 層的方法上掛上 **`@Transactional`** 註解，Spring 的 AOP 就會自動幫我們接管上述的 `getCurrentSession` 與交易控制邏輯。
+> 💡 Tip: 目前在 Spring Boot 生態系中，我們幾乎不再手動寫 `beginTransaction()` 與 `commit()`。只要在 Service 層的方法上掛上 `@Transactional` 註解，Spring 的 AOP 就會自動幫我們接管上述的 `getCurrentSession` 與交易控制邏輯。
 
 ---

@@ -86,7 +86,7 @@ public class SecurityAspect {
 
 ## 4. @Transactional 交易管理的踩坑紀錄
 
-**`@Transactional`** 底層就是透過 AOP 生成代理物件來控制 `commit` 和 `rollback`。
+`@Transactional` 底層就是透過 AOP 生成代理物件來控制 `commit` 和 `rollback`。
 
 ### 常見失效場景
 1. **同類別內的內部呼叫** (Self-Invocation)：
@@ -130,6 +130,6 @@ class OrderServiceTest {
     }
 }
 ```
-注意：如果是要測 API 端點的行為，則會使用 **`@WebMvcTest`**搭配**`MockMvc`** 來進行表現層的隔離測試。
+注意：如果是要測 API 端點的行為，則會使用 `@WebMvcTest`搭配`MockMvc` 來進行表現層的隔離測試。
 
 ---

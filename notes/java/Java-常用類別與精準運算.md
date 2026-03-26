@@ -13,7 +13,7 @@
 例如：`0.1 + 0.1 + 0.1` 不會等於 `0.3`。
 
 ### BigDecimal 最佳實踐
-目前開發中，遇到小數運算一律使用 **`BigDecimal`**。
+目前開發中，遇到小數運算一律使用 `BigDecimal`。
 - 建構 `BigDecimal` 時，**一定要傳入字串** (`String`)，不要傳入 `double`，否則依然會失去精度。
 - **除法例外**：如果除法產生無限循環小數，會拋出 `ArithmeticException`。務必指定小數位數與進位模式。
 
@@ -32,9 +32,9 @@ BigDecimal rate = new BigDecimal("1").divide(new BigDecimal("3"), 6, RoundingMod
 在 Java 中，`String` 是一個不可變 (**Immutable**) 的物件。每次對字串進行拼接，都會在記憶體中產生一個新物件，極度消耗資源。
 
 ### StringBuilder 的應用場景
-當我們需要「頻繁拼接字串」（例如：在迴圈中組裝 SQL 或動態產生 HTML）時，請使用 **`StringBuilder`**。
-- **`StringBuffer`**：舊版類別，執行緒安全 (Thread-Safe)，但效能較差。
-- **`StringBuilder`**：JDK 5 引入，非執行緒安全，但效能極佳。目前實務上 99% 的場景都使用它。
+當我們需要「頻繁拼接字串」（例如：在迴圈中組裝 SQL 或動態產生 HTML）時，請使用 `StringBuilder`。
+- `StringBuffer`：舊版類別，執行緒安全 (Thread-Safe)，但效能較差。
+- `StringBuilder`：JDK 5 引入，非執行緒安全，但效能極佳。目前實務上 99% 的場景都使用它。
 
 ```java
 StringBuilder sb = new StringBuilder("Hello");
@@ -69,9 +69,9 @@ boolean isValid = "T123456789".matches(regex);
 ### 現代最佳實踐 (Java 8 引入的 `java.time` 套件)
 在處理時間時，全面改用 Java 8 的新 API。這些物件都是不可變的 (**Immutable**)，保證執行緒安全。
 
-- **`LocalDate`**：僅處理日期 (年-月-日)，無時區概念。
-- **`LocalTime`**：僅處理時間 (時:分:秒)。
-- **`LocalDateTime`**：日期 + 時間，最常使用。
+- `LocalDate`：僅處理日期 (年-月-日)，無時區概念。
+- `LocalTime`：僅處理時間 (時:分:秒)。
+- `LocalDateTime`：日期 + 時間，最常使用。
 
 ```java
 // 取得當前時間

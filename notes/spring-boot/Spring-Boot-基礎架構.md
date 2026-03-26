@@ -11,7 +11,7 @@
 除了我們在進階篇提到的 IoC 機制，目前實務上創建 Bean 有兩種最常見的方式。
 
 ### 方法一：使用 @Component 及其衍生註解
-最常見的做法。只要在 Class 上加上 **`@Component`**（或 `@Service`, `@Controller`, `@Repository`），Spring 啟動時掃描到就會自動幫你實例化並放進容器裡。
+最常見的做法。只要在 Class 上加上 `@Component`（或 `@Service`, `@Controller`, `@Repository`），Spring 啟動時掃描到就會自動幫你實例化並放進容器裡。
 - **優點**：簡單快速，直接在自己寫的類別上加個註解就好。
 - **限制**：只能用在你自己寫的原始碼上。如果是第三方 Library 的類別，你無法去改別人的原始碼加註解。
 
@@ -36,8 +36,8 @@ public class MyConfig {
 **Spring MVC** 是我們開發 RESTful API 的核心。
 
 ### 常用註解速查
-- **`@RestController`**：等於 `@Controller` + `@ResponseBody`。它會告訴 Spring，這個類別回傳的資料不是 HTML 網頁，而是要直接轉換成 JSON 格式回傳給前端。
-- **`@RequestMapping`**：用來對應 URL 路徑，通常會放在類別上方當作 Base URL。
+- `@RestController`：等於 `@Controller` + `@ResponseBody`。它會告訴 Spring，這個類別回傳的資料不是 HTML 網頁，而是要直接轉換成 JSON 格式回傳給前端。
+- `@RequestMapping`：用來對應 URL 路徑，通常會放在類別上方當作 Base URL。
 - **HTTP Method 對應**：
   - `@GetMapping`：對應 HTTP GET (查詢資料)
   - `@PostMapping`：對應 HTTP POST (新增資料)
@@ -45,9 +45,9 @@ public class MyConfig {
   - `@DeleteMapping`：對應 HTTP DELETE (刪除資料)
 
 ### 參數接收方式 (Parameter Binding)
-1. **`@RequestParam`**：接收 URL Query String。
-2. **`@PathVariable`**：接收 URL 路徑變數。
-3. **`@RequestBody`**：接收 HTTP 請求的 Body，並自動反序列化 (**Deserialize**) 成 Java 物件。
+1. `@RequestParam`：接收 URL Query String。
+2. `@PathVariable`：接收 URL 路徑變數。
+3. `@RequestBody`：接收 HTTP 請求的 Body，並自動反序列化 (**Deserialize**) 成 Java 物件。
 
 ---
 
@@ -58,7 +58,7 @@ public class MyConfig {
 ### 實戰寫法
 1. 確保 `pom.xml` 有引入 `spring-boot-starter-validation`。
 2. 在 DTO 的欄位上加上驗證註解，例如 `@NotNull`, `@NotBlank`, `@Email`, `@Min`, `@Max`。
-3. 在 Controller 接收參數時加上 **`@Valid`**。
+3. 在 Controller 接收參數時加上 `@Valid`。
 
 ```java
 // DTO 定義
@@ -84,7 +84,7 @@ public ResponseEntity<String> createUser(@RequestBody @Valid UserRequest request
 相比於手寫 SQL (Spring JDBC)，目前業界最常使用 **Spring Data JPA** 來大幅減少 CRUD 的程式碼。
 
 ### Repository 介面
-只要繼承 **`CrudRepository`**或**`JpaRepository`**，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法。
+只要繼承 `CrudRepository`或`JpaRepository`，完全不用寫實作類別，Spring 在啟動時會透過動態代理自動幫你生出常用的 CRUD 方法。
 
 ```java
 public interface UserRepository extends JpaRepository<User, Integer> {

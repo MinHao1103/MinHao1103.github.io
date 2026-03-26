@@ -15,7 +15,7 @@ Lazy Loading 是一種設計模式（延遲初始化）。當我們從資料庫�
 
 ## 2. 常見地雷：LazyInitializationException
 
-在前後端分離的架構或是傳統 MVC 網頁中，我們經常遇到 **`LazyInitializationException`**。
+在前後端分離的架構或是傳統 MVC 網頁中，我們經常遇到 `LazyInitializationException`。
 原因通常是：在 Controller 或 View 層（此時 Service 層的 `@Transactional` 已經結束，Session 已關閉）試圖存取未被初始化的 Lazy 屬性。
 
 ### 過去的解法（不推薦）
@@ -29,7 +29,7 @@ Lazy Loading 是一種設計模式（延遲初始化）。當我們從資料庫�
 要在不犧牲效能的情況下解決 Lazy Loading 問題，建議採用以下實戰策略：
 
 ### 方法一：在 DAO / Repository 層強制初始化 (Fetch Join)
-在我們確定會使用到關聯資料的場景中，直接在 SQL/HQL 中使用 **`JOIN FETCH`**，一次性將需要的關聯資料抓出來。
+在我們確定會使用到關聯資料的場景中，直接在 SQL/HQL 中使用 `JOIN FETCH`，一次性將需要的關聯資料抓出來。
 ```java
 // Spring Data JPA 範例
 @Query("SELECT o FROM Order o JOIN FETCH o.items WHERE o.id = :id")
@@ -37,7 +37,7 @@ Order findOrderWithItemsById(@Param("id") Long id);
 ```
 
 ### 方法二：使用 @EntityGraph (Spring Data JPA)
-若不想手寫 HQL，可利用 **`@EntityGraph`** 指定在該次查詢中需要 Eager 載入的屬性。
+若不想手寫 HQL，可利用 `@EntityGraph` 指定在該次查詢中需要 Eager 載入的屬性。
 ```java
 @EntityGraph(attributePaths = {"items"})
 Optional<Order> findById(Long id);

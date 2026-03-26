@@ -15,7 +15,7 @@
   - *實戰建議*：業務邏輯的錯誤（如「查無此用戶」、「餘額不足」）都應該自定義繼承自 `RuntimeException` 的例外類別，並交由 Spring 的 `@RestControllerAdvice` 統一攔截處理。
 
 ### try-with-resources 機制
-處理 I/O 或資料庫連線時，一律使用 Java 7 引入的 **`try-with-resources`** 語法，確保資源會自動關閉，避免 Memory Leak。
+處理 I/O 或資料庫連線時，一律使用 Java 7 引入的 `try-with-resources` 語法，確保資源會自動關閉，避免 Memory Leak。
 ```java
 // 實作 AutoCloseable 介面的資源會自動被 close()
 try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
@@ -47,7 +47,7 @@ try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
 在高併發系統中，直接 `new Thread()` 是絕對禁止的，因為頻繁建立與銷毀執行緒的系統開銷極大。
 
 ### 執行緒池 (Thread Pool) 實戰
-所有多執行緒任務都應該交由 **`ExecutorService`** (執行緒池) 來管理。
+所有多執行緒任務都應該交由 `ExecutorService` (執行緒池) 來管理。
 ```java
 // 建立一個固定大小的執行緒池
 ExecutorService executor = Executors.newFixedThreadPool(10);
@@ -66,8 +66,8 @@ executor.shutdown();
 當多個執行緒同時存取共享資源時，會產生 **Race Condition**。
 - **`synchronized` 關鍵字**：保證同一時間只有一個執行緒能進入臨界區 (Critical Section)。但這屬於悲觀鎖，效能較差。
 - **JUC (java.util.concurrent) 套件**：
-  - 盡量使用 **`ConcurrentHashMap`** 代替 `Hashtable`。
-  - 計數器務必使用 **`AtomicInteger`** (底層基於 CAS 樂觀鎖操作)，效能遠高於加鎖的 `int`。
+  - 盡量使用 `ConcurrentHashMap` 代替 `Hashtable`。
+  - 計數器務必使用 `AtomicInteger` (底層基於 CAS 樂觀鎖操作)，效能遠高於加鎖的 `int`。
 
 ### 死結 (Deadlock) 防範
 死結發生的原因是多個執行緒互相等待對方釋放鎖。

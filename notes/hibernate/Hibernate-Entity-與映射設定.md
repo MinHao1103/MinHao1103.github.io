@@ -37,17 +37,17 @@ Hibernate 底層依賴**反射（Reflection）**與**代理（Proxy）**機制�
 
 ### 類別層級
 
-- **`@Entity`**（必填）：宣告這是一個需要被 Hibernate 管理的實體類別
-- **`@Table(name = "table_name")`**：指定對應的資料庫 Table 名稱
+- `@Entity`（必填）：宣告這是一個需要被 Hibernate 管理的實體類別
+- `@Table(name = "table_name")`：指定對應的資料庫 Table 名稱
   > 💡 若 Java 類別名稱與 Table 名稱完全相同（不區分大小寫），此註解可省略
 
 ### 屬性層級
 
-- **`@Id`**（必填）：宣告此屬性為 Primary Key
-- **`@GeneratedValue(strategy = GenerationType.IDENTITY)`**：設定主鍵自動生成策略，`IDENTITY` 依賴資料庫的 Auto-Increment
-- **`@Column(name = "col_name")`**：明確指定映射的欄位名稱
+- `@Id`（必填）：宣告此屬性為 Primary Key
+- `@GeneratedValue(strategy = GenerationType.IDENTITY)`：設定主鍵自動生成策略，`IDENTITY` 依賴資料庫的 Auto-Increment
+- `@Column(name = "col_name")`：明確指定映射的欄位名稱
   > 💡 若屬性名稱為 `userName`，Hibernate 預設會自動映射到 `user_name` 欄位（駝峰轉底線），名稱一致時可省略
-- **`@Transient`**：標記不需映射到資料庫的屬性（例如由其他欄位計算而來的暫時值）
+- `@Transient`：標記不需映射到資料庫的屬性（例如由其他欄位計算而來的暫時值）
 
 ---
 

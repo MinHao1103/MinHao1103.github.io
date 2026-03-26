@@ -138,9 +138,9 @@ public void run() {
 > ⚠️ **注意**：鎖的區塊過大會導致效能問題，應精準控制鎖的範圍。
 
 **現代替代方案：**
-- **`AtomicInteger`**（底層基於 CAS 樂觀鎖）：效能遠高於加鎖的 `int`
-- **`ConcurrentHashMap`**：取代 `Hashtable`，執行緒安全且效能更好
-- **`ReentrantLock.tryLock(timeout)`**：帶超時機制的鎖，可避免死鎖
+- `AtomicInteger`（底層基於 CAS 樂觀鎖）：效能遠高於加鎖的 `int`
+- `ConcurrentHashMap`：取代 `Hashtable`，執行緒安全且效能更好
+- `ReentrantLock.tryLock(timeout)`：帶超時機制的鎖，可避免死鎖
 
 ---
 
@@ -217,8 +217,8 @@ for (int retryCount = 1; retryCount <= maxRetries; retryCount++) {
 | 概念 | 重點 |
 |------|------|
 | **競爭條件** | 共享資源同時存取導致資料不一致 |
-| **`synchronized`** | 悲觀鎖，確保互斥，但需精準控制鎖的範圍 |
-| **`AtomicInteger`** | 樂觀鎖（CAS），計數器首選 |
+| `synchronized` | 悲觀鎖，確保互斥，但需精準控制鎖的範圍 |
+| `AtomicInteger` | 樂觀鎖（CAS），計數器首選 |
 | **死鎖** | 多執行緒互相等待；解法：固定鎖順序或帶 Timeout 的鎖 |
 | **執行緒池** | 生產環境一律使用 `ExecutorService`，禁止直接 `new Thread()` |
 
