@@ -37,7 +37,7 @@ try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
 
 ### Map 與 Set 家族
 - **HashMap / HashSet**：底層為**Hash Table**（JDK 8 後加入紅黑樹優化）。查找時間複雜度為 `O(1)`，但不保證順序。
-  - > ⚠️ 踩坑點：當作為 Key 的物件沒有正確覆寫 `hashCode()` 與 `equals()` 時，會導致資料無法正確存取與 Memory Leak。
+  - > ⚠️ 當作為 Key 的物件沒有正確覆寫 `hashCode()` 與 `equals()` 時，會導致資料無法正確存取與 Memory Leak。
 - **TreeMap / TreeSet**：底層為**紅黑樹**。可以保證元素按自然順序（或自訂的 `Comparator`）排序，查找時間複雜度為 `O(log n)`。
 
 ---

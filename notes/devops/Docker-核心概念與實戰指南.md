@@ -243,9 +243,8 @@ docker-compose up -d --build backend-api
 
 ---
 
-## 8. 實戰踩坑紀錄
+## 8. 實戰紀錄
 
-> ⚠️ 踩坑點: 時區問題 (Timezone)
-> Docker 容器預設的時區通常是 UTC。如果你的 Java 程式沒有強制設定時區，寫入 MySQL 的 `LocalDateTime` 可能會產生 8 小時的落差。解法：在 Dockerfile 或 docker-compose 中掛載主機的 `/etc/localtime` 或設定環境變數 `TZ=Asia/Taipei`。
+> ⚠️ **時區問題（Timezone）**：Docker 容器預設時區為 UTC。若 Java 程式沒有強制設定時區，寫入 MySQL 的 `LocalDateTime` 可能會產生 8 小時落差。解法：在 Dockerfile 或 docker-compose 中掛載主機的 `/etc/localtime` 或設定環境變數 `TZ=Asia/Taipei`。
 
 ---

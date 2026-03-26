@@ -14,7 +14,7 @@
 
 ### BigDecimal 最佳實踐
 目前開發中，遇到小數運算一律使用 **`BigDecimal`**。
-- **踩坑點**：建構 `BigDecimal` 時，**一定要傳入字串** (`String`)，不要傳入 `double`，否則依然會失去精度。
+- 建構 `BigDecimal` 時，**一定要傳入字串** (`String`)，不要傳入 `double`，否則依然會失去精度。
 - **除法例外**：如果除法產生無限循環小數，會拋出 `ArithmeticException`。務必指定小數位數與進位模式。
 
 ```java
