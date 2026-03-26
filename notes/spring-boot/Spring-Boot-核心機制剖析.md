@@ -84,7 +84,7 @@ public class SecurityAspect {
 
 ---
 
-## 4. @Transactional 交易管理的踩坑紀錄
+## 4. @Transactional 交易管理實戰紀錄
 
 `@Transactional` 底層就是透過 AOP 生成代理物件來控制 `commit` 和 `rollback`。
 

@@ -16,7 +16,7 @@
 ### Session.load()
 - **行為**：**延遲載入** (Lazy Loading)。不會立刻發送 SQL，而是回傳一個具有該 OID 的「代理物件 (Proxy)」。
 - **回傳值**：回傳 Proxy。若後續操作該物件且資料庫中無此資料，會拋出 `ObjectNotFoundException`。
-- **使用場規**：當你「非常確定」資料存在，且只是需要這個物件來當作 Foreign Key 關聯（例如建立 Order 時塞入一個已知的 User），此時用 `load()` 可以省下一次 SELECT 查詢。
+- **使用場景**：當你「非常確定」資料存在，且只是需要這個物件來當作 Foreign Key 關聯（例如建立 Order 時塞入一個已知的 User），此時用 `load()` 可以省下一次 SELECT 查詢。
 
 ---
 
@@ -44,7 +44,7 @@ Hibernate 的 Session 扮演著「**一級快取** (L1 Cache)」的角色。被�
 我們必須確保整個 Service 邏輯都在「同一個 Session」與「同一個 Transaction」中執行。
 
 1. **DAO 層只負責拿連線與操作**：
-   使用 `sessionFactory.getCurrentSession()` 獲獲取綁定在當前執行緒的 Session，絕對不不在這裡執行 commit 或 rollback。
+   使用 `sessionFactory.getCurrentSession()` 獲取綁定在當前執行緒的 Session，不在這裡執行 commit 或 rollback。
    ```java
    public Member findById(Integer id) {
        return getSessionFactory().getCurrentSession().get(Member.class, id);
