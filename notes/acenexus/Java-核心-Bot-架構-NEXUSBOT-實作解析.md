@@ -2,6 +2,10 @@
 
 在 AceNexus 的生態系中，Bot 的開發被作為微服務架構中的一個專業元件。本篇筆記將深入探討基於 **Java (Spring Boot)** 實作的高性能且易於維護的 Bot 系統。
 
+## 實際效果展示
+
+![LineBot Demo](./images/LineBot.gif)
+
 ---
 
 ## 1. 架構設計：NEXUSBOT
