@@ -1,8 +1,8 @@
-# Spring Boot 核心機制剖析與實戰踩坑
+# Spring Boot 核心機制剖析
 
 目前在開發企業級應用時，Spring Boot 幾乎是唯一首選。原因是它利用了「約定優於配置 (Convention Over Configuration)」的特性，大幅降低了起手難度。
 
-但在資深工程師的日常中，如果只會寫 Controller 跟 Service 是不夠的。這裡整理了 Spring 底層最核心的 **IoC**、**AOP**機制、**Bean 的生命週期**，以及在交易管理與測試上常遇到的踩坑紀錄。
+但在資深工程師的日常中，如果只會寫 Controller 跟 Service 是不夠的。這裡整理了 Spring 底層最核心的 **IoC**、**AOP**機制、**Bean 的生命週期**，以及交易管理與測試的實戰紀錄。
 
 ---
 

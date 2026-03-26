@@ -1,6 +1,6 @@
 > 🌱 **歷史存檔聲明**：
 > 這是早期初學階段留下的學習筆記與基礎練習紀錄，保留於此作為自己一路走來的初心回顧。
-> 若面試官或同行前輩想看進階架構與實戰踩坑，請直接參考上方「Java 底層與架構」或「Spring 生態系解析」等章節，謝謝！
+> 若面試官或同行前輩想看進階架構與進階實作，請直接參考上方「Java 底層與架構」或「Spring 生態系解析」等章節，謝謝！
 
 ---
 
@@ -32,6 +32,6 @@ git commit -m "feat: add new feature"
 git push origin main
 git pull
 ```
-預計在實戰中，都會搭配 GitHub Actions 或 GitLab CI/CD 進行自動化部署。
+實戰中通常搭配 GitHub Actions 或 GitLab CI/CD 進行自動化部署。
 
 ---
