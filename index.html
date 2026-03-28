@@ -86,14 +86,24 @@
                     <h4>資深後端工程師 | 2023/3 – 至今</h4>
                     
                     <div class="exp-project">
-                        <h5>智慧社區與居家 IoT 平台</h5>
+                        <h5>凱擘大寬頻 智慧社區 WEBAPP（2023/03 – 2023/12）</h5>
                         <ul>
-                            <li><strong>微服務維護與開發</strong>：參與 50+ 個微服務專案，整合 MySQL、Redis、ActiveMQ 處理每日上萬台設備訊息。</li>
+                            <li>微服務架構下的 IoT 平台，整合門禁、對講機、攝影機、社區庶務等模組。</li>
+                            <li><strong>微服務維護與開發</strong>：參與 50+ 個微服務，整合 MySQL、Redis、ActiveMQ 處理每日上萬台設備訊息。</li>
+                            <li><strong>Redis 快取設計</strong>：設備管理為高頻被呼叫的核心服務，以 Redis 快取設備與關聯資料，避免重複查詢資料庫，降低跨服務延遲。</li>
+                            <li><strong>共用函式庫</strong>：開發共用工具封裝庫，統一錯誤處理與日誌格式，減少重複程式碼，加速跨服務調用。</li>
+                            <li><strong>系統設計</strong>：建立標準化 RESTful API 與 Swagger 文件，降低前後端溝通成本 30%。</li>
+                            <li><a href="https://play.google.com/store/apps/details?id=com.kt.homepronew" target="_blank">智慧社區 App</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-project">
+                        <h5>凱擘大寬頻 智慧居家 APP（2024/01 – 2026/01）</h5>
+                        <ul>
+                            <li>整合智慧家電、燈控、攝影機、觸發告警通知等功能的居家 IoT 平台。</li>
                             <li><strong>效能優化</strong>：事件告警查詢從 5 分鐘優化至 2 秒 (99%↓)，可處理千萬級事件資料。</li>
                             <li><strong>團隊賦能</strong>：建立 DocumentsCenter 技術文件中心，制定新人培訓流程，縮短獨立維運時間至 3 週。</li>
-                            <li><strong>共用函式庫</strong>：開發共用工具封裝函式庫，統一錯誤處理與日誌格式，減少重複程式碼，加速跨服務調用。</li>
-                            <li><strong>系統設計</strong>：建立標準化 RESTful API 與 Swagger 文件，降低前後端溝通成本 30%。</li>
-                            <li><a href="https://play.google.com/store/apps/details?id=com.kt.homepronew" target="_blank">智慧社區 App</a> | <a href="https://play.google.com/store/apps/details?id=com.kt.aihome" target="_blank">智慧居家 App</a></li>
+                            <li><a href="https://play.google.com/store/apps/details?id=com.kt.aihome" target="_blank">智慧居家 App</a></li>
                         </ul>
                     </div>
                     
@@ -132,9 +142,9 @@
                     <div class="exp-project">
                         <h5>BPM 簽核系統</h5>
                         <ul>
-                            <li>負責新功能程式撰寫、軟體維護及測試。</li>
-                            <li>使用 Struts + Hibernate 開發業務流程，實作複雜 SQL 查詢 (Oracle/MSSQL)。</li>
-                            <li>入職 2 週內獨立維運並開發新功能，提升系統穩定性。</li>
+                            <li>使用 Struts + Hibernate 開發與維護簽核流程，實作複雜業務邏輯的 SQL 查詢 (Oracle / MSSQL)，部署環境為 Linux。</li>
+                            <li>排查並修復 Oracle ORA-01000 cursor 超限問題，解決雙因素模組操作導致的資料庫連線耗盡。</li>
+                            <li>入職 2 週內獨立維運並開發新功能；任職期間前端工作比例偏高，為專注後端與資料邏輯主動轉職。</li>
                         </ul>
                     </div>
                 </div>
@@ -146,28 +156,55 @@
         <h2>個人專案 (Projects)</h2>
         <div class="projects-grid">
             <div class="card project-card">
-                <h3>Spring Cloud 微服務生態系統</h3>
-                <p>包含 Config Server、Eureka、API Gateway 等完整微服務基礎架構實作。透過 GitHub Actions 實現自動化部署與測試流程。</p>
+                <h3>AceNexus — Spring Cloud 微服務基礎架構</h3>
+                <p>自主設計並實作一套完整的微服務基礎設施，包含三個核心服務：</p>
+                <ul>
+                    <li><strong>GATEWAYSERVICE</strong>：自定義 JWT 全域過濾器，驗證後將 User ID 注入下游 Header，消除各服務重複驗證邏輯；整合請求 Log 追蹤 (Request ID, IP, Duration)。</li>
+                    <li><strong>CONFIGSERVICE</strong>：以 Git 為配置後端，整合 JCE 加密敏感參數；搭配 RabbitMQ + Spring Cloud Bus，實現配置熱更新無需重啟服務。</li>
+                    <li><strong>EUREKASERVICE</strong>：整合 HTTP Basic Auth 防止未授權節點註冊，心跳超時 45 秒自動剔除失效節點。</li>
+                </ul>
+                <p>CI/CD 透過 GitHub Actions 建置 Docker 映像、Trivy 漏洞掃描後推送至 GHCR，再由 ArgoCD 監控 deploy repo 自動同步至 K8s 叢集。</p>
                 <div class="tags">
-                    <span>Spring Boot 3</span>
                     <span>Java 21</span>
-                    <span>Eureka</span>
+                    <span>Spring Cloud</span>
                     <span>API Gateway</span>
+                    <span>RabbitMQ</span>
+                    <span>ArgoCD</span>
+                    <span>K8s</span>
                 </div>
-                <a href="https://github.com/AceNexus" target="_blank" class="project-link">前往查看 GitHub <i class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/AceNexus" target="_blank" class="project-link">前往 AceNexus GitHub <i class="fas fa-arrow-right"></i></a>
             </div>
-            
+
             <div class="card project-card">
-                <h3>LINE Bot 開發</h3>
-                <p>處理 LINE Messaging API 的 webhook 請求設計，透過簽名驗證機制安全處理請求，整合 Spring Cloud Config 讀取動態設定，並使用 Docker 容器化部署。</p>
+                <h3>NEXUSBOT — LINE Bot 智慧助理</h3>
+                <p>基於 Java 17 + Spring Boot 建構的 LINE Bot 服務，核心設計重點：</p>
+                <ul>
+                    <li><strong>責任鏈模式 (Chain of Responsibility)</strong>：依優先順序串接多個事件處理器（管理員指令 → AI 閒聊 → 預設回覆），新增功能不影響現有邏輯，符合開閉原則。</li>
+                    <li><strong>AI 整合</strong>：串接 Groq API (Llama 3.1) 提供智慧對話；支援單次、每日、每週排程提醒並處理跨時區轉換。</li>
+                    <li><strong>可觀測性</strong>：整合 MDC TraceID 追蹤請求鏈路，搭配 Grafana 監控。</li>
+                    <li><strong>資料庫版本控制</strong>：使用 Flyway 管理 MySQL Schema，確保各環境 (Local/Dev/Prod) 結構一致。</li>
+                </ul>
                 <div class="tags">
+                    <span>Java 17</span>
                     <span>LINE API</span>
+                    <span>Groq / Llama 3.1</span>
+                    <span>Flyway</span>
+                    <span>Grafana</span>
                     <span>Docker</span>
-                    <span>AWS EC2</span>
-                    <span>Webhook</span>
                 </div>
-                <a href="https://github.com/AceNexus" target="_blank" class="project-link">前往查看 GitHub <i class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/AceNexus/NEXUSBOT" target="_blank" class="project-link">前往查看 GitHub <i class="fas fa-arrow-right"></i></a>
             </div>
+        </div>
+    </section>
+
+    <section id="education" class="container">
+        <h2>學歷 (Education)</h2>
+        <div class="card">
+            <ul>
+                <li><strong>輔英科技大學</strong>　健康事業管理系　學士　2016/09 – 2020/06
+                    <br><small>系辦工讀生｜主任計畫助理｜負責系上官網維護</small>
+                </li>
+            </ul>
         </div>
     </section>
 
