@@ -32,7 +32,7 @@ CONFIGSERVICE 健康狀態（Port 8888）：
 
 ![ConfigService Health](./images/configservice-health.png)
 
-RabbitMQ Management 確認訊息佇列正常運作（4 queues、4 consumers）：
+RabbitMQ Management 確認訊息佇列正常運作：
 
 ![RabbitMQ Management](./images/rabbitmq-management.png)
 
@@ -67,7 +67,7 @@ GATEWAYSERVICE 健康狀態（Port 8080）：
 
 匹配成功即截斷，不匹配則流轉至下一層。新增功能處理器不影響現有邏輯，符合開閉原則。
 
-下圖透過 ngrok Traffic Inspector 確認 LINE 平台成功回呼 `/api/linebot/webhook`，事件類型為 `postback`（`action=toggle_ai`），服務回應 **200 OK**：
+下圖透過 ngrok 監控確認 LINE 平台成功回呼 `/api/linebot/webhook`，事件類型為 `postback`（`action=toggle_ai`），服務回應 **200 OK**：
 
 ![ngrok Webhook](./images/ngrok-linebot-webhook.png)
 
@@ -83,7 +83,7 @@ Flyway `flyway_schema_history` 確認 Schema 已正確套用 Baseline：
 
 ![Flyway Schema History](./images/flyway-schema-history.png)
 
-Grafana Tempo 顯示 nexusbot 服務的 Trace 記錄，涵蓋排程提醒、HTTP PUT/POST 等操作：
+Grafana Tempo 顯示 nexusbot 服務的 Trace 記錄，涵蓋所有 HTTP 操作：
 
 ![Grafana Tempo Traces](./images/grafana-tempo-traces.png)
 
@@ -131,9 +131,7 @@ LINE Webhook 需要公開的 HTTPS URL，透過 `ngrok-tunnel.sh` 自動建立�
 ## 6. 安全性與災難復原
 
 - **Secret 管理：** 資料庫憑證、API Keys 等敏感資訊不進入 Git，統一透過 **K8S Secrets** 手動建立並在 Pod 中引用。
-- **快速回滾：**
-    - **Git 層級：** Git Revert 回退 `deploy` 儲存庫配置。
-    - **ArgoCD 層級：** 在 ArgoCD UI 一鍵執行版本回滾，幾秒內恢復至先前的穩定版本。
+- **快速回滾：** 透過 Git Revert 回退 `deploy` 儲存庫配置。
 
 ---
 
