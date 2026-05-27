@@ -27,11 +27,9 @@
 
 ### 關鍵功能實作
 
-#### AI 整合：AIClient2API 代理層
+#### AI 整合
 
-NEXUSBOT 透過 **AIClient2API** 作為統一的 AI 代理中介層，以 OpenAI 相容協議路由至多個 AI 模型提供商（Gemini、Llama 等），實現靈活的模型切換而無需修改業務程式碼。
-
-![AIClient2API Dashboard](./images/aiclient2api-dashboard.png)
+透過 **Groq API** 整合 Llama 3.1 模型，提供低延遲的智慧對話能力。
 
 #### 排程提醒
 
