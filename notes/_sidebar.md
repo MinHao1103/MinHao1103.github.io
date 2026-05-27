@@ -22,7 +22,7 @@
     - [Spring Data JPA 與三層架構實作](spring-boot/Spring-Data-JPA-三層架構實作.md)
 
 - **☁️ Spring Cloud 微服務**
-    - [Spring Cloud 微服務架構實戰解析](acenexus/Spring-Cloud-微服務架構實戰解析.md)
+    - [Spring Cloud 微服務架構實戰解析](spring-boot/Spring-Cloud-微服務架構實戰解析.md)
 
 - **💾 Hibernate**
     - [Hibernate 框架介紹](hibernate/Hibernate-框架介紹.md)

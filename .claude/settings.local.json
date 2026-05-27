@@ -21,7 +21,9 @@
       "Bash(Out-String)",
       "PowerShell(Get-ChildItem -Path \"D:\\\\AceNexus\\\\deploy\" -Recurse -Force | Where-Object { $_.PSIsContainer -or $_.PSIsContainer -eq $false } | Select-Object FullName, PSIsContainer)",
       "PowerShell(ls -Recurse \"D:\\\\AceNexus\\\\deploy\" | ForEach-Object { $_.FullName })",
-      "PowerShell(kubectl apply *)"
+      "PowerShell(kubectl apply *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(Move-Item *)"
     ]
   }
 }

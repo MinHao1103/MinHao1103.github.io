@@ -1,6 +1,6 @@
 # AceNexus 專案架構實戰解析
 
-[**AceNexus**](https://github.com/AceNexus) 是一套自主設計並實作的微服務系統，採用 Spring Cloud 生態系建構核心基礎設施，並以 NEXUSBOT 作為主要的應用服務（LINE Bot 智慧助理），全程透過 GitOps 模式自動化部署至 Kubernetes 叢集。
+[**AceNexus**](https://github.com/AceNexus) 是一套自主設計並實作的微服務系統，採用 Spring Cloud 生態系建構核心基礎設施，並以 NEXUSBOT 作為主要的應用服務（LINE Bot 助理）。
 
 ---
 
