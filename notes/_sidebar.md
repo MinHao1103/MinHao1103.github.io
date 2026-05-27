@@ -21,6 +21,9 @@
     - [Spring Boot 核心機制剖析](spring-boot/Spring-Boot-核心機制剖析.md)
     - [Spring Data JPA 與三層架構實作](spring-boot/Spring-Data-JPA-三層架構實作.md)
 
+- **☁️ Spring Cloud 微服務**
+    - [Spring Cloud 微服務架構實戰解析](acenexus/Spring-Cloud-微服務架構實戰解析.md)
+
 - **💾 Hibernate**
     - [Hibernate 框架介紹](hibernate/Hibernate-框架介紹.md)
     - [Hibernate 環境準備與設定完整指南](hibernate/Hibernate-環境與設定完整指南.md)
@@ -49,7 +52,6 @@
     - [IntelliJ IDEA 開發效率完整指南](spring-boot/IntelliJ-開發效率完整指南.md)
 
 - **🚀 實戰專案架構解析 (AceNexus)**
-    - [Spring Cloud 微服務架構實戰解析](acenexus/Spring-Cloud-微服務架構實戰解析.md)
     - [AceNexus 微服務基礎設施實戰架構](acenexus/AceNexus-微服務基礎設施實戰架構.md)
     - [AceNexus GitOps 自動化部署實戰](acenexus/AceNexus-GitOps-自動化部署實戰.md)
     - [Java 核心 Bot 架構：NEXUSBOT 實作解析](acenexus/Java-核心-Bot-架構-NEXUSBOT-實作解析.md)
