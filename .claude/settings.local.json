@@ -9,7 +9,19 @@
       "Bash(grep -E \"\\\\.\\(nojekyll|json|yaml|yml|md\\)$\")",
       "Bash(cd /d D:\\\\MinHao1103.github.io)",
       "Bash(Get-ChildItem -Recurse -Filter \"*.md\")",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "PowerShell(netstat *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\AceNexus\\\\deploy\\\\k8s\\\\grafana\" -Recurse -Force)",
+      "Bash(Format-List -Property FullName)",
+      "PowerShell(kubectl get pods *)",
+      "PowerShell(kubectl get all *)",
+      "PowerShell(kubectl get pods,svc,pvc,configmap -n acenexus 2>&1)",
+      "Bash(Get-ChildItem -Path \"D:\\\\AceNexus\\\\deploy\" -Recurse -Force)",
+      "Bash(ConvertTo-Csv -NoTypeInformation)",
+      "Bash(Out-String)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\AceNexus\\\\deploy\" -Recurse -Force | Where-Object { $_.PSIsContainer -or $_.PSIsContainer -eq $false } | Select-Object FullName, PSIsContainer)",
+      "PowerShell(ls -Recurse \"D:\\\\AceNexus\\\\deploy\" | ForEach-Object { $_.FullName })",
+      "PowerShell(kubectl apply *)"
     ]
   }
 }

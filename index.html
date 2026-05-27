@@ -163,7 +163,7 @@
                     <li><strong>CONFIGSERVICE</strong>：以 Git 為配置後端，整合 JCE 加密敏感參數；搭配 RabbitMQ + Spring Cloud Bus，實現配置熱更新無需重啟服務。</li>
                     <li><strong>EUREKASERVICE</strong>：整合 HTTP Basic Auth 防止未授權節點註冊，心跳超時 45 秒自動剔除失效節點。</li>
                 </ul>
-                <p>CI/CD 透過 GitHub Actions 建置 Docker 映像、Trivy 漏洞掃描後推送至 GHCR，再由 ArgoCD 監控 deploy repo 自動同步至 K8s 叢集。</p>
+                <p>CI/CD 透過 GitHub Actions 建置 Docker 映像並推送至 GHCR，再由 ArgoCD 監控 deploy repo 自動同步至 K8s 叢集。</p>
                 <div class="tags">
                     <span>Java 21</span>
                     <span>Spring Cloud</span>

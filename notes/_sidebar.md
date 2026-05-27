@@ -52,6 +52,4 @@
     - [IntelliJ IDEA 開發效率完整指南](spring-boot/IntelliJ-開發效率完整指南.md)
 
 - **🚀 實戰專案架構解析 (AceNexus)**
-    - [AceNexus 微服務基礎設施實戰架構](acenexus/AceNexus-微服務基礎設施實戰架構.md)
-    - [AceNexus GitOps 自動化部署實戰](acenexus/AceNexus-GitOps-自動化部署實戰.md)
-    - [Java 核心 Bot 架構：NEXUSBOT 實作解析](acenexus/Java-核心-Bot-架構-NEXUSBOT-實作解析.md)
+    - [AceNexus 專案架構實戰解析](acenexus/AceNexus-專案架構實戰解析.md)

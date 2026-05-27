@@ -1,0 +1,143 @@
+# AceNexus 專案架構實戰解析
+
+[**AceNexus**](https://github.com/AceNexus) 是一套自主設計並實作的微服務系統，採用 Spring Cloud 生態系建構核心基礎設施，並以 NEXUSBOT 作為主要的應用服務（LINE Bot 智慧助理），全程透過 GitOps 模式自動化部署至 Kubernetes 叢集。
+
+---
+
+## 1. 服務註冊與發現：EUREKASERVICE
+
+[**EUREKASERVICE**](https://github.com/AceNexus/EUREKASERVICE) 是整個微服務體系的通訊錄，負責管理所有服務實例的生命週期。
+
+### 關鍵實作
+- **安全防護：** 整合 HTTP Basic Auth，確保只有授權的服務節點能進行註冊。
+- **健康監控：** 每 15 秒接收一次心跳 (Heartbeat)，超過 45 秒未回報則自動剔除失效節點。
+- **多環境支援：** 支援 local / dev / prod Profile，生產環境與 Config Server 深度整合。
+
+下圖為 Eureka Dashboard，**GATEWAYSERVICE** 與 **NEXUSBOT** 均已成功註冊並處於 UP 狀態：
+
+![Eureka Dashboard](./images/eureka-dashboard.png)
+
+---
+
+## 2. 分散式配置中心：CONFIGSERVICE
+
+[**CONFIGSERVICE**](https://github.com/AceNexus/CONFIGSERVICE) 實現「配置即代碼 (Configuration as Code)」，集中管理所有服務的環境參數。
+
+### 關鍵實作
+- **Git 儲存後端：** 所有配置檔存放於專屬 Git 儲存庫，實現版本控制與變更追蹤。
+- **敏感資訊加密 (JCE)：** 使用 Java Cryptography Extension 對稱加密，Git 檔案中以 `{cipher}` 前綴標記，Config Server 傳送前自動解密。
+- **動態熱更新 (Spring Cloud Bus)：** 整合 **RabbitMQ**，配置變更時透過 `/actuator/busrefresh` 廣播，所有微服務即時套用新配置而無需重啟。
+
+CONFIGSERVICE 健康狀態（Port 8888）：
+
+![ConfigService Health](./images/configservice-health.png)
+
+RabbitMQ Management 確認訊息佇列正常運作（4 queues、4 consumers）：
+
+![RabbitMQ Management](./images/rabbitmq-management.png)
+
+---
+
+## 3. 統一 API 網關：GATEWAYSERVICE
+
+[**GATEWAYSERVICE**](https://github.com/AceNexus/GATEWAYSERVICE) 作為系統唯一入口，承載路由轉發與全域安全性檢查。
+
+### 關鍵實作
+- **JwtAuthFilter：** 自定義全域過濾器，驗證請求標頭中的 JWT Token，校驗成功後將 `X-User-ID` 與 `X-User-Name` 注入下游請求，消除各服務重複驗證邏輯。
+- **GatewayLoggerFilter：** 記錄所有請求的 Meta-data（Request ID、Path、IP、Duration），提升系統可觀測性。
+- **路徑重寫 (Path Rewriting)：** 透過 `StripPrefix` 過濾器，將 `/api/service-name/**` 格式的外部請求精確導向內部服務。
+
+GATEWAYSERVICE 健康狀態（Port 8080）：
+
+![GatewayService Health](./images/gatewayservice-health.png)
+
+---
+
+## 4. NEXUSBOT — LINE Bot 智慧助理
+
+[**NEXUSBOT**](https://github.com/AceNexus/NEXUSBOT) 是基於 **Java 17 + Spring Boot** 建構的核心 Bot 服務。
+
+![LineBot Demo](./images/LineBot.gif)
+
+### 核心設計：責任鏈模式 (Chain of Responsibility)
+
+為處理 LINE Messaging API 傳來的多樣化事件（文字、圖片、Postback），採用責任鏈模式依優先順序串接多個事件處理器：
+
+**管理員指令 → AI 閒聊 → 預設回覆**
+
+匹配成功即截斷，不匹配則流轉至下一層。新增功能處理器不影響現有邏輯，符合開閉原則。
+
+下圖透過 ngrok Traffic Inspector 確認 LINE 平台成功回呼 `/api/linebot/webhook`，事件類型為 `postback`（`action=toggle_ai`），服務回應 **200 OK**：
+
+![ngrok Webhook](./images/ngrok-linebot-webhook.png)
+
+### 關鍵功能實作
+
+- **AI 整合：** 透過 **Groq API** 整合 Llama 3.1 模型，提供低延遲的智慧對話能力。
+- **排程提醒：** 支援單次、每日、每週的智慧提醒，並處理跨時區轉換邏輯。
+- **資料庫遷移 (Flyway)：** 使用 Flyway 進行 MySQL Schema 版本控制，確保各環境（Local/Dev/Prod）結構一致。
+- **可觀測性：** 整合 **MDC TraceID** 追蹤請求鏈路，搭配 Grafana Tempo 視覺化分散式追蹤。
+- **基礎設施整合：** 透過 Spring Cloud Config 抓取動態配置，利用 RabbitMQ 處理訊息排隊。
+
+Flyway `flyway_schema_history` 確認 Schema 已正確套用 Baseline：
+
+![Flyway Schema History](./images/flyway-schema-history.png)
+
+Grafana Tempo 顯示 nexusbot 服務的 Trace 記錄，涵蓋排程提醒、HTTP PUT/POST 等操作：
+
+![Grafana Tempo Traces](./images/grafana-tempo-traces.png)
+
+NEXUSBOT 服務健康狀態（Port 5001）：
+
+![NexusBot Health](./images/nexusbot-health.png)
+
+---
+
+## 5. GitOps 自動化部署
+
+部署流程採用 **GitOps 模式**，以 [**AceNexus/deploy**](https://github.com/AceNexus/deploy) 儲存庫作為「單一事實來源 (Source of Truth)」，明確分離開發與維運職責。
+
+### CI：持續整合（GitHub Actions）
+
+每個微服務的 CI 工作流程：
+1. 執行 Gradle 單元測試並封裝 JAR。
+2. 建置 Docker 映像檔並推送至 **GHCR (GitHub Container Registry)**。
+3. 使用 `sed` 自動更新 `deploy` 儲存庫中對應服務的 `k8s/deployment.yaml` 映像檔標籤。
+
+### CD：持續部署（ArgoCD）
+
+1. **ArgoCD 監控：** 持續監聽 `deploy` 儲存庫的變更。
+2. **狀態同步：** 偵測到 YAML 配置變更時，自動將 K8S 叢集狀態同步至最新配置。
+3. **零停機更新：** 利用 K8S 滾動更新機制，版本更迭過程中服務始終保持可用。
+
+ArgoCD 顯示所有服務（configservice、eurekaservice、gatewayservice、nexusbot）均處於 **Healthy** 狀態：
+
+![ArgoCD Applications](./images/argocd-applications.png)
+
+### 啟動順序依賴管理
+
+微服務之間存在啟動順序依賴，`restart_k8s.sh` 腳本確保順序正確：
+
+1. 中介軟體：RabbitMQ
+2. 基礎設施：Config → Eureka
+3. 路由與業務：Gateway → Bot
+
+### 網路隧道（ngrok）
+
+LINE Webhook 需要公開的 HTTPS URL，透過 `ngrok-tunnel.sh` 自動建立外部隧道並導向內部 GATEWAYSERVICE（Port 8080）。
+
+---
+
+## 6. 安全性與災難復原
+
+- **Secret 管理：** 資料庫憑證、API Keys 等敏感資訊不進入 Git，統一透過 **K8S Secrets** 手動建立並在 Pod 中引用。
+- **快速回滾：**
+    - **Git 層級：** Git Revert 回退 `deploy` 儲存庫配置。
+    - **ArgoCD 層級：** 在 ArgoCD UI 一鍵執行版本回滾，幾秒內恢復至先前的穩定版本。
+
+---
+
+## 參考連結
+- [AceNexus Organization](https://github.com/AceNexus)
+- [AceNexus/deploy Repository](https://github.com/AceNexus/deploy)
+- [NEXUSBOT Repository](https://github.com/AceNexus/NEXUSBOT)
