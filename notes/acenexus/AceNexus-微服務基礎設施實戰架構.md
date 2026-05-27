@@ -13,6 +13,12 @@
 - **健康監控：** 設定每 15 秒接收一次心跳 (Heartbeat)，若超過 45 秒未收到心跳則自動剔除失效節點。
 - **叢集感知：** 支援多環境 Profile (local, dev, prod)，在生產環境中與 Config Server 深度整合。
 
+### 實際運行展示
+
+下圖為 Eureka Dashboard，可見 **GATEWAYSERVICE** 與 **NEXUSBOT** 均已成功注冊並處於 UP 狀態：
+
+![Eureka Dashboard](./images/eureka-dashboard.png)
+
 ---
 
 ## 2. 分散式配置中心：CONFIGSERVICE
@@ -23,6 +29,16 @@
 - **Git 儲存後端：** 所有配置檔存放在專屬的 Git 儲存庫，實現版本控制與變更追蹤。
 - **敏感資訊加密 (JCE)：** 使用 Java Cryptography Extension 進行對稱加密。在 Git 檔案中使用 `{cipher}` 前綴，Config Server 會在傳送給客戶端前自動解密。
 - **動態重新載入 (Spring Cloud Bus)：** 整合 **RabbitMQ**。當配置變更時，透過 `/actuator/busrefresh` 端點發送廣播，讓所有微服務即時套用新配置而無需重啟。
+
+### 實際運行展示
+
+CONFIGSERVICE 健康狀態（Port 8888）：
+
+![ConfigService Health](./images/configservice-health.png)
+
+RabbitMQ Management 確認訊息佇列正常運作（4 queues、4 consumers）：
+
+![RabbitMQ Management](./images/rabbitmq-management.png)
 
 ---
 
@@ -35,13 +51,26 @@
 - **GatewayLoggerFilter：** 記錄所有請求的詳細 Meta-data（Request ID, Path, IP, Duration），提升系統的可觀測性 (Observability)。
 - **路徑重寫 (Path Rewriting)：** 透過 `StripPrefix` 過濾器，將 `/api/service-name/**` 格式的外部請求精確導向內部服務。
 
+### 實際運行展示
+
+GATEWAYSERVICE 健康狀態（Port 8080）：
+
+![GatewayService Health](./images/gatewayservice-health.png)
+
 ---
 
 ## 4. 部署維運體系
+
 AceNexus 體系採用了現代化的 DevOps 流程：
 1.  **映像檔建置：** 使用 GitHub Actions 進行測試、建置 JAR 並打包 Docker 映像檔。
 2.  **安全性：** 在 CI 階段使用 **Trivy** 掃描映像檔漏洞。
 3.  **自動部署：** 透過 ArgoCD 監控 `deploy` 儲存庫，實現 K8S 狀態自動同步。
+
+### 實際運行展示
+
+ArgoCD 顯示所有服務（aiclient、configservice、eurekaservice、gatewayservice、nexusbot）均處於 **Healthy** 狀態：
+
+![ArgoCD Applications](./images/argocd-applications.png)
 
 ---
 
