@@ -8,14 +8,13 @@
 
 在 AceNexus 的生態系中，部署流程被拆分為兩個相互關聯的階段，確保了開發 (Dev) 與運維 (Ops) 的職責分離。
 
-### 第一階段：CI (服務端儲存庫流水線)
+### 第一階段：CI：持續整合 (Continuous Integration)
 每個微服務（如 `gatewayservice`, `nexusbot`）在其 GitHub Actions 工作流中執行以下步驟：
 1.  **建置與測試：** 執行 Gradle 單元測試並封裝 JAR。
-2.  **安全性掃描：** 使用 **Trivy** 對 Docker 映像檔進行漏洞掃描。若偵測到高風險漏洞，流水線將自動終止。
-3.  **映像檔推送：** 通過掃描的映像檔被推送到 **GitHub Container Registry (GHCR)**。
-4.  **配置更新 (關鍵步驟)：** 使用 `sed` 自動更新 [**AceNexus/deploy**](https://github.com/AceNexus/deploy) 儲存庫中對應服務的 `k8s/deployment.yaml` 映像檔標籤 (Image Tag)。
+2.  **映像檔推送：** 建置完成的映像檔被推送到 **GHCR (GitHub Container Registry)**。
+3.  **配置更新 (關鍵步驟)：** 使用 `sed` 自動更新 [**AceNexus/deploy**](https://github.com/AceNexus/deploy) 儲存庫中對應服務的 `k8s/deployment.yaml` 映像檔標籤 (Image Tag)。
 
-### 第二階段：CD (GitOps 部署中心)
+### 第二階段：CD：持續交付 (Continuous Delivery) 或 持續部署 (Continuous Deployment)
 這是一個「Source of Truth (單一事實來源)」的儲存庫：
 1.  **ArgoCD 監控：** ArgoCD 持續監聽 `deploy` 儲存庫的變更。
 2.  **狀態同步：** 當偵測到 YAML 配置（即 CI 階段更新的映像檔標籤）變更時，ArgoCD 會自動將 K8S 集群的狀態同步至最新配置。

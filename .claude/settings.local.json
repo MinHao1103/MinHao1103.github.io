@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth:*)",
+      "Bash(Get-ChildItem -Path \"D:\\\\MinHao1103.github.io\" -Recurse -Force)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(grep -E \"\\\\.\\(nojekyll|json|yaml|yml|md\\)$\")",
+      "Bash(cd /d D:\\\\MinHao1103.github.io)",
+      "Bash(Get-ChildItem -Recurse -Filter \"*.md\")",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}

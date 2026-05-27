@@ -51,6 +51,50 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.glitch::before {
+    color: var(--primary-color);
+    clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
+    animation: glitch-top 4s infinite;
+}
+
+.glitch::after {
+    color: #e17055;
+    clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
+    animation: glitch-bottom 4s infinite;
+}
+
+@keyframes glitch-top {
+    0%, 88%, 100% { transform: translate(0); opacity: 0; }
+    90%           { transform: translate(-4px, -2px); opacity: 1; }
+    92%           { transform: translate(4px, 0);  opacity: 1; }
+    94%           { transform: translate(-2px, 1px); opacity: 1; }
+    96%           { transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitch-bottom {
+    0%, 88%, 100% { transform: translate(0); opacity: 0; }
+    91%           { transform: translate(4px, 2px);  opacity: 1; }
+    93%           { transform: translate(-4px, 0); opacity: 1; }
+    95%           { transform: translate(2px, -1px); opacity: 1; }
+    97%           { transform: translate(0); opacity: 0; }
+}
+
 .typewriter {
     font-size: 1.5rem;
     color: var(--secondary-text);
