@@ -148,7 +148,7 @@ RabbitMQ Management 確認訊息佇列正常運作：
 每個微服務的 CI 工作流程：
 1. 執行 Gradle 單元測試並封裝 JAR。
 2. 建置 Docker 映像檔並推送至 **GHCR (GitHub Container Registry)**。
-3. 使用 `sed` 自動更新 `deploy` 儲存庫中對應服務的 `k8s/deployment.yaml` 映像檔標籤。
+3. 自動更新 `deploy` 儲存庫中對應服務的 `k8s/deployment.yaml` 映像檔標籤。
 
 ### CD：持續部署（ArgoCD）
 
