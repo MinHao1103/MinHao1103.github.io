@@ -26,16 +26,16 @@ The site has two distinct parts:
 
 ### Note Category Folders
 
-| Folder | Sidebar Section |
-|--------|----------------|
+| Folder | Sidebar Section(s) |
+|--------|-------------------|
 | `notes/java/` | ☕ Java 底層與架構 |
-| `notes/spring-boot/` | 🍃 Spring 生態系解析 + 🔧 開發工具 |
+| `notes/spring-boot/` | 🍃 Spring 生態系解析 + ☁️ Spring Cloud 微服務 + 🔧 開發工具 |
 | `notes/hibernate/` | 💾 Hibernate |
 | `notes/devops/` | 🐳 DevOps 與雲端部署 |
 | `notes/security/` | 🔐 資安與認證 |
 | `notes/acenexus/` | 🚀 實戰專案架構解析 (AceNexus) |
 
-> **Note:** The `spring-boot/` folder physically stores both Spring Boot notes **and** dev-tool notes (`Git-基礎與版控.md`, `IntelliJ-開發效率完整指南.md`). The sidebar splits them into separate sections. Place new dev-tool notes in `spring-boot/` and add them under the 🔧 section in `_sidebar.md`.
+> **Note:** The `spring-boot/` folder physically stores Spring Boot notes, Spring Cloud notes, **and** dev-tool notes (`Git-基礎與版控.md`, `IntelliJ-開發效率完整指南.md`). The sidebar splits these into three separate sections. Place new dev-tool notes in `spring-boot/` under the 🔧 section; place new Spring Cloud notes in `spring-boot/` under the ☁️ section.
 
 ## Content Language
 
