@@ -160,6 +160,10 @@ ArgoCD 顯示所有服務（configservice、eurekaservice、gatewayservice、nex
 
 ![ArgoCD Applications](./images/argocd-applications.png)
 
+以下為完整 CI/CD 觸發到部署同步的實際操作示範：
+
+![NEXUSBOT CI/CD 操作示範](./images/nexusbot_cicd_1.gif)
+
 ### 啟動順序依賴管理
 
 `restart_k8s.sh` 腳本確保服務依正確順序啟動：
