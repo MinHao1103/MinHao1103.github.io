@@ -72,7 +72,7 @@ push -> test (2-3 min) -> release (3-5 min) -> ArgoCD sync (3 min) = 約 8-11 �
 
 ### VCN
 
-VCN（Virtual Cloud Network）是 OCI 的虛擬私有網路，等同於 AWS VPC，是所有網路資源（Subnet、路由、防火牆）的容器。
+VCN（Virtual Cloud Network）是 OCI 的虛擬私有網路，等同於 AWS VPC，是所有網路資源（Subnet、路由、防火牆）的容器。設定位置：OCI Console → Networking → Virtual Cloud Networks → Create VCN。
 
 | 欄位 | 值 |
 |------|----|
@@ -82,7 +82,7 @@ VCN（Virtual Cloud Network）是 OCI 的虛擬私有網路，等同於 AWS VPC�
 
 ### Subnet
 
-Subnet 是 VCN 內的子網路，負責將網路空間切割成更小的區塊，VM 就建立在 Subnet 裡面。設定為 Public Subnet 表示該子網路內的 VM 可以取得 Public IP，能直接對外通訊。
+Subnet 是 VCN 內的子網路，負責將網路空間切割成更小的區塊，VM 就建立在 Subnet 裡面。設定為 Public Subnet 表示該子網路內的 VM 可以取得 Public IP，能直接對外通訊。設定位置：VCN 詳細頁面 → Subnets → Create Subnet。
 
 | 欄位 | 值 |
 |------|----|
@@ -94,7 +94,7 @@ Subnet 是 VCN 內的子網路，負責將網路空間切割成更小的區塊�
 
 ### Internet Gateway
 
-Internet Gateway（IGW）是 VCN 對外的出入口，讓 Subnet 內的 VM 可以與公網雙向通訊。沒有掛上 IGW，VM 就算有 Public IP 也無法對外連線。
+Internet Gateway（IGW）是 VCN 對外的出入口，讓 Subnet 內的 VM 可以與公網雙向通訊。沒有掛上 IGW，VM 就算有 Public IP 也無法對外連線。設定位置：VCN 詳細頁面 → Internet Gateways → Create Internet Gateway。
 
 | 欄位 | 值 |
 |------|----|
@@ -102,7 +102,7 @@ Internet Gateway（IGW）是 VCN 對外的出入口，讓 Subnet 內的 VM 可�
 
 ### Route Table
 
-Route Table 定義封包的轉發規則。`0.0.0.0/0 -> acenexus-igw` 表示所有對外流量都經由 IGW 出去，是讓 VM 能上網的關鍵設定。
+Route Table 定義封包的轉發規則。`0.0.0.0/0 -> acenexus-igw` 表示所有對外流量都經由 IGW 出去，是讓 VM 能上網的關鍵設定。設定位置：VCN 詳細頁面 → 點入預設的 Default Route Table → Route Rules → Add Route Rules。
 
 | Destination | Target |
 |-------------|--------|
@@ -110,7 +110,7 @@ Route Table 定義封包的轉發規則。`0.0.0.0/0 -> acenexus-igw` 表示所�
 
 ### Security List
 
-Security List 是 OCI 的防火牆規則，等同於 AWS 的 Security Group，控制哪些 Port 允許進出。只有列在這裡的 Port 才能被外部存取，未開放的 Port 一律封鎖。
+Security List 是 OCI 的防火牆規則，等同於 AWS 的 Security Group，控制哪些 Port 允許進出。只有列在這裡的 Port 才能被外部存取，未開放的 Port 一律封鎖。設定位置：VCN 詳細頁面 → Security → 點入預設的 Default Security List → Ingress Rules → Add Ingress Rules。
 
 | Port | 用途 |
 |------|------|
@@ -127,18 +127,69 @@ Security List 是 OCI 的防火牆規則，等同於 AWS 的 Security Group，�
 
 ## 建立 VM
 
+VM（Virtual Machine）是實際運行 k3s 與所有服務的主機。OCI 的 Always Free 方案提供 VM.Standard.A1.Flex（ARM 架構），最多 4 OCPU / 24GB RAM 可免費使用。設定位置：OCI Console → Compute → Instances → Create Instance。
+
+**Step 1 — Basic information**
+
 | 欄位 | 值 |
 |------|----|
 | Name | acenexus-vm |
+| Create in compartment | minhao1103 (root) |
+| Availability domain | AD-1（若顯示 Out of capacity 改試 AD-2 / AD-3 或換區域） |
+| Capacity type | On-demand capacity |
+
+同一頁往下設定 Image 和 Shape：
+
+點擊 **Change image**：
+
+| 欄位 | 值 |
+|------|----|
+| OS | Canonical Ubuntu |
+| Version | 22.04 |
+
+點擊 **Change shape**：
+
+| 欄位 | 值 |
+|------|----|
+| Shape series | Ampere（ARM） |
 | Shape | **VM.Standard.A1.Flex** |
 | OCPU | 4 |
 | Memory | 24 GB |
-| Image | Ubuntu 22.04 |
-| Subnet | acenexus-subnet |
-| Public IP | 自動指派 |
-| SSH Key | 上傳 public key |
 
-> Shape 必須選 VM.Standard.A1.Flex，其他規格試用期後收費。
+> 預設會顯示 VM.Standard.E2.1.Micro（1 OCPU / 1GB），必須手動切換為 A1.Flex，否則試用期後收費。
+
+**Step 2 — Security**
+
+預設即可，不需要額外設定。
+
+**Step 3 — Networking**
+
+Primary VNIC 設定：
+
+| 欄位 | 值 |
+|------|----|
+| VNIC name | acenexus-vcn |
+| Primary network | Select existing virtual cloud network |
+| VCN compartment | minhao1103 (root) |
+| Virtual cloud network | acenexus-vcn |
+| Subnet | Select existing subnet → acenexus-subnet (regional) |
+| Private IPv4 address | Automatically assign private IPv4 address |
+| Public IPv4 address | Automatically assign public IPv4 address（開啟 toggle） |
+| IPv6 | 不支援，保持關閉即可 |
+
+SSH Key 設定（同一頁下方 Add SSH keys）：
+
+| 選項 | 說明 |
+|------|------|
+| Generate a key pair for me | OCI 自動產生，記得下載 private key（只顯示一次） |
+| Upload public key file (.pub) | 上傳本機已有的 `~/.ssh/your_key.pub` |
+| Paste public key | 直接貼上 public key 內容 |
+
+**Step 4 — Storage**
+
+預設 Boot Volume 46.6 GB 即可，不需要額外設定。若需要更大空間可勾選 **Specify a custom boot volume size**，Always Free 方案最大可設 200 GB。Block Volume 不需要掛載，保持空白。
+
+點擊 **Create** 等待 VM 狀態變為 Running。
 
 ```bash
 ssh -i ~/.ssh/your_private_key ubuntu@<VM_IP>
@@ -287,7 +338,7 @@ git revert HEAD && git push
 | VM.Standard.A1.Flex | Always Free |
 | VCN / Subnet / IGW | 永久免費 |
 | 臨時 Public IP | 綁定 VM 即免費 |
-| k3s | 自架，不用 OKE |
+| k3s | 自架 |
 | TiDB Cloud Starter | 永久免費 5GB |
 
 ### 避免
@@ -299,60 +350,6 @@ git revert HEAD && git push
 | OCI Container Engine | 用 k3s |
 | NAT Gateway | 用 IGW |
 | 非 Always Free VM | 只選 A1.Flex |
-
----
-
-## 常見問題
-
-### VM 建立失敗：Out of capacity
-
-```
-Out of capacity for shape VM.Standard.A1.Flex in availability domain AD-1.
-```
-
-原因：該 AD 的 A1.Flex 資源已被其他用戶佔滿。
-
-解決方法：
-
-1. 換區域（左上角切換）：Osaka / Seoul / Singapore
-2. 稍後重試（容量會定期釋放）
-3. 寫腳本持續重試直到成功
-
----
-
-### ImagePullBackOff
-
-```bash
-kubectl describe pod -n acenexus -l app=nexusbot | grep -A3 "Warning"
-
-kubectl delete secret ghcr-secret -n acenexus
-kubectl create secret docker-registry ghcr-secret \
-  --docker-server=ghcr.io \
-  --docker-username=<帳號> \
-  --docker-password=<PAT> \
-  -n acenexus
-```
-
-### ArgoCD Unknown
-
-```bash
-kubectl rollout restart deployment/argocd-repo-server -n argocd
-
-for app in nexusbot configservice eurekaservice gatewayservice aiclient; do
-  kubectl annotate application $app -n argocd \
-    argocd.argoproj.io/refresh=hard --overwrite
-done
-```
-
-### SSH 失敗
-
-1. Security List port 22 是否開放
-2. Public IP 是否正確
-3. SSH key 是否對應
-
-```bash
-ssh -i ~/.ssh/private_key -v ubuntu@<VM_IP>
-```
 
 ---
 
