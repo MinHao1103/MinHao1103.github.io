@@ -53,3 +53,4 @@
 
 - **🚀 實戰專案架構解析 (AceNexus)**
     - [AceNexus 專案架構實戰解析](acenexus/AceNexus-專案架構實戰解析.md)
+    - [OCI + AceNexus 部署指南](acenexus/OCI-AceNexus-部署指南.md)
