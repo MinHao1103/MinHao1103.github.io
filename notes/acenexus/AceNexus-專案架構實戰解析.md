@@ -84,10 +84,6 @@ Grafana Tempo 顯示 nexusbot 服務的 Trace 記錄，涵蓋所有 HTTP 操作�
 
 ![Grafana Tempo Traces](./images/grafana-tempo-traces.png)
 
-NEXUSBOT 服務健康狀態（Port 5001）：
-
-![NexusBot Health](./images/nexusbot-health.png)
-
 ---
 
 ### GATEWAYSERVICE — 統一 API 網關
@@ -99,10 +95,6 @@ NEXUSBOT 服務健康狀態（Port 5001）：
 - **GatewayLoggerFilter：** 記錄所有請求的 Meta-data（Request ID、Path、IP、Duration），提升系統可觀測性。
 - **路徑重寫 (Path Rewriting)：** 透過 `StripPrefix` 過濾器，將 `/api/service-name/**` 格式的外部請求精確導向內部服務。
 
-GATEWAYSERVICE 健康狀態（Port 8080）：
-
-![GatewayService Health](./images/gatewayservice-health.png)
-
 ---
 
 ### CONFIGSERVICE — 分散式配置中心
@@ -113,10 +105,7 @@ GATEWAYSERVICE 健康狀態（Port 8080）：
 - **Git 儲存後端：** 所有配置檔存放於專屬 Git 儲存庫，實現版本控制與變更追蹤。
 - **敏感資訊加密 (JCE)：** 使用 Java Cryptography Extension 對稱加密，Git 檔案中以 `{cipher}` 前綴標記，Config Server 傳送前自動解密。
 - **動態熱更新 (Spring Cloud Bus)：** 整合 **RabbitMQ**，配置變更時透過 `/actuator/busrefresh` 廣播，所有微服務即時套用新配置而無需重啟。
-
-CONFIGSERVICE 健康狀態（Port 8888）：
-
-![ConfigService Health](./images/configservice-health.png)
+- **Secret 管理：** 資料庫憑證、API Keys 等敏感資訊不進入 Git，統一透過 **K8S Secrets** 手動建立並在 Pod 中引用。
 
 RabbitMQ Management 確認訊息佇列正常運作：
 
@@ -126,12 +115,7 @@ RabbitMQ Management 確認訊息佇列正常運作：
 
 ### EUREKASERVICE — 服務註冊與發現
 
-[**EUREKASERVICE**](https://github.com/AceNexus/EUREKASERVICE) 是整個微服務體系的通訊錄，負責管理所有服務實例的生命週期。
-
-#### 關鍵實作
-- **安全防護：** 整合 HTTP Basic Auth，確保只有授權的服務節點能進行註冊。
-- **健康監控：** 每 15 秒接收一次心跳 (Heartbeat)，超過 45 秒未回報則自動剔除失效節點。
-- **多環境支援：** 支援 local / dev / prod Profile，生產環境與 Config Server 深度整合。
+[**EUREKASERVICE**](https://github.com/AceNexus/EUREKASERVICE) 是整個微服務體系的通訊錄，負責管理所有服務實例的生命週期。整合 HTTP Basic Auth 防止未授權節點註冊，支援 local / dev / prod 多環境 Profile，並與 Config Server 深度整合。
 
 下圖為 Eureka Dashboard，**GATEWAYSERVICE** 與 **NEXUSBOT** 均已成功註冊並處於 UP 狀態：
 
@@ -155,6 +139,7 @@ RabbitMQ Management 確認訊息佇列正常運作：
 1. **ArgoCD 監控：** 持續監聽 `deploy` 儲存庫的變更。
 2. **狀態同步：** 偵測到 YAML 配置變更時，自動將 K8S 叢集狀態同步至最新配置。
 3. **零停機更新：** 利用 K8S 滾動更新機制，版本更迭過程中服務始終保持可用。
+4. **快速回滾：** 透過 Git Revert 回退 `deploy` 儲存庫配置，ArgoCD 自動同步至前一版本。
 
 ArgoCD 顯示所有服務（configservice、eurekaservice、gatewayservice、nexusbot）均處於 **Healthy** 狀態：
 
@@ -175,13 +160,6 @@ ArgoCD 顯示所有服務（configservice、eurekaservice、gatewayservice、nex
 ### 網路隧道（ngrok）
 
 LINE Webhook 需要公開的 HTTPS URL，透過 `ngrok-tunnel.sh` 自動建立外部隧道並導向內部 GATEWAYSERVICE（Port 8080）。
-
----
-
-## 5. 安全性與災難復原
-
-- **Secret 管理：** 資料庫憑證、API Keys 等敏感資訊不進入 Git，統一透過 **K8S Secrets** 手動建立並在 Pod 中引用。
-- **快速回滾：** 透過 Git Revert 回退 `deploy` 儲存庫配置。
 
 ---
 
