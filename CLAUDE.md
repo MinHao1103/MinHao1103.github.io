@@ -66,6 +66,27 @@ Sidebar depth is capped at 3 (`subMaxLevel: 3`).
 
 Known rendering quirk: `` **`text`** `` (bold + inline code combined) does not render correctly — use plain `**text**` or `` `text` `` separately instead.
 
+## Local Preview
+
+Docsify requires a real HTTP server — `file://` URLs won't work. Serve from the repo root:
+
+```bash
+python -m http.server 8080
+# then open http://localhost:8080 (portfolio) or http://localhost:8080/notes/ (notes)
+```
+
+Any static file server works (VS Code Live Server, `npx serve`, etc.).
+
+## Adding Prism Syntax Languages
+
+To enable highlighting for a new language in notes, add the corresponding Prism component script to `notes/index.html` after the existing Prism `<script>` tags:
+
+```html
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-<language>.min.js"></script>
+```
+
+Languages not loaded this way will render as plain (unhighlighted) code blocks.
+
 ## Deployment
 
 Push to `main` — GitHub Pages auto-deploys. No CI, no build step.
