@@ -43,9 +43,9 @@ All notes and portfolio content are written in Traditional Chinese (zh-TW). Main
 
 ## Portfolio Theming (style.css / script.js)
 
-Colours and spacing are driven entirely by CSS custom properties defined on `:root` (light) and `body.dark` (dark). The primary accent is `--primary: #0984e3`. When adding new styled elements, use existing variables rather than hardcoding values.
+Colours and spacing are driven entirely by CSS custom properties defined on `:root` (light) and `[data-theme="dark"]` (dark). The primary accent is `--primary: #0984e3`. When adding new styled elements, use existing variables rather than hardcoding values.
 
-`script.js` reads/writes `localStorage.getItem('theme')` (`'dark'` | `'light'`), falling back to `prefers-color-scheme`. Icons swap between `fa-moon` (light mode) and `fa-sun` (dark mode).
+`script.js` toggles dark mode via `body.setAttribute('data-theme', 'dark')` / `body.removeAttribute('data-theme')`, persisting the preference to `localStorage` (`'dark'` | `'light'`), falling back to `prefers-color-scheme`. Icons swap between `fa-moon` (light mode) and `fa-sun` (dark mode).
 
 ## Adding Notes
 
