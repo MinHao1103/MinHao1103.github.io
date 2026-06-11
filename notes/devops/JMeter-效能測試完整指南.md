@@ -478,3 +478,21 @@ jmeter -n -t jmeter-tests.jmx -l result.jtl -e -o ./report
 ```
 
 表示請求有傳到伺服器，但 JSON Body 的欄位名稱與 API 規格不符。對照 API 文件確認正確的欄位名稱後修正 Body Data。
+
+---
+
+### Results file is not empty（無法產生報告）
+
+```
+Error in NonGUIDriver Results file:result.jtl is not empty
+```
+
+`result.jtl` 是上次壓測留下的舊檔，JMeter 不會自動覆蓋。`-o` 指定的報告目錄也必須是空的，否則同樣報錯。
+
+每次執行前先清除舊檔：
+
+```cmd
+del result.jtl
+rmdir /s /q report
+jmeter -n -t jmeter-tests.jmx -l result.jtl -e -o ./report
+```
