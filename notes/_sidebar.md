@@ -43,6 +43,7 @@
     - [CI/CD 持續整合與部署](devops/CI-CD-持續整合與部署.md)
     - [Ngrok 內網穿透工具](devops/Ngrok-內網穿透工具.md)
     - [Ollama 本地 AI 模型部署](devops/Ollama-本地-AI-模型部署.md)
+    - [JMeter 效能測試完整指南](devops/JMeter-效能測試完整指南.md)
 
 - **🔐 資安與認證**
     - [JWT 身份驗證與實作](security/JWT-身份驗證與實作.md)
